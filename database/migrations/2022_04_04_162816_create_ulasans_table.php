@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('id_pelanggan');
 
             $table->smallInteger('nilai');
-            $table->string('ulasan');
+            $table->text('ulasan');
             $table->date('tanggal_ulasan');
 
             $table->timestamps();

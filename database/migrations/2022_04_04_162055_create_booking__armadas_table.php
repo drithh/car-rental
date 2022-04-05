@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('booking__armadas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_armada');
-            $table->foreignId('id_pelanggan');
+            $table->foreignId('id_booking');
 
             $table->bigInteger('harga');
             $table->date('tanggal_pengembalian');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             
             $table->string('durasi');
-            $table->string('status');
+            $table->boolean('status')->default(false);
             $table->text('keterangan');
 
             $table->timestamps();

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
 
             $table->string('nik');
-            $table->boolean('jenis_kelamin');
+            $table->string('jenis_kelamin');
             $table->date('tanggal_lahir');
             $table->string('alamat');
             $table->string('no_telp');

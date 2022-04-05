@@ -16,4 +16,9 @@ class Booking extends Model
         return $this->belongsTo(Pelanggan::class);
     }
 
+    public function booking_armada()
+    {
+        return $this->hasMany(Booking_Armada::class);
+    }
+
 }
