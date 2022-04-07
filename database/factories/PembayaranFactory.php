@@ -17,7 +17,7 @@ class PembayaranFactory extends Factory
     public function definition()
     {
         return [
-            'id_booking_armada' => mt_rand(1, 300),
+            'booking_armada_id' => mt_rand(1, 300),
             'tanggal_bayar' => $this->faker->date(),
             'jumlah_bayar' => mt_rand(1000000, 10000000),
             'tipe_bayar' => $this->faker->randomElement(['Cash', 'Transfer']),

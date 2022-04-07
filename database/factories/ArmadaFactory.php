@@ -17,7 +17,7 @@ class ArmadaFactory extends Factory
     public function definition()
     {
         return [
-            'id_merk' => mt_rand(1, 20),
+            'merk_id' => mt_rand(1, 20),
             'tanggal_pajak' => $this->faker->date(),
             'no_polisi' => $this->faker->vehicleRegistration('[A-Z]{1,2} [0-9]{1,4} [A-Z]{1,3}'),
             'kapasitas' => mt_rand(1, 10),

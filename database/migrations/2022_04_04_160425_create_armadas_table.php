@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('armadas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_merk');
+            $table->foreignId('merk_id');
             $table->date('tanggal_pajak');
             $table->string('no_polisi');
 

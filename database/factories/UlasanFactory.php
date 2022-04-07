@@ -17,9 +17,9 @@ class UlasanFactory extends Factory
     public function definition()
     {
         return [
-            'id_booking_armada' => mt_rand(1, 300),
-            'id_armada' => mt_rand(1, 100),
-            'id_pelanggan' => mt_rand(1, 50),
+            'booking_armada_id' => mt_rand(1, 300),
+            'armada_id' => mt_rand(1, 100),
+            'pelanggan_id' => mt_rand(1, 50),
             'nilai' => mt_rand(1, 5),
             'ulasan' => $this->faker->text(),
             'tanggal_ulasan' => $this->faker->date(),

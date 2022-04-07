@@ -17,7 +17,7 @@ class BookingFactory extends Factory
     public function definition()
     {
         return [
-            'id_pelanggan' => mt_rand(1, 50),
+            'pelanggan_id' => mt_rand(1, 50),
             'tanggal_transaksi' => $this->faker->date(),
             'booking_code' => $this->faker->uuid(),
             'no_tagihan' => $this->faker->regexify('[A-Z]{5}[0-4]{3}'),

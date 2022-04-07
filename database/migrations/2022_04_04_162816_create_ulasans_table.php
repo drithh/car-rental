@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('ulasans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_booking_armada');
-            $table->foreignId('id_armada');
-            $table->foreignId('id_pelanggan');
+            $table->foreignId('booking_armada_id');
+            $table->foreignId('armada_id');
+            $table->foreignId('pelanggan_id');
 
             $table->smallInteger('nilai');
             $table->text('ulasan');

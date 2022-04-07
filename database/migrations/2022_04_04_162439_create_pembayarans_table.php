@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pembayarans', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_booking_armada');
+            $table->foreignId('booking_armada_id');
             $table->date('tanggal_bayar');
             $table->bigInteger('jumlah_bayar');
             $table->string('tipe_bayar');
