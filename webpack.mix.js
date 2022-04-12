@@ -15,9 +15,14 @@ mix
   .js("resources/js/app.js", "public/js")
   .vue()
   .sass("resources/sass/app.scss", "public/css")
-  .postCss("resources/css/app.css", "public/css", [require("tailwindcss")])
+  .postCss("resources/css/app.css", "public/css", [
+    require("postcss-import"),
+    require("tailwindcss"),
+    require("autoprefixer"),
+  ])
   .browserSync("rental-mobil.test")
-  .disableNotifications();
+  .disableNotifications()
+  .webpackConfig(require("./webpack.config"));
 
 //     mix
 //   .js("resources/js/app.js", "public/js")

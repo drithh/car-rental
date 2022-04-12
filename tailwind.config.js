@@ -16,6 +16,22 @@ module.exports = {
         primary: "#2A2B2D",
         secondary: "#A8A6B0",
       },
+      animation: {
+        "scale-bounce-enter": "scaleBounceEnter 0.5s linear",
+        "scale-bounce-leave": "scaleBounceLeave 0.5s linear",
+      },
+      keyframes: {
+        scaleBounceEnter: {
+          "0%": { transform: "scale(0)" },
+          "70%": { transform: "scale(1.1)" },
+          "100%": { transform: "scale(1)" },
+        },
+        scaleBounceLeave: {
+          "0%": { transform: "scale(1)" },
+          "70%": { transform: "scale(1.1)" },
+          "100%": { transform: "scale(0)" },
+        },
+      },
     },
   },
   plugins: [],
