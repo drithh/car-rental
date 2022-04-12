@@ -1,16 +1,14 @@
-<template>
-    <nav>makan</nav>
-</template>
+<template></template>
 
 <script>
 export default {
-    name: "Home",
-    data() {
-        return {
-            //
-        };
-    },
-    created() {},
-    methods: {},
+  name: "Home",
+  data() {
+    return {
+      //
+    };
+  },
+  created() {},
+  methods: {},
 };
 </script>

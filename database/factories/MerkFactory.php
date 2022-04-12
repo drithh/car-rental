@@ -22,6 +22,7 @@ class MerkFactory extends Factory
         return [
             'brand' => $v['brand'],
             'model' => $v['model'],
+            'type' => $this->faker->vehicleType(),
         ];
     }
 }

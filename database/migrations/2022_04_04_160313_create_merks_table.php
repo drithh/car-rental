@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('brand');
             $table->string('model');
+            $table->string('type');
             $table->timestamps();
         });
     }
