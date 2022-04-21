@@ -6,6 +6,7 @@ module.exports = {
       "@": path.resolve("resources/js"),
     },
   },
+  cache: false,
   module: {
     rules: [
       {

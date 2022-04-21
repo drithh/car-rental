@@ -8,10 +8,6 @@ import TermsConditions from "../pages/TermsConditions";
 import Profile from "../pages/Profile";
 import Favorite from "../pages/Favorite";
 
-// import Books from "../components/Books";
-// import AddBook from "../components/AddBook";
-// import EditBook from "../components/EditBook";
-
 export const routes = [
   {
     name: "home",

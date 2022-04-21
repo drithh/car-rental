@@ -8,6 +8,7 @@ module.exports = {
     fontFamily: {
       Yantramanav: ["Yantramanav", "sans-serif"],
       WorkSans: ["Work Sans", "sans-serif"],
+      Outfit: ["Outfit", "sans-serif"],
     },
 
     extend: {
@@ -28,7 +29,7 @@ module.exports = {
         },
         scaleBounceLeave: {
           "0%": { transform: "scale(1)" },
-          "70%": { transform: "scale(1.1)" },
+          "30%": { transform: "scale(1.2)" },
           "100%": { transform: "scale(0)" },
         },
       },

@@ -1,9 +1,60 @@
+<script setup>
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+let navWidth = ref(0);
+let positionX = ref(0);
+let scaleX = ref(0);
+let profileButton = ref(0);
+let notificationActive = ref(false);
+const route = useRoute();
+watch(
+  () => route.name,
+  () => {
+    if (route.name === "booking") {
+      changeLine(1);
+    } else if (route.name === "about") {
+      changeLine(2);
+    } else if (route.name === "support") {
+      changeLine(3);
+    } else if (route.name === "termsConditions") {
+      changeLine(4);
+    } else {
+      hideLine();
+    }
+    if (route.name === "favorite") {
+      profileButton.value = 1;
+    } else if (route.name === "profile") {
+      profileButton.value = 2;
+    } else {
+      profileButton.value = 0;
+    }
+
+    notificationActive.value = false;
+  }
+);
+
+const nav = ref("");
+
+function changeLine(navIndex) {
+  const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
+  const parentElement = nav.value.getBoundingClientRect();
+  scaleX.value = 1.1;
+  navWidth.value = navElement.width;
+  positionX.value = navElement.x - parentElement.x;
+  profileButton.value = 0;
+}
+function hideLine() {
+  scaleX.value = 0;
+}
+</script>
+
 <template>
   <header class="flex place-content-center">
     <div
-      class="grid h-24 w-screen grid-flow-col place-items-center border-b border-gray-500 border-b-secondary border-opacity-50 px-4 font-Yantramanav text-2xl text-secondary lg:w-[92vw] lg:p-0"
+      class="grid h-24 w-screen grid-flow-col place-items-center border-b border-gray-500 border-b-secondary border-opacity-50 px-4 font-Yantramanav text-2xl font-medium text-secondary lg:w-[92vw] lg:p-0"
     >
       <nav
+        ref="nav"
         class="relative flex h-full w-full min-w-[38rem] flex-row items-center gap-4 lg:gap-[4%]"
       >
         <div
@@ -12,17 +63,34 @@
         >
           <router-link to="/">Rental</router-link>
         </div>
-        <div @click="changeLine" class="item-nav">
-          <router-link to="/booking">Booking</router-link>
+        <div class="item-nav">
+          <router-link
+            class="transition-colors duration-700 ease-in-out"
+            to="/booking"
+          >
+            Booking</router-link
+          >
         </div>
-        <div @click="changeLine" class="item-nav">
-          <router-link to="/about-us">About Us</router-link>
+        <div class="item-nav">
+          <router-link
+            class="transition-colors duration-700 ease-in-out"
+            to="/about-us"
+            >About Us</router-link
+          >
         </div>
-        <div @click="changeLine" class="item-nav">
-          <router-link to="/support">Support</router-link>
+        <div class="item-nav">
+          <router-link
+            class="transition-colors duration-700 ease-in-out"
+            to="/support"
+            >Support</router-link
+          >
         </div>
-        <div @click="changeLine" class="item-nav">
-          <router-link to="/terms-conditions">Terms & Conditions</router-link>
+        <div class="item-nav">
+          <router-link
+            class="transition-colors duration-700 ease-in-out"
+            to="/terms-conditions"
+            >Terms & Conditions</router-link
+          >
         </div>
         <div
           :style="{
@@ -53,11 +121,14 @@
             />
           </transition>
         </router-link>
-        <div @click="profileButton = 2" class="relative cursor-pointer">
+        <div
+          @click="notificationActive = !notificationActive"
+          class="relative cursor-pointer"
+        >
           <font-awesome-icon :icon="['far', 'bell']" />
           <transition>
             <font-awesome-icon
-              v-if="profileButton === 2"
+              v-if="notificationActive"
               class="absolute left-0 top-[2px] -z-10 origin-center"
               icon="bell"
             />
@@ -67,14 +138,14 @@
           <router-link
             @click="
               hideLine();
-              profileButton = 3;
+              profileButton = 2;
             "
             to="/profile"
           >
             <font-awesome-icon :icon="['far', 'circle']" />
             <transition>
               <font-awesome-icon
-                v-if="profileButton === 3"
+                v-if="profileButton === 2"
                 class="absolute left-0 top-[2px] -z-10 origin-center"
                 icon="circle"
               />
@@ -86,36 +157,8 @@
   </header>
 </template>
 
-<script>
-export default {
-  name: "NavbarComponent",
-  data: function () {
-    return {
-      navWidth: 0,
-      positionX: 0,
-      scaleX: 0,
-      profileButton: 0,
-    };
-  },
-
-  methods: {
-    changeLine(event) {
-      const element = event.path[1].getBoundingClientRect();
-      const parent = event.path[2].getBoundingClientRect();
-      this.scaleX = 1.1;
-      this.navWidth = element.width;
-      this.positionX = element.x - parent.x;
-      this.profileButton = 0;
-    },
-    hideLine() {
-      this.scaleX = 0;
-    },
-  },
-};
-</script>
-
 <style lang="postcss" scoped>
-.item-nav.router-link-active {
+.item-nav .router-link-active {
   @apply text-primary;
 }
 .v-enter-active,
