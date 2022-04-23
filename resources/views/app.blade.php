@@ -11,6 +11,13 @@
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&family=Yantramanav:wght@100;400;700&display=swap");
 
+    @font-face {
+      font-family: 'HelveticaNowText';
+      font-style: normal;
+      font-weight: 400;
+      src: url('/fonts/HelveticaNowText.ttf') format('truetype');
+    }
+
   </style>
   <title>Rental Mobil</title>
 </head>

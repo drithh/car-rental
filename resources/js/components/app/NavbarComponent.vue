@@ -49,9 +49,9 @@ function hideLine() {
 </script>
 
 <template>
-  <header class="flex place-content-center">
+  <header class="m-auto flex w-full place-content-center lg:w-[92vw] lg:p-0">
     <div
-      class="grid h-24 w-screen grid-flow-col place-items-center border-b border-gray-500 border-b-secondary border-opacity-50 px-4 font-Yantramanav text-2xl font-medium text-secondary lg:w-[92vw] lg:p-0"
+      class="border-gray-500 grid h-24 w-screen grid-flow-col place-items-center border-b border-b-secondary border-opacity-50 px-4 font-Yantramanav text-2xl font-medium text-secondary"
     >
       <nav
         ref="nav"

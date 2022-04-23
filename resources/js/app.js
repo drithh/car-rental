@@ -10,10 +10,27 @@ import {
   faCircle as fasCircle,
   faBell as fasBell,
   faHeart as fasHeart,
+  faLocationDot,
+  faPlus,
+  faMinus,
+  faUser,
+  faCogs,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faCircle, faBell, faHeart, fasCircle, fasBell, fasHeart);
+library.add(
+  faCircle,
+  faBell,
+  faHeart,
+  faPlus,
+  faMinus,
+  fasCircle,
+  fasBell,
+  fasHeart,
+  faLocationDot,
+  faUser,
+  faCogs
+);
 
 const app = createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
