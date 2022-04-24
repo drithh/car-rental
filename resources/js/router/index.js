@@ -3,8 +3,8 @@ import { createWebHistory, createRouter } from "vue-router";
 import Home from "../pages/Home";
 import Booking from "../pages/Booking";
 import About from "../pages/About";
-import Support from "../pages/Support";
-import TermsConditions from "../pages/TermsConditions";
+import Contact from "../pages/Contact";
+import Faq from "../pages/Faq";
 import Profile from "../pages/Profile";
 import Favorite from "../pages/Favorite";
 
@@ -30,14 +30,14 @@ export const routes = [
     //   component: Login,
   },
   {
-    name: "support",
-    path: "/support",
-    component: Support,
+    name: "contact",
+    path: "/contact",
+    component: Contact,
   },
   {
-    name: "termsConditions",
-    path: "/terms-conditions",
-    component: TermsConditions,
+    name: "faq",
+    path: "/faq",
+    component: Faq,
   },
   {
     name: "profile",

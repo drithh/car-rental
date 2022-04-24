@@ -1,4 +1,4 @@
-<template>Support</template>
+<template>Contact</template>
 
 <script>
 export default {

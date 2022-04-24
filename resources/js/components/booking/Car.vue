@@ -5,7 +5,7 @@ const favorite = ref(false);
 
 <template>
   <div
-    class="flex max-h-[18.5rem] min-h-[18rem] w-full min-w-[18rem] max-w-[18.5rem] flex-col place-content-between rounded-3xl bg-white p-6"
+    class="flex h-[max(max-content,_19rem)] w-full flex-col place-content-between rounded-3xl bg-white p-6"
   >
     <div class="car-name flex place-content-between font-Yantramanav">
       <div class="name-wrapper">

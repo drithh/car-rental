@@ -14,9 +14,9 @@ watch(
       changeLine(1);
     } else if (route.name === "about") {
       changeLine(2);
-    } else if (route.name === "support") {
+    } else if (route.name === "contact") {
       changeLine(3);
-    } else if (route.name === "termsConditions") {
+    } else if (route.name === "faq") {
       changeLine(4);
     } else {
       hideLine();
@@ -81,15 +81,15 @@ function hideLine() {
         <div class="item-nav">
           <router-link
             class="transition-colors duration-700 ease-in-out"
-            to="/support"
-            >Support</router-link
+            to="/contact"
+            >Contact</router-link
           >
         </div>
         <div class="item-nav">
           <router-link
             class="transition-colors duration-700 ease-in-out"
-            to="/terms-conditions"
-            >Terms & Conditions</router-link
+            to="/faq"
+            >FAQ</router-link
           >
         </div>
         <div

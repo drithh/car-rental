@@ -1,9 +1,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import BookingForm from "../components/booking/BookingForm.vue";
-import Car from "../components/booking/Car.vue";
-import FilterType from "../components/booking/FilterType.vue";
+import BookingForm from "components/booking/BookingForm.vue";
+import Car from "components/booking/Car.vue";
+import FilterType from "components/booking/FilterType.vue";
 </script>
 
 <template>
@@ -27,7 +27,7 @@ import FilterType from "../components/booking/FilterType.vue";
     </div>
   </section>
   <section class="flex place-content-center bg-cream">
-    <div class="flex flex-row place-content-end gap-x-10 py-12 lg:w-[92vw]">
+    <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
       <div
         class="h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
       >
@@ -42,7 +42,9 @@ import FilterType from "../components/booking/FilterType.vue";
           <filter-type></filter-type>
         </div>
       </div>
-      <div class="flex flex-wrap place-content-around gap-10">
+      <div
+        class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
+      >
         <car></car>
         <car></car>
         <car></car>
