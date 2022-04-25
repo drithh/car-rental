@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+  text: String,
+});
+</script>
 
 <template>
   <div class="input-wrapper grid w-full grid-cols-2 gap-6">
@@ -9,7 +13,7 @@
           :icon="['fas', 'location-dot']"
         />
         <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
-          Pick-up
+          {{ text }}
         </p>
       </div>
       <div class="w-full rounded-xl bg-gray py-3 px-6 font-Yantramanav text-xl">
@@ -20,10 +24,10 @@
       <div class="label flex flex-row place-items-center gap-x-3 px-2">
         <font-awesome-icon
           class="scale-x-[1.1] text-blue"
-          :icon="['fas', 'location-dot']"
+          :icon="['fas', 'calendar']"
         />
         <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
-          Pick-up
+          {{ text }} Date
         </p>
       </div>
       <div class="w-full rounded-xl bg-gray py-3 px-6 font-Yantramanav text-xl">
@@ -34,10 +38,10 @@
       <div class="label flex flex-row place-items-center gap-x-3 px-2">
         <font-awesome-icon
           class="scale-x-[1.1] text-blue"
-          :icon="['fas', 'location-dot']"
+          :icon="['fas', 'clock']"
         />
         <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
-          Pick-up
+          {{ text }} Time
         </p>
       </div>
       <div class="w-full rounded-xl bg-gray py-3 px-6 font-Yantramanav text-xl">

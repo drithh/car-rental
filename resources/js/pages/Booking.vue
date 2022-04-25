@@ -4,6 +4,27 @@ import { useRoute } from "vue-router";
 import BookingForm from "components/booking/BookingForm.vue";
 import Car from "components/booking/Car.vue";
 import FilterType from "components/booking/FilterType.vue";
+
+const filters = [
+  {
+    filterType: "Car Type",
+    filterList: [
+      "SUV (10)",
+      "Sedan (15)",
+      "Hatchback (18)",
+      "MPV (10)",
+      "Coupe (19)",
+    ],
+  },
+  {
+    filterType: "Capacity",
+    filterList: ["2-4 (53)", "5 or more (20)"],
+  },
+  {
+    filterType: "Transmission Type",
+    filterList: ["Automatic", "Manual"],
+  },
+];
 </script>
 
 <template>
@@ -22,11 +43,11 @@ import FilterType from "components/booking/FilterType.vue";
     <div
       class="book-panel grid w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
     >
-      <booking-form></booking-form>
-      <booking-form></booking-form>
+      <booking-form text="Pick-up"></booking-form>
+      <booking-form text="Drop-off"></booking-form>
     </div>
   </section>
-  <section class="flex place-content-center bg-cream">
+  <section class="flex place-content-center bg-cream pb-20">
     <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
       <div
         class="h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
@@ -37,9 +58,12 @@ import FilterType from "components/booking/FilterType.vue";
           Filter By
         </div>
         <div class="filter-container py-6">
-          <filter-type></filter-type>
-          <filter-type></filter-type>
-          <filter-type></filter-type>
+          <filter-type
+            v-for="(filter, index) in filters"
+            :key="index"
+            :filterType="filter.filterType"
+            :filterList="filter.filterList"
+          ></filter-type>
         </div>
       </div>
       <div
@@ -57,29 +81,38 @@ import FilterType from "components/booking/FilterType.vue";
         <car></car>
         <car></car>
         <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
+        <car></car>
       </div>
     </div>
   </section>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 .filter-move {
-  position: absolute;
-  transition: all 0.3s ease;
+  @apply absolute transition-all;
 }
 
 .filter-enter-active,
 .filter-leave-active {
-  transition: all 1s ease-in-out;
+  @apply transition-all duration-1000 ease-in-out;
 }
 
 .filter-enter-from,
 .filter-leave-to {
-  transform: translateY(-200%);
+  @apply -translate-y-[200%];
 }
 
 .filter-enter-to,
 .filter-leave-from {
-  transform: translateY(0%);
+  @apply translate-y-0;
 }
 </style>
