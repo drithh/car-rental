@@ -13,10 +13,10 @@
 
 ### Clone Repository
 
-1. Clone repository ini  
+1. Clone atau download repository ini  
    `git clone https://github.com/Drithh/rental-mobil.git`
 2. Buka folder project
-3. Buka Terminal
+3. Buka Terminal atau command prompt
 4. Ketik `composer install`
 
 ### Setup file .env
@@ -31,7 +31,7 @@
      DB_USERNAME=root
      DB_PASSWORD=
     ```
-    Pastikan database `rental_mobil` sudah dibuat
+    Pastikan database `rental_mobil` sudah dibuat sebelumnya
 3. Ketik `php artisan migrate:fresh --seed`
 
 ### Jalankan Project
@@ -45,4 +45,4 @@ Setelah semua sudah tersetting, seharusnya website sudah jalan dan bisa diakses 
 
 1. Ketik `npm install`
 2. Buka file .env ubah nilai `WEBSERVER_URL` sesuai dengan alamat yang server yang tadi diberikan (contoh: http://127.0.0.1:8000)
-3. Ketik `npm run dev` atau `npm run watch`. pastikan `php artisan serve` sudah berjalan di terminal lain.
+3. Ketik `npm run dev` (compile) atau `npm run watch` (compile setiap ada update). pastikan `php artisan serve` sudah berjalan di terminal lain.
