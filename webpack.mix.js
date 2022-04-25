@@ -1,5 +1,5 @@
 const mix = require("laravel-mix");
-
+require("dotenv").config();
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,6 +11,8 @@ const mix = require("laravel-mix");
  |
  */
 
+const url = process.env.WEBSERVER_URL;
+
 mix
   .js("resources/js/app.js", "public/js")
   .vue()
@@ -20,7 +22,7 @@ mix
     require("tailwindcss"),
     require("autoprefixer"),
   ])
-  .browserSync("rental-mobil.test")
+  .browserSync(url)
   .disableNotifications()
   .webpackConfig(require("./webpack.config"));
 
