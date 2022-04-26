@@ -77,7 +77,7 @@ onBeforeRouteLeave((to, from, next) => {
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
       <section
-        class="m-auto my-12 flex h-80 w-full flex-row justify-between gap-x-10 lg:w-[92vw] lg:p-0"
+        class="relative z-10 m-auto my-12 flex w-full flex-row justify-between gap-x-10 lg:w-[92vw] lg:p-0"
       >
         <div
           id="header"
@@ -93,7 +93,7 @@ onBeforeRouteLeave((to, from, next) => {
         </div>
         <div
           id="book-panel"
-          class="grid w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
+          class="grid h-80 w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
         >
           <booking-form text="Pick-up"></booking-form>
           <booking-form text="Drop-off"></booking-form>
@@ -101,7 +101,7 @@ onBeforeRouteLeave((to, from, next) => {
       </section>
       <section
         id="car-container"
-        class="flex place-content-center bg-cream pb-20"
+        class="relative z-0 flex place-content-center bg-cream pb-20"
       >
         <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
           <div

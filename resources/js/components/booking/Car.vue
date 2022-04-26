@@ -64,7 +64,7 @@ const favorite = ref(false);
       <div class="price">
         <span class="text-lg font-bold text-primary">
           <span>
-            $100
+            IDR 100
             <!-- <slot name="price"></slot> -->
           </span>
         </span>

@@ -42,7 +42,7 @@
             <div
               class="font-Yantramanav text-[5rem] font-extrabold text-primary"
             >
-              Why Book With Us?
+              Mengapa Menyewa Dengan Kami?
             </div>
             <div class="wrapper mt-20 mb-32 flex w-full place-content-between">
               <why-us

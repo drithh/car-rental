@@ -38,6 +38,7 @@
         "dynamics.js": "^1.1.5",
         "i": "^0.3.7",
         "npm": "^8.6.0",
+        "v-calendar": "^3.0.0-alpha.8",
         "vue": "^3.2.31",
         "vue-router": "^4.0.13",
         "vue3-carousel": "^0.1.38"

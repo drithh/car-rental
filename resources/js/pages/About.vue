@@ -2,11 +2,11 @@
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
       <section
-        class="faq relative m-auto mt-14 flex flex-col place-content-center place-items-center gap-y-8 lg:w-[60vw]"
+        class="faq relative m-auto my-14 flex flex-col place-content-center place-items-center gap-y-16 lg:w-[60vw]"
       >
         <div
           id="title"
-          class="my-12 font-Yantramanav text-[3rem] font-black text-primary opacity-90"
+          class="my-6 font-Yantramanav text-[3rem] font-black text-primary opacity-90"
         >
           Tentang Kami
         </div>
@@ -41,11 +41,11 @@
           <div
             class="text-justify font-Yantramanav text-2xl text-primary opacity-70"
           >
-            Sejak didirikan pada tahun 2022, RENTAL telah berkembang dengan
-            sangat pesat dalam waktu dekat. Dengan harga yang terjangkau serta
-            lokasi yang strategis, RENTAL telah menjadi pilihan andalan bagi
-            banyak orang, senantiasa melayani kebutuhan anda di manapun dan
-            kapanpun.
+            Kami berdedikasi dalam memberikan anda pelayanan yang terbaik,
+            menyesuaikan dengan keinginan dan keperluan anda. Variasi armada
+            yang kami miliki mencakup berbagai macam jenis kendaraan, mulai dari
+            mobil listrik ramah lingkungan hingga mobil berkapasitas penumpang
+            tinggi, kepuasan anda pasti terjamin.
           </div>
         </div>
       </section>
