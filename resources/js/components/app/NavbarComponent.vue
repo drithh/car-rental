@@ -1,12 +1,13 @@
 <script setup>
 import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, onBeforeRouteUpdate } from "vue-router";
 let navWidth = ref(0);
 let positionX = ref(0);
 let scaleX = ref(0);
 let profileButton = ref(0);
 let notificationActive = ref(false);
 const route = useRoute();
+
 watch(
   () => route.name,
   () => {
@@ -97,7 +98,6 @@ function hideLine() {
             width: `${navWidth}px`,
             transform: `translateX(${positionX}px) scaleX(${scaleX})`,
           }"
-          ref="underlineNav"
           class="absolute left-0 bottom-[-2.5px] h-[5px] origin-center rounded-lg bg-blue transition-all duration-700 ease-in-out"
         ></div>
       </nav>

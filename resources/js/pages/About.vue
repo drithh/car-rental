@@ -1,7 +1,14 @@
-<template>About</template>
+<template>
+  <div>
+    Test
+    <div>Kenapa</div>
+  </div>
+</template>
 
-<script>
-export default {
-  name: "About",
-};
-</script>
+<script setup></script>
+
+<style scoped>
+div {
+  color: yellow;
+}
+</style>

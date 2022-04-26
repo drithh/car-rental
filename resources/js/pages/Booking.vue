@@ -4,6 +4,8 @@ import { useRoute } from "vue-router";
 import BookingForm from "components/booking/BookingForm.vue";
 import Car from "components/booking/Car.vue";
 import FilterType from "components/booking/FilterType.vue";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
 
 const filters = [
   {
@@ -25,94 +27,148 @@ const filters = [
     filterList: ["Automatic", "Manual"],
   },
 ];
+
+const header = ref("");
+
+const animateCar = (start, end) => {
+  anime({
+    targets: "#car-container",
+    translateY: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+  }).finished;
+};
+const animateHeader = (start, end) => {
+  anime({
+    targets: "#header",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+  }).finished;
+};
+const animateBook = (start, end) => {
+  anime({
+    targets: "#book-panel",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: 100,
+  }).finished;
+};
+
+const onPageEnter = () => {
+  animateCar("100%", "0%");
+  animateHeader("100vw", "0");
+  animateBook("100vw", "0");
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  animateCar("0%", "100%");
+  animateHeader("0", "-100vw");
+  animateBook("0", "-100vw");
+
+  setTimeout(() => {
+    next();
+  }, 800);
+});
 </script>
 
 <template>
-  <section
-    class="m-auto my-12 flex h-80 w-full flex-row justify-between gap-x-10 lg:w-[92vw] lg:p-0"
-  >
-    <div class="text-panel flex w-[40%] flex-col place-content-center gap-10">
-      <h2 class="font-Yantramanav text-5xl font-black text-primary">
-        Sewa mobil dengan mudah
-      </h2>
-      <p class="font-Yantramanav text-lg text-secondary">
-        Menyewa mobil memberi Anda kebebasan, dan kami akan membantu anda
-        menemukan mobil terbaik dengan harga terjangkau.
-      </p>
-    </div>
-    <div
-      class="book-panel grid w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
-    >
-      <booking-form text="Pick-up"></booking-form>
-      <booking-form text="Drop-off"></booking-form>
-    </div>
-  </section>
-  <section class="flex place-content-center bg-cream pb-20">
-    <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
-      <div
-        class="h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
+  <transition name="page" @enter="onPageEnter" appear>
+    <main class="overflow-hidden">
+      <section
+        class="m-auto my-12 flex h-80 w-full flex-row justify-between gap-x-10 lg:w-[92vw] lg:p-0"
       >
         <div
-          class="border-b-2 border-b-secondary border-opacity-20 pt-4 pb-6 text-3xl font-bold text-dark"
+          id="header"
+          class="text-panel flex w-[40%] flex-col place-content-center gap-10"
         >
-          Filter By
+          <h2 class="font-Yantramanav text-5xl font-black text-primary">
+            Sewa mobil dengan mudah
+          </h2>
+          <p class="font-Yantramanav text-lg text-secondary">
+            Menyewa mobil memberi Anda kebebasan, dan kami akan membantu anda
+            menemukan mobil terbaik dengan harga terjangkau.
+          </p>
         </div>
-        <div class="filter-container py-6">
-          <filter-type
-            v-for="(filter, index) in filters"
-            :key="index"
-            :filterType="filter.filterType"
-            :filterList="filter.filterList"
-          ></filter-type>
+        <div
+          id="book-panel"
+          class="grid w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
+        >
+          <booking-form text="Pick-up"></booking-form>
+          <booking-form text="Drop-off"></booking-form>
         </div>
-      </div>
-      <div
-        class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
+      </section>
+      <section
+        id="car-container"
+        class="flex place-content-center bg-cream pb-20"
       >
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-        <car></car>
-      </div>
-    </div>
-  </section>
+        <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
+          <div
+            class="h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
+          >
+            <div
+              class="border-b-2 border-b-secondary border-opacity-20 pt-4 pb-6 text-3xl font-bold text-dark"
+            >
+              Filter By
+            </div>
+            <div class="filter-container py-6">
+              <filter-type
+                v-for="(filter, index) in filters"
+                :key="index"
+                :filterType="filter.filterType"
+                :filterList="filter.filterList"
+              ></filter-type>
+            </div>
+          </div>
+          <div
+            class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
+          >
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+            <car></car>
+          </div>
+        </div>
+      </section></main
+  ></transition>
 </template>
 
 <style lang="postcss" scoped>
-.filter-move {
+/* .filter-move {
   @apply absolute transition-all;
 }
-
-.filter-enter-active,
-.filter-leave-active {
-  @apply transition-all duration-1000 ease-in-out;
+*/
+/* .page-enter-active,
+.page-leave-active {
+  @apply transition-all duration-500 ease-in-out;
 }
 
-.filter-enter-from,
-.filter-leave-to {
-  @apply -translate-y-[200%];
+.page-enter-from,
+.page-leave-to {
+  @apply -translate-y-[-200%];
 }
 
-.filter-enter-to,
-.filter-leave-from {
+.page-enter-to,
+.page-leave-from {
   @apply translate-y-0;
-}
+} */
 </style>

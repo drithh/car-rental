@@ -1,6 +1,37 @@
 <script setup>
 import AccordionContainer from "components/faq/AccordionContainer.vue";
 import BottomBorder from "components/BottomBorder.vue";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+const animateContainer = (id, start, end, delay) => {
+  anime({
+    targets: id,
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: delay,
+  }).finished;
+};
+
+const onPageEnter = () => {
+  const child = faqsArray.length + 2;
+
+  for (let i = 0; i < child; i++) {
+    animateContainer(`.faq > div:nth-child(${i})`, "100vw", "0", i * 150);
+  }
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  const child = faqsArray.length + 2;
+
+  for (let i = 0; i < child; i++) {
+    animateContainer(`.faq > div:nth-child(${i})`, "0", "-100vw", i * 150);
+  }
+  setTimeout(() => {
+    next();
+  }, child * 200);
+});
 
 const faqsArray = [
   {
@@ -78,18 +109,26 @@ const faqsArray = [
 </script>
 
 <template>
-  <section
-    class="faq-title relative m-auto mt-14 flex flex-col place-content-center place-items-center lg:w-[92vw]"
-  >
-    <div class="title my-12 font-Yantramanav text-5xl font-black text-primary">
-      Frequently Asked Questions
-    </div>
-    <accordion-container
-      v-for="(item, index) in faqsArray"
-      :key="index"
-      :title="item.title"
-      :faqs="item.faqs"
-    ></accordion-container>
-  </section>
-  <bottom-border></bottom-border>
+  <transition name="page" @enter="onPageEnter" appear>
+    <main class="overflow-hidden">
+      <section
+        class="faq relative m-auto mt-14 flex flex-col place-content-center place-items-center lg:w-[92vw]"
+      >
+        <div
+          id="title"
+          class="my-12 font-Yantramanav text-5xl font-black text-primary"
+        >
+          Frequently Asked Questions
+        </div>
+        <accordion-container
+          v-for="(item, index) in faqsArray"
+          class="accordion"
+          :key="index"
+          :title="item.title"
+          :faqs="item.faqs"
+        ></accordion-container>
+      </section>
+      <bottom-border></bottom-border>
+    </main>
+  </transition>
 </template>

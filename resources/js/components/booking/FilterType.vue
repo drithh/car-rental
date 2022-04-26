@@ -60,7 +60,7 @@ function waitForContent() {
     </div>
     <transition name="expand">
       <div
-        v-show="content"
+        v-if="content"
         class="check-box-wrapper mb-6 mt-4 transition-all duration-[1.5s]"
       >
         <filter-checkbox
