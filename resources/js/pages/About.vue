@@ -1,6 +1,6 @@
 <template>
   <div>
-    Test
+    Ini Adriel
     <div>Kenapa</div>
   </div>
 </template>
@@ -9,6 +9,6 @@
 
 <style scoped>
 div {
-  color: red;
+  color: blue;
 }
 </style>
