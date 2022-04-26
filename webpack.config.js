@@ -7,6 +7,7 @@ module.exports = {
       resources: path.resolve(__dirname, "resources"),
       components: path.resolve(__dirname, "resources/js/components"),
       pages: path.resolve(__dirname, "resources/js/pages"),
+      public: path.resolve(__dirname, "public"),
     },
   },
   cache: false,

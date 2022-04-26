@@ -8,7 +8,7 @@ const favorite = ref(false);
     class="flex h-[max(max-content,_19rem)] w-full flex-col place-content-between rounded-3xl bg-white p-6"
   >
     <div class="car-name flex place-content-between font-Yantramanav">
-      <div class="name-wrapper">
+      <div class="name-wrapper text-left">
         <div class="text-2xl font-bold text-dark">
           <!-- <slot name="name"></slot> -->
           Mustang GT
