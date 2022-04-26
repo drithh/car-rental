@@ -9,6 +9,6 @@
 
 <style scoped>
 div {
-  color: yellow;
+  color: red;
 }
 </style>

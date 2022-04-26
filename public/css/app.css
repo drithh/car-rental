@@ -1073,10 +1073,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-border-opacity: 1;
   border-color: rgb(67 118 249 / var(--tw-border-opacity));
 }
-.hover\:text-primary:hover {
-  --tw-text-opacity: 1;
-  color: rgb(42 43 45 / var(--tw-text-opacity));
-}
 .hover\:opacity-100:hover {
   opacity: 1;
 }
