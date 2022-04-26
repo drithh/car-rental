@@ -1,11 +1,12 @@
 <script setup>
 import Contact from "components/contact/Contact.vue";
 import InputBox from "components/contact/InputBox.vue";
+import BottomBorder from "components/BottomBorder.vue";
 </script>
 
 <template>
   <section
-    class="contact m-auto my-20 flex flex-row place-content-center gap-x-20 lg:w-[92vw]"
+    class="contact m-auto mb-20 mt-32 flex flex-row place-content-center gap-x-20 lg:w-[92vw]"
   >
     <div
       class="contact-information flex h-[50rem] w-[36rem] flex-col gap-y-12 rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-10"
@@ -72,4 +73,5 @@ import InputBox from "components/contact/InputBox.vue";
       </div>
     </div>
   </section>
+  <bottom-border></bottom-border>
 </template>
