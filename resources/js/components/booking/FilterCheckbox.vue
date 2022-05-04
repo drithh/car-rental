@@ -41,7 +41,7 @@ const checkboxActive = ref(false);
         </transition>
       </div>
       <div
-        class="text-base opacity-70 transition-all duration-500"
+        class="opacity-70 transition-all duration-500"
         :class="{ 'text-blue': checkboxActive }"
       >
         {{ filterName }}

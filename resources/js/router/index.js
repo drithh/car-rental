@@ -25,11 +25,6 @@ export const routes = [
     component: About,
   },
   {
-    name: "login",
-    path: "/login",
-    //   component: Login,
-  },
-  {
     name: "contact",
     path: "/contact",
     component: Contact,
@@ -39,6 +34,7 @@ export const routes = [
     path: "/faq",
     component: Faq,
   },
+
   {
     name: "profile",
     path: "/profile",

@@ -1,12 +1,23 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, onBeforeRouteUpdate } from "vue-router";
-let navWidth = ref(0);
-let positionX = ref(0);
-let scaleX = ref(0);
-let profileButton = ref(0);
-let notificationActive = ref(false);
+import Login from "components/Login.vue";
+import Register from "components/Register.vue";
+import NavbarButton from "components/app/NavbarButton.vue";
+import ProfileNav from "components/app/ProfileNav.vue";
+
 const route = useRoute();
+
+const isLogin = ref(false);
+
+const loginMenu = ref(false);
+const registerMenu = ref(false);
+
+const navWidth = ref(0);
+const positionX = ref(0);
+const scaleX = ref(0);
+
+const nav = ref("");
 
 watch(
   () => route.name,
@@ -22,19 +33,28 @@ watch(
     } else {
       hideLine();
     }
-    if (route.name === "favorite") {
-      profileButton.value = 1;
-    } else if (route.name === "profile") {
-      profileButton.value = 2;
-    } else {
-      profileButton.value = 0;
-    }
-
-    notificationActive.value = false;
   }
 );
 
-const nav = ref("");
+const openMenu = (menu) => {
+  loginMenu.value = false;
+  registerMenu.value = false;
+
+  if (menu === "login") {
+    loginMenu.value = true;
+  } else if (menu === "register") {
+    registerMenu.value = true;
+  }
+
+  document.documentElement.style = `overflow: hidden;`;
+};
+
+const closeMenu = () => {
+  console.log("close");
+  loginMenu.value = false;
+  registerMenu.value = false;
+  document.documentElement.style = `overflow: auto;`;
+};
 
 function changeLine(navIndex) {
   const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
@@ -42,7 +62,6 @@ function changeLine(navIndex) {
   scaleX.value = 1.1;
   navWidth.value = navElement.width;
   positionX.value = navElement.x - parentElement.x;
-  profileButton.value = 0;
 }
 function hideLine() {
   scaleX.value = 0;
@@ -64,35 +83,11 @@ function hideLine() {
         >
           <router-link to="/">Rental</router-link>
         </div>
-        <div class="item-nav">
-          <router-link
-            class="transition-colors duration-700 ease-in-out"
-            to="/booking"
-          >
-            Booking</router-link
-          >
-        </div>
-        <div class="item-nav">
-          <router-link
-            class="transition-colors duration-700 ease-in-out"
-            to="/about-us"
-            >About Us</router-link
-          >
-        </div>
-        <div class="item-nav">
-          <router-link
-            class="transition-colors duration-700 ease-in-out"
-            to="/contact"
-            >Contact</router-link
-          >
-        </div>
-        <div class="item-nav">
-          <router-link
-            class="transition-colors duration-700 ease-in-out"
-            to="/faq"
-            >FAQ</router-link
-          >
-        </div>
+        <navbar-button link="/booking">Booking</navbar-button>
+        <navbar-button link="/about-us">About Us</navbar-button>
+        <navbar-button link="/contact">Contact</navbar-button>
+        <navbar-button link="/faq">Faq</navbar-button>
+
         <div
           :style="{
             width: `${navWidth}px`,
@@ -101,72 +96,39 @@ function hideLine() {
           class="absolute left-0 bottom-[-2.5px] h-[5px] origin-center rounded-lg bg-blue transition-all duration-700 ease-in-out"
         ></div>
       </nav>
+      <teleport to="body">
+        <div class="login-modal modal overflow-hidden" v-if="loginMenu">
+          <login @close="closeMenu"></login>
+        </div>
+        <div class="register-modal modal overflow-hidden" v-if="registerMenu">
+          <register></register>
+        </div>
+      </teleport>
+
       <div
+        v-if="!isLogin"
+        class="profile flex w-full flex-row place-content-end place-items-center gap-[8%] text-secondary lg:gap-[3%]"
+      >
+        <div
+          class="cursor-pointer duration-700 ease-in-out hover:text-blue"
+          @click="openMenu('login')"
+        >
+          Login
+        </div>
+        <div>|</div>
+        <div
+          class="cursor-pointer duration-700 ease-in-out hover:text-blue"
+          @click="openMenu('register')"
+        >
+          Register
+        </div>
+      </div>
+      <div
+        v-if="isLogin"
         class="profile flex w-full flex-row place-content-end place-items-center gap-[15%] text-secondary lg:gap-[7%]"
       >
-        <router-link
-          @click="
-            hideLine();
-            profileButton = 1;
-          "
-          class="relative"
-          to="/favorite"
-        >
-          <font-awesome-icon :icon="['far', 'heart']" />
-          <transition>
-            <font-awesome-icon
-              v-if="profileButton === 1"
-              class="absolute left-0 top-[2px] -z-10 origin-center"
-              icon="heart"
-            />
-          </transition>
-        </router-link>
-        <div
-          @click="notificationActive = !notificationActive"
-          class="relative cursor-pointer"
-        >
-          <font-awesome-icon :icon="['far', 'bell']" />
-          <transition>
-            <font-awesome-icon
-              v-if="notificationActive"
-              class="absolute left-0 top-[2px] -z-10 origin-center"
-              icon="bell"
-            />
-          </transition>
-        </div>
-        <div class="profile relative">
-          <router-link
-            @click="
-              hideLine();
-              profileButton = 2;
-            "
-            to="/profile"
-          >
-            <font-awesome-icon :icon="['far', 'circle']" />
-            <transition>
-              <font-awesome-icon
-                v-if="profileButton === 2"
-                class="absolute left-0 top-[2px] -z-10 origin-center"
-                icon="circle"
-              />
-            </transition>
-          </router-link>
-        </div>
+        <profile-nav></profile-nav>
       </div>
     </div>
   </header>
 </template>
-
-<style lang="postcss" scoped>
-.item-nav .router-link-active {
-  @apply text-primary;
-}
-.v-enter-active,
-.v-leave-active {
-  @apply animate-scale-bounce-enter;
-}
-.v-enter-from,
-.v-leave-to {
-  @apply animate-scale-bounce-leave;
-}
-</style>
