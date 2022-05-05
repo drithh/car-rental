@@ -1,8 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-const favorite = ref(false);
-</script>
-
 <template>
   <div
     class="flex h-[max(max-content,_19rem)] w-full flex-col place-content-between rounded-3xl bg-white p-6"
@@ -73,6 +68,11 @@ const favorite = ref(false);
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, watch } from "vue";
+const favorite = ref(false);
+</script>
 
 <style lang="postcss" scoped>
 .bounce-enter-active,

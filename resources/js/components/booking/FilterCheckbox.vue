@@ -1,13 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-
-const props = defineProps({
-  filterName: String,
-});
-
-const checkboxActive = ref(false);
-</script>
-
 <template>
   <div class="p-1">
     <div
@@ -49,6 +39,16 @@ const checkboxActive = ref(false);
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, watch } from "vue";
+
+const props = defineProps({
+  filterName: String,
+});
+
+const checkboxActive = ref(false);
+</script>
 
 <style lang="postcss" scoped>
 .fade-enter-from,

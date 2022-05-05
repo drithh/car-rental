@@ -1,78 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-import { useRoute } from "vue-router";
-import BookingForm from "components/booking/BookingForm.vue";
-import Car from "components/booking/Car.vue";
-import FilterType from "components/booking/FilterType.vue";
-import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
-
-const filters = [
-  {
-    filterType: "Car Type",
-    filterList: [
-      "SUV (10)",
-      "Sedan (15)",
-      "Hatchback (18)",
-      "MPV (10)",
-      "Coupe (19)",
-    ],
-  },
-  {
-    filterType: "Capacity",
-    filterList: ["2-4 (53)", "5 or more (20)"],
-  },
-  {
-    filterType: "Transmission Type",
-    filterList: ["Automatic", "Manual"],
-  },
-];
-
-const header = ref("");
-
-const animateCar = (start, end) => {
-  anime({
-    targets: "#car-container",
-    translateY: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-  }).finished;
-};
-const animateHeader = (start, end) => {
-  anime({
-    targets: "#header",
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-  }).finished;
-};
-const animateBook = (start, end) => {
-  anime({
-    targets: "#book-panel",
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-    delay: 100,
-  }).finished;
-};
-
-const onPageEnter = () => {
-  animateCar("100%", "0%");
-  animateHeader("100vw", "0");
-  animateBook("100vw", "0");
-};
-
-onBeforeRouteLeave((to, from, next) => {
-  animateCar("0%", "100%");
-  animateHeader("0", "-100vw");
-  animateBook("0", "-100vw");
-
-  setTimeout(() => {
-    next();
-  }, 800);
-});
-</script>
-
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
@@ -152,4 +77,77 @@ onBeforeRouteLeave((to, from, next) => {
   ></transition>
 </template>
 
-<style lang="postcss" scoped></style>
+<script setup>
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
+import BookingForm from "components/booking/BookingForm.vue";
+import Car from "components/booking/Car.vue";
+import FilterType from "components/booking/FilterType.vue";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+const filters = [
+  {
+    filterType: "Car Type",
+    filterList: [
+      "SUV (10)",
+      "Sedan (15)",
+      "Hatchback (18)",
+      "MPV (10)",
+      "Coupe (19)",
+    ],
+  },
+  {
+    filterType: "Capacity",
+    filterList: ["2-4 (53)", "5 or more (20)"],
+  },
+  {
+    filterType: "Transmission Type",
+    filterList: ["Automatic", "Manual"],
+  },
+];
+
+const header = ref("");
+
+const animateCar = (start, end) => {
+  anime({
+    targets: "#car-container",
+    translateY: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+  }).finished;
+};
+const animateHeader = (start, end) => {
+  anime({
+    targets: "#header",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+  }).finished;
+};
+const animateBook = (start, end) => {
+  anime({
+    targets: "#book-panel",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: 100,
+  }).finished;
+};
+
+const onPageEnter = () => {
+  animateCar("100%", "0%");
+  animateHeader("100vw", "0");
+  animateBook("100vw", "0");
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  animateCar("0%", "100%");
+  animateHeader("0", "-100vw");
+  animateBook("0", "-100vw");
+
+  setTimeout(() => {
+    next();
+  }, 800);
+});
+</script>

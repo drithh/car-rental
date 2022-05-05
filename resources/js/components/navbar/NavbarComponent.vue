@@ -1,48 +1,4 @@
-<script setup>
-import { ref, watch } from "vue";
-import { useRoute, onBeforeRouteUpdate } from "vue-router";
-import Auth from "components/navbar/authentication/Auth.vue";
-import NavbarButton from "components/navbar/NavbarButton.vue";
-import ProfileNav from "components/navbar/ProfileNav.vue";
 
-const route = useRoute();
-
-const isLogin = ref(false);
-
-const navWidth = ref(0);
-const positionX = ref(0);
-const scaleX = ref(0);
-
-const nav = ref("");
-
-watch(
-  () => route.name,
-  () => {
-    if (route.name === "booking") {
-      changeLine(1);
-    } else if (route.name === "about") {
-      changeLine(2);
-    } else if (route.name === "contact") {
-      changeLine(3);
-    } else if (route.name === "faq") {
-      changeLine(4);
-    } else {
-      hideLine();
-    }
-  }
-);
-
-function changeLine(navIndex) {
-  const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
-  const parentElement = nav.value.getBoundingClientRect();
-  scaleX.value = 1.1;
-  navWidth.value = navElement.width;
-  positionX.value = navElement.x - parentElement.x;
-}
-function hideLine() {
-  scaleX.value = 0;
-}
-</script>
 
 <template>
   <header class="m-auto flex w-full place-content-center lg:w-[92vw] lg:p-0">
@@ -88,3 +44,49 @@ function hideLine() {
     </div>
   </header>
 </template>
+
+<script setup>
+import { ref, watch } from "vue";
+import { useRoute, onBeforeRouteUpdate } from "vue-router";
+import Auth from "components/navbar/authentication/Auth.vue";
+import NavbarButton from "components/navbar/NavbarButton.vue";
+import ProfileNav from "components/navbar/ProfileNav.vue";
+
+const route = useRoute();
+
+const isLogin = ref(false);
+
+const navWidth = ref(0);
+const positionX = ref(0);
+const scaleX = ref(0);
+
+const nav = ref("");
+
+watch(
+  () => route.name,
+  () => {
+    if (route.name === "booking") {
+      changeLine(1);
+    } else if (route.name === "about") {
+      changeLine(2);
+    } else if (route.name === "contact") {
+      changeLine(3);
+    } else if (route.name === "faq") {
+      changeLine(4);
+    } else {
+      hideLine();
+    }
+  }
+);
+
+function changeLine(navIndex) {
+  const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
+  const parentElement = nav.value.getBoundingClientRect();
+  scaleX.value = 1.1;
+  navWidth.value = navElement.width;
+  positionX.value = navElement.x - parentElement.x;
+}
+function hideLine() {
+  scaleX.value = 0;
+}
+</script>

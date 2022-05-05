@@ -1,8 +1,3 @@
-<script setup>
-import FooterLink from "components/footer/FooterLink.vue";
-import { useRoute } from "vue-router";
-</script>
-
 <template>
   <footer>
     <div class="container m-auto my-32 flex items-center justify-between">
@@ -40,5 +35,10 @@ import { useRoute } from "vue-router";
     </div>
   </footer>
 </template>
+
+<script setup>
+import FooterLink from "components/footer/FooterLink.vue";
+import { useRoute } from "vue-router";
+</script>
 
 <style lang="postcss" scoped></style>

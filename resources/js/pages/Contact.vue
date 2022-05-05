@@ -1,43 +1,3 @@
-<script setup>
-import Contact from "components/contact/Contact.vue";
-import InputBox from "components/contact/InputBox.vue";
-import BottomBorder from "components/BottomBorder.vue";
-import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
-
-const animateContactInformation = (start, end) => {
-  anime({
-    targets: "#contact-information",
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-  }).finished;
-};
-const animateGetInTouch = (start, end) => {
-  anime({
-    targets: "#get-in-touch",
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-    delay: 100,
-  }).finished;
-};
-
-const onPageEnter = () => {
-  animateContactInformation("100vw", "0");
-  animateGetInTouch("100vw", "0");
-};
-
-onBeforeRouteLeave((to, from, next) => {
-  animateContactInformation("0", "-100vw");
-  animateGetInTouch("0", "-100vw");
-
-  setTimeout(() => {
-    next();
-  }, 800);
-});
-</script>
-
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
@@ -113,3 +73,43 @@ onBeforeRouteLeave((to, from, next) => {
       <bottom-border></bottom-border></main
   ></transition>
 </template>
+
+<script setup>
+import Contact from "components/contact/Contact.vue";
+import InputBox from "components/contact/InputBox.vue";
+import BottomBorder from "components/BottomBorder.vue";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+const animateContactInformation = (start, end) => {
+  anime({
+    targets: "#contact-information",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+  }).finished;
+};
+const animateGetInTouch = (start, end) => {
+  anime({
+    targets: "#get-in-touch",
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: 100,
+  }).finished;
+};
+
+const onPageEnter = () => {
+  animateContactInformation("100vw", "0");
+  animateGetInTouch("100vw", "0");
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  animateContactInformation("0", "-100vw");
+  animateGetInTouch("0", "-100vw");
+
+  setTimeout(() => {
+    next();
+  }, 800);
+});
+</script>

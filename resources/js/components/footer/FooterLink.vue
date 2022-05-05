@@ -1,9 +1,3 @@
-<script setup>
-const props = defineProps({
-  title: String,
-});
-</script>
-
 <template>
   <div class="links flex flex-col opacity-80">
     <div class="title mb-4 font-Yantramanav text-2xl font-bold">
@@ -14,5 +8,11 @@ const props = defineProps({
     </div>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  title: String,
+});
+</script>
 
 <style lang="postcss" scoped></style>

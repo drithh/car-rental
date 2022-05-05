@@ -1,11 +1,3 @@
-<script setup>
-import InputBox from "components/contact/InputBox.vue";
-import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
-
-defineEmits(["login"]);
-</script>
-
 <template>
   <div id="forgot-password">
     <div class="text-center font-Yantramanav text-5xl font-bold opacity-80">
@@ -40,3 +32,11 @@ defineEmits(["login"]);
     </div>
   </div>
 </template>
+
+<script setup>
+import InputBox from "components/contact/InputBox.vue";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+defineEmits(["login"]);
+</script>

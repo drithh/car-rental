@@ -1,3 +1,28 @@
+<template>
+  <transition name="page" @enter="onPageEnter" appear>
+    <main class="overflow-hidden">
+      <section
+        class="faq relative m-auto mt-14 flex flex-col place-content-center place-items-center lg:w-[92vw]"
+      >
+        <div
+          id="title"
+          class="my-12 font-Yantramanav text-5xl font-black text-primary"
+        >
+          Frequently Asked Questions
+        </div>
+        <accordion-container
+          v-for="(item, index) in faqsArray"
+          class="accordion"
+          :key="index"
+          :title="item.title"
+          :faqs="item.faqs"
+        ></accordion-container>
+      </section>
+      <bottom-border></bottom-border>
+    </main>
+  </transition>
+</template>
+
 <script setup>
 import AccordionContainer from "components/faq/AccordionContainer.vue";
 import BottomBorder from "components/BottomBorder.vue";
@@ -107,28 +132,3 @@ const faqsArray = [
   },
 ];
 </script>
-
-<template>
-  <transition name="page" @enter="onPageEnter" appear>
-    <main class="overflow-hidden">
-      <section
-        class="faq relative m-auto mt-14 flex flex-col place-content-center place-items-center lg:w-[92vw]"
-      >
-        <div
-          id="title"
-          class="my-12 font-Yantramanav text-5xl font-black text-primary"
-        >
-          Frequently Asked Questions
-        </div>
-        <accordion-container
-          v-for="(item, index) in faqsArray"
-          class="accordion"
-          :key="index"
-          :title="item.title"
-          :faqs="item.faqs"
-        ></accordion-container>
-      </section>
-      <bottom-border></bottom-border>
-    </main>
-  </transition>
-</template>

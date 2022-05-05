@@ -1,15 +1,3 @@
-<script setup>
-import { ref } from "vue";
-const props = defineProps({
-  text: String,
-});
-
-import { Calendar, DatePicker } from "v-calendar";
-const date = ref(new Date());
-const inputValue = ref("");
-const inputEvents = ref("");
-</script>
-
 <template>
   <div class="input-wrapper grid w-full grid-cols-2 gap-6">
     <div class="full-form col-span-2">
@@ -65,6 +53,17 @@ const inputEvents = ref("");
   </div>
 </template>
 
+<script setup>
+import { ref } from "vue";
+const props = defineProps({
+  text: String,
+});
+
+import { Calendar, DatePicker } from "v-calendar";
+const date = ref(new Date());
+const inputValue = ref("");
+const inputEvents = ref("");
+</script>
 <style>
 @import "v-calendar/dist/style.css";
 </style>

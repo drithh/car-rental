@@ -1,25 +1,3 @@
-<script setup>
-import Accordion from "components/faq/Accordion.vue";
-import { ref, watch } from "vue";
-
-const props = defineProps({
-  title: String,
-  faqs: Array,
-});
-
-const localFaqs = ref(props.faqs);
-
-const closeAccordion = (index) => {
-  localFaqs.value.forEach((faq, i) => {
-    if (i === index) {
-      faq.open = !faq.open;
-    } else if (faq.open) {
-      faq.open = false;
-    }
-  });
-};
-</script>
-
 <template>
   <div class="wrapper my-8 w-[80%]">
     <div class="accordion-title flex w-full">
@@ -44,3 +22,25 @@ const closeAccordion = (index) => {
     </div>
   </div>
 </template>
+
+<script setup>
+import Accordion from "components/faq/Accordion.vue";
+import { ref, watch } from "vue";
+
+const props = defineProps({
+  title: String,
+  faqs: Array,
+});
+
+const localFaqs = ref(props.faqs);
+
+const closeAccordion = (index) => {
+  localFaqs.value.forEach((faq, i) => {
+    if (i === index) {
+      faq.open = !faq.open;
+    } else if (faq.open) {
+      faq.open = false;
+    }
+  });
+};
+</script>

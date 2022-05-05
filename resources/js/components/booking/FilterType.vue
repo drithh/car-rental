@@ -1,39 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-import FilterCheckbox from "components/booking/FilterCheckbox.vue";
-const content = ref(false);
-
-const dropdownHeight = 32;
-const containerHeight = ref(dropdownHeight);
-
-let buttonEnabled = true;
-
-const props = defineProps({
-  filterType: String,
-  filterList: Array,
-});
-
-const filterList = ref(props.filterList);
-
-function toggleContent() {
-  if (buttonEnabled) {
-    content.value = !content.value;
-    containerHeight.value = content.value
-      ? 32 * filterList.value.length + 24 + dropdownHeight
-      : dropdownHeight;
-
-    buttonEnabled = false;
-    waitForContent();
-  }
-}
-
-function waitForContent() {
-  setTimeout(() => {
-    buttonEnabled = true;
-  }, 900);
-}
-</script>
-
 <template>
   <div
     :style="{
@@ -73,6 +37,42 @@ function waitForContent() {
     </transition>
   </div>
 </template>
+
+<script setup>
+import { ref, watch } from "vue";
+import FilterCheckbox from "components/booking/FilterCheckbox.vue";
+const content = ref(false);
+
+const dropdownHeight = 32;
+const containerHeight = ref(dropdownHeight);
+
+let buttonEnabled = true;
+
+const props = defineProps({
+  filterType: String,
+  filterList: Array,
+});
+
+const filterList = ref(props.filterList);
+
+function toggleContent() {
+  if (buttonEnabled) {
+    content.value = !content.value;
+    containerHeight.value = content.value
+      ? 32 * filterList.value.length + 24 + dropdownHeight
+      : dropdownHeight;
+
+    buttonEnabled = false;
+    waitForContent();
+  }
+}
+
+function waitForContent() {
+  setTimeout(() => {
+    buttonEnabled = true;
+  }, 900);
+}
+</script>
 
 <style lang="postcss" scoped>
 .expand-enter-from,

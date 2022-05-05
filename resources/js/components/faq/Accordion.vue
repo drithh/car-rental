@@ -1,20 +1,3 @@
-<script setup>
-import { ref, watch } from "vue";
-
-let props = defineProps({
-  index: Number,
-  open: Boolean,
-  question: String,
-  answer: String,
-});
-
-const emit = defineEmits(["toggle"]);
-
-const setAccordion = (index) => {
-  emit("toggle", index);
-};
-</script>
-
 <template>
   <button @click="setAccordion(props.index)">
     <div
@@ -49,6 +32,23 @@ const setAccordion = (index) => {
     </div>
   </button>
 </template>
+
+<script setup>
+import { ref, watch } from "vue";
+
+let props = defineProps({
+  index: Number,
+  open: Boolean,
+  question: String,
+  answer: String,
+});
+
+const emit = defineEmits(["toggle"]);
+
+const setAccordion = (index) => {
+  emit("toggle", index);
+};
+</script>
 
 <style lang="postcss" scoped>
 .accordion-enter-active,

@@ -1,11 +1,3 @@
-<script setup>
-const props = defineProps({
-  label: String,
-  placeholder: String,
-  type: String,
-});
-</script>
-
 <template>
   <div class="w-full px-3">
     <label
@@ -20,3 +12,11 @@ const props = defineProps({
     />
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  label: String,
+  placeholder: String,
+  type: String,
+});
+</script>
