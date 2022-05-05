@@ -152,23 +152,4 @@ onBeforeRouteLeave((to, from, next) => {
   ></transition>
 </template>
 
-<style lang="postcss" scoped>
-/* .filter-move {
-  @apply absolute transition-all;
-}
-*/
-/* .page-enter-active,
-.page-leave-active {
-  @apply transition-all duration-500 ease-in-out;
-}
-
-.page-enter-from,
-.page-leave-to {
-  @apply -translate-y-[-200%];
-}
-
-.page-enter-to,
-.page-leave-from {
-  @apply translate-y-0;
-} */
-</style>
+<style lang="postcss" scoped></style>

@@ -1,5 +1,5 @@
 <script setup>
-import FooterLink from "components/app/FooterLink.vue";
+import FooterLink from "components/footer/FooterLink.vue";
 import { useRoute } from "vue-router";
 </script>
 

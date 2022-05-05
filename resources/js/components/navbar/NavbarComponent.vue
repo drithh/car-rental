@@ -1,17 +1,13 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, onBeforeRouteUpdate } from "vue-router";
-import Login from "components/Login.vue";
-import Register from "components/Register.vue";
-import NavbarButton from "components/app/NavbarButton.vue";
-import ProfileNav from "components/app/ProfileNav.vue";
+import Auth from "components/navbar/authentication/Auth.vue";
+import NavbarButton from "components/navbar/NavbarButton.vue";
+import ProfileNav from "components/navbar/ProfileNav.vue";
 
 const route = useRoute();
 
 const isLogin = ref(false);
-
-const loginMenu = ref(false);
-const registerMenu = ref(false);
 
 const navWidth = ref(0);
 const positionX = ref(0);
@@ -35,26 +31,6 @@ watch(
     }
   }
 );
-
-const openMenu = (menu) => {
-  loginMenu.value = false;
-  registerMenu.value = false;
-
-  if (menu === "login") {
-    loginMenu.value = true;
-  } else if (menu === "register") {
-    registerMenu.value = true;
-  }
-
-  document.documentElement.style = `overflow: hidden;`;
-};
-
-const closeMenu = () => {
-  console.log("close");
-  loginMenu.value = false;
-  registerMenu.value = false;
-  document.documentElement.style = `overflow: auto;`;
-};
 
 function changeLine(navIndex) {
   const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
@@ -96,32 +72,12 @@ function hideLine() {
           class="absolute left-0 bottom-[-2.5px] h-[5px] origin-center rounded-lg bg-blue transition-all duration-700 ease-in-out"
         ></div>
       </nav>
-      <teleport to="body">
-        <div class="login-modal modal overflow-hidden" v-if="loginMenu">
-          <login @close="closeMenu"></login>
-        </div>
-        <div class="register-modal modal overflow-hidden" v-if="registerMenu">
-          <register></register>
-        </div>
-      </teleport>
 
       <div
         v-if="!isLogin"
         class="profile flex w-full flex-row place-content-end place-items-center gap-[8%] text-secondary lg:gap-[3%]"
       >
-        <div
-          class="cursor-pointer duration-700 ease-in-out hover:text-blue"
-          @click="openMenu('login')"
-        >
-          Login
-        </div>
-        <div>|</div>
-        <div
-          class="cursor-pointer duration-700 ease-in-out hover:text-blue"
-          @click="openMenu('register')"
-        >
-          Register
-        </div>
+        <auth></auth>
       </div>
       <div
         v-if="isLogin"

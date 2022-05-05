@@ -6,12 +6,7 @@ import router from "./router";
 import VueClickAway from "vue3-click-away";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
-import {
-  faCircle,
-  faBell,
-  faHeart,
-  faCircleXmark,
-} from "@fortawesome/free-regular-svg-icons";
+import { faCircle, faBell, faHeart } from "@fortawesome/free-regular-svg-icons";
 import {
   faCircle as fasCircle,
   faBell as fasBell,
@@ -23,11 +18,16 @@ import {
   faCogs,
   faCalendar,
   faClock,
+  faXmark,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(
-  faCircleXmark,
+  faEye,
+  faEyeSlash,
+  faXmark,
   faCircle,
   faBell,
   faHeart,

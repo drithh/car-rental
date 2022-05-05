@@ -49,13 +49,14 @@
           </div>
         </div>
       </section>
-    </main></transition
-  >
+      <bottom-border></bottom-border></main
+  ></transition>
 </template>
 
 <script setup>
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import BottomBorder from "components/BottomBorder.vue";
 
 const animateHorizontal = (id, start, end, delay) => {
   anime({

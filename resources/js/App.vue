@@ -5,6 +5,6 @@
 </template>
 
 <script setup>
-import NavbarComponent from "./components/app/NavbarComponent.vue";
-import FooterComponent from "./components/app/FooterComponent.vue";
+import NavbarComponent from "./components/navbar/NavbarComponent.vue";
+import FooterComponent from "./components/footer/FooterComponent.vue";
 </script>
