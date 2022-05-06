@@ -35191,8 +35191,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_navbar_NavbarComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/navbar/NavbarComponent.vue */ "./resources/js/components/navbar/NavbarComponent.vue");
-/* harmony import */ var _components_footer_FooterComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/footer/FooterComponent.vue */ "./resources/js/components/footer/FooterComponent.vue");
+/* harmony import */ var _components_navbar_NavbarComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/navbar/NavbarComponent.vue */ "./resources/js/components/navbar/NavbarComponent.vue");
+/* harmony import */ var _components_footer_FooterComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/footer/FooterComponent.vue */ "./resources/js/components/footer/FooterComponent.vue");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -35224,8 +35224,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/dist/v-calendar.es.js");
+/* harmony import */ var v_calendar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! v-calendar */ "./node_modules/v-calendar/dist/v-calendar.es.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -35236,17 +35236,17 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var date = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(new Date());
-    var inputValue = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
-    var inputEvents = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("");
+    var date = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(new Date());
+    var inputValue = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
+    var inputEvents = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
     var __returned__ = {
       props: props,
       date: date,
       inputValue: inputValue,
       inputEvents: inputEvents,
-      ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      Calendar: v_calendar__WEBPACK_IMPORTED_MODULE_1__.Calendar,
-      DatePicker: v_calendar__WEBPACK_IMPORTED_MODULE_1__.DatePicker
+      Calendar: v_calendar__WEBPACK_IMPORTED_MODULE_0__.Calendar,
+      DatePicker: v_calendar__WEBPACK_IMPORTED_MODULE_0__.DatePicker,
+      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -35341,7 +35341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var components_booking_FilterCheckbox_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/booking/FilterCheckbox.vue */ "./resources/js/components/booking/FilterCheckbox.vue");
+/* harmony import */ var _components_booking_FilterCheckbox_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/booking/FilterCheckbox.vue */ "./resources/js/components/booking/FilterCheckbox.vue");
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -35385,7 +35385,7 @@ __webpack_require__.r(__webpack_exports__);
       waitForContent: waitForContent,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
-      FilterCheckbox: components_booking_FilterCheckbox_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+      FilterCheckbox: _components_booking_FilterCheckbox_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -35523,7 +35523,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_faq_Accordion_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/faq/Accordion.vue */ "./resources/js/components/faq/Accordion.vue");
+/* harmony import */ var _components_faq_Accordion_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/faq/Accordion.vue */ "./resources/js/components/faq/Accordion.vue");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
@@ -35552,7 +35552,7 @@ __webpack_require__.r(__webpack_exports__);
       props: props,
       localFaqs: localFaqs,
       closeAccordion: closeAccordion,
-      Accordion: components_faq_Accordion_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Accordion: _components_faq_Accordion_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_1__.watch
     };
@@ -35577,7 +35577,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_footer_FooterLink_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/footer/FooterLink.vue */ "./resources/js/components/footer/FooterLink.vue");
+/* harmony import */ var _components_footer_FooterLink_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/footer/FooterLink.vue */ "./resources/js/components/footer/FooterLink.vue");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
 
@@ -35586,7 +35586,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      FooterLink: components_footer_FooterLink_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      FooterLink: _components_footer_FooterLink_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       useRoute: vue_router__WEBPACK_IMPORTED_MODULE_1__.useRoute
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -35644,7 +35644,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue3_carousel_dist_carousel_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue3-carousel/dist/carousel.css */ "./node_modules/vue3-carousel/dist/carousel.css");
 /* harmony import */ var vue3_carousel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue3-carousel */ "./node_modules/vue3-carousel/dist/carousel.es.js");
-/* harmony import */ var components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/booking/Car.vue */ "./resources/js/components/booking/Car.vue");
+/* harmony import */ var _components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/booking/Car.vue */ "./resources/js/components/booking/Car.vue");
 
 
 
@@ -35657,7 +35657,7 @@ __webpack_require__.r(__webpack_exports__);
       Slide: vue3_carousel__WEBPACK_IMPORTED_MODULE_1__.Slide,
       Pagination: vue3_carousel__WEBPACK_IMPORTED_MODULE_1__.Pagination,
       Navigation: vue3_carousel__WEBPACK_IMPORTED_MODULE_1__.Navigation,
-      Car: components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      Car: _components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -35855,9 +35855,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var components_navbar_authentication_Auth_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/navbar/authentication/Auth.vue */ "./resources/js/components/navbar/authentication/Auth.vue");
-/* harmony import */ var components_navbar_NavbarButton_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/navbar/NavbarButton.vue */ "./resources/js/components/navbar/NavbarButton.vue");
-/* harmony import */ var components_navbar_ProfileNav_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! components/navbar/ProfileNav.vue */ "./resources/js/components/navbar/ProfileNav.vue");
+/* harmony import */ var _components_navbar_authentication_Auth_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/navbar/authentication/Auth.vue */ "./resources/js/components/navbar/authentication/Auth.vue");
+/* harmony import */ var _components_navbar_NavbarButton_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/navbar/NavbarButton.vue */ "./resources/js/components/navbar/NavbarButton.vue");
+/* harmony import */ var _components_navbar_ProfileNav_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/navbar/ProfileNav.vue */ "./resources/js/components/navbar/ProfileNav.vue");
 
 
 
@@ -35914,9 +35914,9 @@ __webpack_require__.r(__webpack_exports__);
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       useRoute: vue_router__WEBPACK_IMPORTED_MODULE_4__.useRoute,
       onBeforeRouteUpdate: vue_router__WEBPACK_IMPORTED_MODULE_4__.onBeforeRouteUpdate,
-      Auth: components_navbar_authentication_Auth_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      NavbarButton: components_navbar_NavbarButton_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      ProfileNav: components_navbar_ProfileNav_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+      Auth: _components_navbar_authentication_Auth_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      NavbarButton: _components_navbar_NavbarButton_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      ProfileNav: _components_navbar_ProfileNav_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -35993,10 +35993,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var components_navbar_authentication_Login_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/navbar/authentication/Login.vue */ "./resources/js/components/navbar/authentication/Login.vue");
-/* harmony import */ var components_navbar_authentication_Register_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/navbar/authentication/Register.vue */ "./resources/js/components/navbar/authentication/Register.vue");
-/* harmony import */ var components_navbar_authentication_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! components/navbar/authentication/ForgotPassword.vue */ "./resources/js/components/navbar/authentication/ForgotPassword.vue");
-/* harmony import */ var components_navbar_authentication_AuthTemplate_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! components/navbar/authentication/AuthTemplate.vue */ "./resources/js/components/navbar/authentication/AuthTemplate.vue");
+/* harmony import */ var _components_navbar_authentication_Login_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/navbar/authentication/Login.vue */ "./resources/js/components/navbar/authentication/Login.vue");
+/* harmony import */ var _components_navbar_authentication_Register_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/navbar/authentication/Register.vue */ "./resources/js/components/navbar/authentication/Register.vue");
+/* harmony import */ var _components_navbar_authentication_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/navbar/authentication/ForgotPassword.vue */ "./resources/js/components/navbar/authentication/ForgotPassword.vue");
+/* harmony import */ var _components_navbar_authentication_AuthTemplate_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/navbar/authentication/AuthTemplate.vue */ "./resources/js/components/navbar/authentication/AuthTemplate.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 
 
@@ -36088,10 +36088,10 @@ __webpack_require__.r(__webpack_exports__);
       isModal: isModal,
       closeMenu: closeMenu,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
-      Login: components_navbar_authentication_Login_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      Register: components_navbar_authentication_Register_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      ForgotPassword: components_navbar_authentication_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      AuthTemplate: components_navbar_authentication_AuthTemplate_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      Login: _components_navbar_authentication_Login_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      Register: _components_navbar_authentication_Register_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      ForgotPassword: _components_navbar_authentication_ForgotPassword_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      AuthTemplate: _components_navbar_authentication_AuthTemplate_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_5__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -36157,7 +36157,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
+/* harmony import */ var _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
@@ -36169,7 +36169,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      InputBox: components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      InputBox: _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_1__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_2__.onBeforeRouteLeave
     };
@@ -36194,7 +36194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
+/* harmony import */ var _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
@@ -36224,7 +36224,7 @@ __webpack_require__.r(__webpack_exports__);
       visibility: visibility,
       icon: icon,
       togglePasswordVisibility: togglePasswordVisibility,
-      InputBox: components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      InputBox: _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_1__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_3__.onBeforeRouteLeave,
       ref: vue__WEBPACK_IMPORTED_MODULE_2__.ref
@@ -36250,7 +36250,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
+/* harmony import */ var _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
@@ -36280,7 +36280,7 @@ __webpack_require__.r(__webpack_exports__);
       visibility: visibility,
       icon: icon,
       togglePasswordVisibility: togglePasswordVisibility,
-      InputBox: components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      InputBox: _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_1__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_3__.onBeforeRouteLeave,
       ref: vue__WEBPACK_IMPORTED_MODULE_2__.ref
@@ -36308,7 +36308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
+/* harmony import */ var _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
 
 
 
@@ -36357,7 +36357,7 @@ __webpack_require__.r(__webpack_exports__);
       onPageEnter: onPageEnter,
       anime: animejs__WEBPACK_IMPORTED_MODULE_0__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_2__.onBeforeRouteLeave,
-      BottomBorder: components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+      BottomBorder: _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -36382,9 +36382,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
-/* harmony import */ var components_booking_BookingForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/booking/BookingForm.vue */ "./resources/js/components/booking/BookingForm.vue");
-/* harmony import */ var components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/booking/Car.vue */ "./resources/js/components/booking/Car.vue");
-/* harmony import */ var components_booking_FilterType_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! components/booking/FilterType.vue */ "./resources/js/components/booking/FilterType.vue");
+/* harmony import */ var _components_booking_BookingForm_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/booking/BookingForm.vue */ "./resources/js/components/booking/BookingForm.vue");
+/* harmony import */ var _components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/booking/Car.vue */ "./resources/js/components/booking/Car.vue");
+/* harmony import */ var _components_booking_FilterType_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/booking/FilterType.vue */ "./resources/js/components/booking/FilterType.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 
 
@@ -36461,9 +36461,9 @@ __webpack_require__.r(__webpack_exports__);
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       watch: vue__WEBPACK_IMPORTED_MODULE_0__.watch,
       useRoute: vue_router__WEBPACK_IMPORTED_MODULE_5__.useRoute,
-      BookingForm: components_booking_BookingForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      Car: components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      FilterType: components_booking_FilterType_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      BookingForm: _components_booking_BookingForm_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      Car: _components_booking_Car_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      FilterType: _components_booking_FilterType_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_4__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_5__.onBeforeRouteLeave
     };
@@ -36488,9 +36488,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_contact_Contact_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/contact/Contact.vue */ "./resources/js/components/contact/Contact.vue");
-/* harmony import */ var components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
-/* harmony import */ var components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
+/* harmony import */ var _components_contact_Contact_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/contact/Contact.vue */ "./resources/js/components/contact/Contact.vue");
+/* harmony import */ var _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/contact/InputBox.vue */ "./resources/js/components/contact/InputBox.vue");
+/* harmony import */ var _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
@@ -36538,9 +36538,9 @@ __webpack_require__.r(__webpack_exports__);
       animateContactInformation: animateContactInformation,
       animateGetInTouch: animateGetInTouch,
       onPageEnter: onPageEnter,
-      Contact: components_contact_Contact_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      InputBox: components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      BottomBorder: components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      Contact: _components_contact_Contact_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      InputBox: _components_contact_InputBox_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      BottomBorder: _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_3__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_4__.onBeforeRouteLeave
     };
@@ -36565,8 +36565,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_faq_AccordionContainer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/faq/AccordionContainer.vue */ "./resources/js/components/faq/AccordionContainer.vue");
-/* harmony import */ var components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
+/* harmony import */ var _components_faq_AccordionContainer_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/faq/AccordionContainer.vue */ "./resources/js/components/faq/AccordionContainer.vue");
+/* harmony import */ var _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
@@ -36661,8 +36661,8 @@ __webpack_require__.r(__webpack_exports__);
       animateContainer: animateContainer,
       onPageEnter: onPageEnter,
       faqsArray: faqsArray,
-      AccordionContainer: components_faq_AccordionContainer_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      BottomBorder: components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      AccordionContainer: _components_faq_AccordionContainer_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      BottomBorder: _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_2__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_3__.onBeforeRouteLeave
     };
@@ -36704,10 +36704,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var components_home_WhyUs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! components/home/WhyUs.vue */ "./resources/js/components/home/WhyUs.vue");
-/* harmony import */ var components_home_WhatYouGet_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! components/home/WhatYouGet.vue */ "./resources/js/components/home/WhatYouGet.vue");
-/* harmony import */ var components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
-/* harmony import */ var components_home_Fleet_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! components/home/Fleet.vue */ "./resources/js/components/home/Fleet.vue");
+/* harmony import */ var _components_home_WhyUs_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/components/home/WhyUs.vue */ "./resources/js/components/home/WhyUs.vue");
+/* harmony import */ var _components_home_WhatYouGet_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/components/home/WhatYouGet.vue */ "./resources/js/components/home/WhatYouGet.vue");
+/* harmony import */ var _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/BottomBorder.vue */ "./resources/js/components/BottomBorder.vue");
+/* harmony import */ var _components_home_Fleet_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/home/Fleet.vue */ "./resources/js/components/home/Fleet.vue");
 /* harmony import */ var animejs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! animejs */ "./node_modules/animejs/lib/anime.es.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
 
@@ -36773,10 +36773,10 @@ __webpack_require__.r(__webpack_exports__);
       animateVertical: animateVertical,
       animateCar: animateCar,
       onPageEnter: onPageEnter,
-      WhyUs: components_home_WhyUs_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-      WhatYouGet: components_home_WhatYouGet_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-      BottomBorder: components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      Fleet: components_home_Fleet_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      WhyUs: _components_home_WhyUs_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      WhatYouGet: _components_home_WhatYouGet_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+      BottomBorder: _components_BottomBorder_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+      Fleet: _components_home_Fleet_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
       anime: animejs__WEBPACK_IMPORTED_MODULE_4__["default"],
       onBeforeRouteLeave: vue_router__WEBPACK_IMPORTED_MODULE_5__.onBeforeRouteLeave
     };

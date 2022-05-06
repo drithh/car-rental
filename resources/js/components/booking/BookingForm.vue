@@ -54,16 +54,17 @@
 </template>
 
 <script setup>
+import { Calendar, DatePicker } from "v-calendar";
 import { ref } from "vue";
 const props = defineProps({
   text: String,
 });
 
-import { Calendar, DatePicker } from "v-calendar";
 const date = ref(new Date());
 const inputValue = ref("");
 const inputEvents = ref("");
 </script>
+
 <style>
 @import "v-calendar/dist/style.css";
 </style>

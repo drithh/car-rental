@@ -17,7 +17,7 @@
 <script setup>
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
-import Car from "components/booking/Car.vue";
+import Car from "@/components/booking/Car.vue";
 </script>
 
 <style lang="postcss">

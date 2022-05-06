@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import Accordion from "components/faq/Accordion.vue";
+import Accordion from "@/components/faq/Accordion.vue";
 import { ref, watch } from "vue";
 
 const props = defineProps({

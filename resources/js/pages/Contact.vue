@@ -75,9 +75,9 @@
 </template>
 
 <script setup>
-import Contact from "components/contact/Contact.vue";
-import InputBox from "components/contact/InputBox.vue";
-import BottomBorder from "components/BottomBorder.vue";
+import Contact from "@/components/contact/Contact.vue";
+import InputBox from "@/components/contact/InputBox.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 

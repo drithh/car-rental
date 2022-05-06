@@ -80,9 +80,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import BookingForm from "components/booking/BookingForm.vue";
-import Car from "components/booking/Car.vue";
-import FilterType from "components/booking/FilterType.vue";
+import BookingForm from "@/components/booking/BookingForm.vue";
+import Car from "@/components/booking/Car.vue";
+import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 

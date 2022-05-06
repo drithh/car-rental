@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import InputBox from "components/contact/InputBox.vue";
+import InputBox from "@/components/contact/InputBox.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import { ref } from "vue";

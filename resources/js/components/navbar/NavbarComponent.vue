@@ -1,5 +1,3 @@
-
-
 <template>
   <header class="m-auto flex w-full place-content-center lg:w-[92vw] lg:p-0">
     <div
@@ -48,9 +46,9 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute, onBeforeRouteUpdate } from "vue-router";
-import Auth from "components/navbar/authentication/Auth.vue";
-import NavbarButton from "components/navbar/NavbarButton.vue";
-import ProfileNav from "components/navbar/ProfileNav.vue";
+import Auth from "@/components/navbar/authentication/Auth.vue";
+import NavbarButton from "@/components/navbar/NavbarButton.vue";
+import ProfileNav from "@/components/navbar/ProfileNav.vue";
 
 const route = useRoute();
 

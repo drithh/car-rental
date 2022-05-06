@@ -56,7 +56,7 @@
 <script setup>
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
-import BottomBorder from "components/BottomBorder.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
 
 const animateHorizontal = (id, start, end, delay) => {
   anime({

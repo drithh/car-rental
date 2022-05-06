@@ -133,10 +133,10 @@
 </template>
 
 <script setup>
-import WhyUs from "components/home/WhyUs.vue";
-import WhatYouGet from "components/home/WhatYouGet.vue";
-import BottomBorder from "components/BottomBorder.vue";
-import Fleet from "components/home/Fleet.vue";
+import WhyUs from "@/components/home/WhyUs.vue";
+import WhatYouGet from "@/components/home/WhatYouGet.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
+import Fleet from "@/components/home/Fleet.vue";
 
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";

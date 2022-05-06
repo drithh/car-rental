@@ -24,8 +24,8 @@
 </template>
 
 <script setup>
-import AccordionContainer from "components/faq/AccordionContainer.vue";
-import BottomBorder from "components/BottomBorder.vue";
+import AccordionContainer from "@/components/faq/AccordionContainer.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 

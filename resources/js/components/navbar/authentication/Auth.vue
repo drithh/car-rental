@@ -48,10 +48,10 @@
 
 <script setup>
 import { ref } from "vue";
-import Login from "components/navbar/authentication/Login.vue";
-import Register from "components/navbar/authentication/Register.vue";
-import ForgotPassword from "components/navbar/authentication/ForgotPassword.vue";
-import AuthTemplate from "components/navbar/authentication/AuthTemplate.vue";
+import Login from "@/components/navbar/authentication/Login.vue";
+import Register from "@/components/navbar/authentication/Register.vue";
+import ForgotPassword from "@/components/navbar/authentication/ForgotPassword.vue";
+import AuthTemplate from "@/components/navbar/authentication/AuthTemplate.vue";
 import anime from "animejs";
 
 const modal = ref("");

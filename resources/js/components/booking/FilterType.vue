@@ -40,7 +40,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
-import FilterCheckbox from "components/booking/FilterCheckbox.vue";
+import FilterCheckbox from "@/components/booking/FilterCheckbox.vue";
 const content = ref(false);
 
 const dropdownHeight = 32;
