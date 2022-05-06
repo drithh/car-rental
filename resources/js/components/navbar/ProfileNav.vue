@@ -24,14 +24,16 @@
   </div>
   <div class="profile relative">
     <router-link @click="profileButton = 2" to="/profile">
-      <font-awesome-icon :icon="['far', 'circle']" />
-      <transition>
-        <font-awesome-icon
-          v-if="profileButton === 2"
-          class="absolute left-0 top-[2px] -z-10 origin-center"
-          icon="circle"
-        />
-      </transition>
+      <dropdown-profile>
+        <font-awesome-icon :icon="['far', 'circle']" />
+        <transition>
+          <font-awesome-icon
+            v-if="profileButton === 2"
+            class="absolute left-0 top-[2px] -z-10 origin-center"
+            icon="circle"
+          />
+        </transition>
+      </dropdown-profile>
     </router-link>
   </div>
 </template>
@@ -39,6 +41,8 @@
 <script setup>
 import { ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import DropdownProfile from "@/components/navbar/DropdownProfile.vue";
+
 let notificationActive = ref(false);
 
 const route = useRoute();

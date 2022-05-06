@@ -9,12 +9,14 @@
         label="Email"
         placeholder="your@email.com"
         type="email"
+        v-model="form.email"
       ></input-box>
       <div class="password relative">
         <input-box
           label="Password"
           placeholder="password"
           :type="visibility"
+          v-model="form.password"
         ></input-box>
         <font-awesome-icon
           @click="togglePasswordVisibility"
@@ -38,24 +40,35 @@
         </div>
       </div>
 
-      <button class="mt-6 flex w-full place-content-end px-3">
-        <div
+      <div class="mt-6 flex w-full place-content-end px-3">
+        <button
           class="w-36 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-6 opacity-70 hover:border-blue hover:opacity-100"
+          @click="submit"
         >
           Submit
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import InputBox from "@/components/contact/InputBox.vue";
 import anime from "animejs";
+import axios from "axios";
+
 import { onBeforeRouteLeave } from "vue-router";
 import { ref } from "vue";
+import InputBox from "@/components/contact/InputBox.vue";
+import { useRouter } from "vue-router";
 
-defineEmits(["register", "forgotPassword"]);
+const emit = defineEmits(["register", "forgotPassword", "closeMenu"]);
+
+const router = useRouter();
+
+let form = {
+  email: String,
+  password: String,
+};
 
 const visibility = ref("password");
 const icon = ref("eye");
@@ -68,5 +81,20 @@ const togglePasswordVisibility = () => {
     visibility.value = "password";
     icon.value = "eye";
   }
+};
+
+let errors = [];
+
+const submit = () => {
+  axios
+    .post("/api/login", form)
+    .then(() => {
+      router.push({ name: "profile" });
+      emit("closeMenu");
+    })
+    .catch((error) => {
+      errors = error.response.data.errors;
+      console.log(errors);
+    });
 };
 </script>

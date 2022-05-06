@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 
 import App from "./App.vue";
-// import axios from "axios";
+import axios from "axios";
 import router from "./router";
 import VueClickAway from "vue3-click-away";
 

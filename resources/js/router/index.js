@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from "vue-router";
+import axios from "axios";
 
 import Home from "../pages/Home";
 import Booking from "../pages/Booking";
@@ -39,11 +40,39 @@ export const routes = [
     name: "profile",
     path: "/profile",
     component: Profile,
+    beforeEnter: (to, form, next) => {
+      axios
+        .get("/api/authenticated")
+        .then((res) => {
+          if (res.data === "auth") {
+            next();
+          } else {
+            return next({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
   {
     name: "favorite",
     path: "/favorite",
     component: Favorite,
+    beforeEnter: (to, form, next) => {
+      axios
+        .get("/api/authenticated")
+        .then((res) => {
+          if (res.data === "auth") {
+            next();
+          } else {
+            return next({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 ];
 

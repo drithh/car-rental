@@ -12,18 +12,21 @@
                 v-if="modal === 'login'"
                 @register="changeModal('register')"
                 @forgotPassword="changeModal('forgotPassword')"
+                @closeMenu="closeMenu"
               ></login>
             </transition>
             <transition @enter="onModalEnter" @leave="onModalLeave">
               <register
                 v-if="modal === 'register'"
                 @login="changeModal('login')"
+                @closeMenu="closeMenu"
               ></register>
             </transition>
             <transition @enter="onModalEnter" @leave="onModalLeave">
               <forgot-password
                 v-if="modal === 'forgotPassword'"
                 @login="changeModal('login')"
+                @closeMenu="closeMenu"
               ></forgot-password>
             </transition>
           </auth-template>

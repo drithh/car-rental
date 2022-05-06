@@ -26,33 +26,57 @@
           class="absolute left-0 bottom-[-2.5px] h-[5px] origin-center rounded-lg bg-blue transition-all duration-700 ease-in-out"
         ></div>
       </nav>
-
-      <div
-        v-if="!isLogin"
-        class="profile flex w-full flex-row place-content-end place-items-center gap-[8%] text-secondary lg:gap-[3%]"
-      >
-        <auth></auth>
-      </div>
-      <div
-        v-if="isLogin"
-        class="profile flex w-full flex-row place-content-end place-items-center gap-[15%] text-secondary lg:gap-[7%]"
-      >
-        <profile-nav></profile-nav>
-      </div>
+      <transition name="slide" mode="out-in">
+        <div
+          v-if="isLogin && isLoaded"
+          class="profile flex w-full flex-row place-content-end place-items-center gap-[15%] text-secondary lg:gap-[7%]"
+        >
+          <profile-nav></profile-nav>
+        </div>
+        <div
+          v-else-if="isLoaded"
+          class="profile flex w-full flex-row place-content-end place-items-center gap-[8%] text-secondary lg:gap-[3%]"
+        >
+          <auth></auth>
+        </div>
+      </transition>
     </div>
   </header>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute, onBeforeRouteUpdate } from "vue-router";
+import axios from "axios";
 import Auth from "@/components/navbar/authentication/Auth.vue";
 import NavbarButton from "@/components/navbar/NavbarButton.vue";
 import ProfileNav from "@/components/navbar/ProfileNav.vue";
 
+onMounted(() => {
+  checkUser();
+});
+
+const checkUser = () => {
+  axios
+    .get("/api/authenticated")
+    .then((res) => {
+      isLoaded.value = true;
+
+      if (res.data === "auth") {
+        isLogin.value = true;
+      } else {
+        isLogin.value = false;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
 const route = useRoute();
 
 const isLogin = ref(false);
+const isLoaded = ref(false);
 
 const navWidth = ref(0);
 const positionX = ref(0);
@@ -63,6 +87,7 @@ const nav = ref("");
 watch(
   () => route.name,
   () => {
+    checkUser();
     if (route.name === "booking") {
       changeLine(1);
     } else if (route.name === "about") {
@@ -88,3 +113,20 @@ function hideLine() {
   scaleX.value = 0;
 }
 </script>
+
+<style lang="postcss" scoped>
+.slide-enter-from,
+.slide-leave-to {
+  @apply translate-x-[200%];
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  @apply transition-all duration-700;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  @apply translate-x-[0%];
+}
+</style>

@@ -8,17 +8,20 @@
         label="Full Name"
         placeholder="Jane Doe"
         type="text"
+        v-model="form.name"
       ></input-box>
       <input-box
         label="Email"
         placeholder="your@email.com"
         type="email"
+        v-model="form.email"
       ></input-box>
       <div class="password relative">
         <input-box
           label="Password"
           placeholder="password"
           :type="visibility"
+          v-model="form.password"
         ></input-box>
         <font-awesome-icon
           @click="togglePasswordVisibility"
@@ -27,7 +30,7 @@
         />
       </div>
 
-      <button
+      <div
         class="mt-2 flex w-full place-content-between place-items-center px-3"
       >
         <div
@@ -36,22 +39,31 @@
         >
           already have an account?
         </div>
-        <div
+        <button
           class="w-36 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-6 opacity-70 hover:border-blue hover:opacity-100"
+          @click="submit"
         >
           Submit
-        </div>
-      </button>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import InputBox from "@/components/contact/InputBox.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import { ref } from "vue";
-defineEmits(["login"]);
+import axios from "axios";
+import InputBox from "@/components/contact/InputBox.vue";
+
+const emit = defineEmits(["login", "closeMenu"]);
+
+let form = {
+  name: String,
+  email: String,
+  password: String,
+};
 
 const visibility = ref("password");
 const icon = ref("eye");
@@ -64,5 +76,21 @@ const togglePasswordVisibility = () => {
     visibility.value = "password";
     icon.value = "eye";
   }
+};
+
+let errors = [];
+
+const submit = () => {
+  axios
+    .post("/api/register", form)
+    .then(() => {
+      emit("closeMenu");
+      router.push({ name: "profile" });
+      console.log("register successful");
+    })
+    .catch((error) => {
+      errors = error.response.data.errors;
+      console.log(errors);
+    });
 };
 </script>
