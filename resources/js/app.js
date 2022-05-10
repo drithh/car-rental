@@ -4,6 +4,7 @@ import App from "./App.vue";
 import axios from "axios";
 import router from "./router";
 import VueClickAway from "vue3-click-away";
+import VueApexCharts from "vue3-apexcharts";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -52,4 +53,5 @@ const app = createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
   .use(router)
   .use(VueClickAway)
+  .use(VueApexCharts)
   .mount("#app");

@@ -1,6 +1,6 @@
 <template>
-  <footer>
-    <div class="container m-auto my-32 flex items-center justify-between">
+  <footer class="relative z-10 bg-white">
+    <div class="container m-auto flex items-center justify-between py-32">
       <div
         class="font-WorkSans text-[4rem] font-black uppercase tracking-tighter text-primary opacity-90"
       >

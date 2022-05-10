@@ -73,7 +73,6 @@ onMounted(() => {
   axios
     .get("/api/user")
     .then((res) => {
-      console.log(res.data);
       username.value = res.data.name;
       svg.value = createAvatar(style, {
         seed: username.value,

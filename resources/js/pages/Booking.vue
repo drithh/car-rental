@@ -1,6 +1,6 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
-    <main class="overflow-hidden">
+    <main class="relative -z-0">
       <section
         class="relative z-10 m-auto my-12 flex w-full flex-row justify-between gap-x-10 lg:w-[92vw] lg:p-0"
       >
@@ -30,7 +30,7 @@
       >
         <div class="flex w-[92vw] flex-row place-content-end gap-x-10 py-12">
           <div
-            class="h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
+            class="sticky top-12 h-fit min-w-[24rem] rounded-3xl border-2 border-secondary border-opacity-20 bg-darkencream p-6"
           >
             <div
               class="border-b-2 border-b-secondary border-opacity-20 pt-4 pb-6 text-3xl font-bold text-dark"

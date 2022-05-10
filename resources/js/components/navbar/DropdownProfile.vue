@@ -44,6 +44,12 @@
         class="px-4 py-2 text-secondary hover:bg-cream hover:text-primary"
         >Dashboard</router-link
       >
+      <router-link
+        v-if="isAdmin"
+        to="/orders"
+        class="px-4 py-2 text-secondary hover:bg-cream hover:text-primary"
+        >Order</router-link
+      >
       <button
         @click="logout"
         class="px-4 py-2 text-left text-secondary hover:bg-cream hover:text-primary"
@@ -72,7 +78,6 @@ const hover = ref(false);
 const openDropdown = () => {
   dropdownActive.value = true;
   hover.value = true;
-  console.log(hover.value);
   clearTimeout(dropdownTimeout);
 };
 

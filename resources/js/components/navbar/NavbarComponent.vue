@@ -13,11 +13,21 @@
         >
           <router-link to="/">Rental</router-link>
         </div>
-        <navbar-button link="/booking">Booking</navbar-button>
-        <navbar-button link="/about-us">About Us</navbar-button>
-        <navbar-button link="/contact">Contact</navbar-button>
-        <navbar-button link="/faq">Faq</navbar-button>
+        <navbar-button id="booking" link="/booking">Booking</navbar-button>
+        <navbar-button v-if="isAdmin" id="dashboard" link="/dashboard"
+          >Dashboard</navbar-button
+        >
+        <navbar-button v-if="isAdmin" id="orders" link="/orders"
+          >Orders</navbar-button
+        >
 
+        <navbar-button v-if="!isAdmin" id="about" link="/about-us"
+          >About Us</navbar-button
+        >
+        <navbar-button v-if="!isAdmin" id="contact" link="/contact"
+          >Contact</navbar-button
+        >
+        <navbar-button v-if="!isAdmin" id="faq" link="/faq">Faq</navbar-button>
         <div
           :style="{
             width: `${navWidth}px`,
@@ -45,12 +55,29 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, onUpdated } from "vue";
 import { useRoute, onBeforeRouteUpdate } from "vue-router";
 import axios from "axios";
 import Auth from "@/components/navbar/authentication/Auth.vue";
 import NavbarButton from "@/components/navbar/NavbarButton.vue";
 import ProfileNav from "@/components/navbar/ProfileNav.vue";
+
+const isAdmin = ref(false);
+
+const route = useRoute();
+
+const isLogin = ref(false);
+const isLoaded = ref(false);
+
+const navWidth = ref(0);
+const positionX = ref(0);
+const scaleX = ref(0);
+
+const nav = ref("");
+
+onUpdated(() => {
+  changeLine();
+});
 
 onMounted(() => {
   checkUser();
@@ -60,6 +87,13 @@ const checkUser = () => {
   axios
     .get("/api/authenticated")
     .then((res) => {
+      axios.get("/api/is-admin").then((resp) => {
+        if (isAdmin.value === false) {
+          isAdmin.value = resp.data;
+        } else {
+          isAdmin.value = resp.data;
+        }
+      });
       isLoaded.value = true;
 
       if (res.data === "auth") {
@@ -73,42 +107,42 @@ const checkUser = () => {
     });
 };
 
-const route = useRoute();
-
-const isLogin = ref(false);
-const isLoaded = ref(false);
-
-const navWidth = ref(0);
-const positionX = ref(0);
-const scaleX = ref(0);
-
-const nav = ref("");
-
 watch(
   () => route.name,
   () => {
     checkUser();
-    if (route.name === "booking") {
-      changeLine(1);
-    } else if (route.name === "about") {
-      changeLine(2);
-    } else if (route.name === "contact") {
-      changeLine(3);
-    } else if (route.name === "faq") {
-      changeLine(4);
-    } else {
-      hideLine();
+    if (
+      (!isAdmin.value &&
+        (route.name === "dashboard" || route.name === "orders")) ||
+      (isAdmin.value &&
+        (route.name === "about" ||
+          route.name === "contact" ||
+          route.name === "faq"))
+    ) {
+      return;
     }
+    changeLine();
   }
 );
 
-function changeLine(navIndex) {
-  const navElement = nav.value.childNodes[navIndex].getBoundingClientRect();
+const changeLine = () => {
+  const allRoutes = "booking|dashboard|orders|about|contact|faq";
+  if (allRoutes.includes(route.name)) {
+    moveLine(route.name);
+  } else {
+    hideLine();
+  }
+};
+
+const moveLine = (routeName) => {
+  const navElement = nav.value
+    .querySelector(`#${routeName}`)
+    .getBoundingClientRect();
   const parentElement = nav.value.getBoundingClientRect();
   scaleX.value = 1.1;
   navWidth.value = navElement.width;
   positionX.value = navElement.x - parentElement.x;
-}
+};
 function hideLine() {
   scaleX.value = 0;
 }

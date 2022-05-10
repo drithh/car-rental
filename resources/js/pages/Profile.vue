@@ -168,7 +168,6 @@ onMounted(() => {
   axios
     .get("/api/user")
     .then((res) => {
-      console.log(res.data);
       username.value = res.data.name;
       email.value = res.data.email;
       let login = Math.ceil(
