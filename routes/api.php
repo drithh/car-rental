@@ -24,6 +24,8 @@ Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 Route::get('authenticated', [CheckAuthenticationController::class, 'testAuth']);
+Route::get('is-admin', [CheckAuthenticationController::class, 'checkAdmin']);
+
 
 // Route::group(['prefix' => 'books', 'middleware' => 'auth:sanctum'], function () {
 //     Route::get('/', [BookController::class, 'index']);

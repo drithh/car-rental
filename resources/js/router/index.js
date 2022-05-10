@@ -8,6 +8,7 @@ import Contact from "../pages/Contact";
 import Faq from "../pages/Faq";
 import Profile from "../pages/Profile";
 import Favorite from "../pages/Favorite";
+import Dashboard from "../pages/Dashboard";
 
 export const routes = [
   {
@@ -64,6 +65,26 @@ export const routes = [
         .get("/api/authenticated")
         .then((res) => {
           if (res.data === "auth") {
+            next();
+          } else {
+            return next({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+
+  {
+    name: "dashboard",
+    path: "/dashboard",
+    component: Dashboard,
+    beforeEnter: (to, form, next) => {
+      axios
+        .get("/api/is-admin")
+        .then((res) => {
+          if (res.data) {
             next();
           } else {
             return next({ name: "home" });

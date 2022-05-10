@@ -1,47 +1,48 @@
 <template>
   <router-link @click="profileButton = 1" class="relative" to="/favorite">
-    <font-awesome-icon :icon="['far', 'heart']" />
-    <transition>
-      <font-awesome-icon
-        v-if="profileButton === 1"
-        class="absolute left-0 top-[2px] -z-10 origin-center"
-        icon="heart"
-      />
-    </transition>
+    <font-awesome-icon
+      :class="{
+        'text-blue': profileButton == 1,
+        'text-opacity-70': profileButton == 1,
+      }"
+      class="hover:text-blue hover:text-opacity-70"
+      :icon="['far', 'heart']"
+    />
   </router-link>
   <div
     @click="notificationActive = !notificationActive"
     class="relative cursor-pointer"
   >
-    <font-awesome-icon :icon="['far', 'bell']" />
-    <transition>
-      <font-awesome-icon
-        v-if="notificationActive"
-        class="absolute left-0 top-[2px] -z-10 origin-center"
-        icon="bell"
-      />
-    </transition>
+    <font-awesome-icon
+      class="hover:text-blue hover:opacity-70"
+      :icon="['far', 'bell']"
+    />
   </div>
+  <div class="divider block h-10 w-[1px] bg-secondary"></div>
   <div class="profile relative">
-    <router-link @click="profileButton = 2" to="/profile">
-      <dropdown-profile>
-        <font-awesome-icon :icon="['far', 'circle']" />
-        <transition>
-          <font-awesome-icon
-            v-if="profileButton === 2"
-            class="absolute left-0 top-[2px] -z-10 origin-center"
-            icon="circle"
+    <router-link to="/profile">
+      <dropdown-profile :username="username" :route="profileButton == 2">
+        <div class="flex flex-row place-items-center gap-3">
+          <img
+            class="rounded-full border border-secondary hover:border-opacity-70"
+            alt="Avatar"
+            :src="svg"
           />
-        </transition>
+          <div class="username">{{ username }}</div>
+        </div>
       </dropdown-profile>
     </router-link>
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import DropdownProfile from "@/components/navbar/DropdownProfile.vue";
+import axios from "axios";
+
+import { createAvatar } from "@dicebear/avatars";
+import * as style from "@dicebear/adventurer-neutral";
 
 let notificationActive = ref(false);
 
@@ -63,6 +64,27 @@ watch(
     notificationActive.value = false;
   }
 );
+
+const username = ref("");
+
+const svg = ref("");
+
+onMounted(() => {
+  axios
+    .get("/api/user")
+    .then((res) => {
+      console.log(res.data);
+      username.value = res.data.name;
+      svg.value = createAvatar(style, {
+        seed: username.value,
+        dataUri: true,
+        size: 40,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 </script>
 
 <style lang="postcss" scoped>

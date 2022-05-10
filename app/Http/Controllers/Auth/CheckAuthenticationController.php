@@ -22,4 +22,11 @@ class CheckAuthenticationController extends Controller
           }
     }
 
+    public function checkAdmin(Request $request)
+    { 
+         if ($request->user('sanctum')) {
+                return $request->user()->is_admin;
+          } 
+    }
+
 }

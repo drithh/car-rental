@@ -3,6 +3,7 @@
     @mouseenter="openDropdown"
     @mouseleave="closeDropdown"
     class="relative z-10"
+    :class="{ 'text-blue': route || hover }"
   >
     <slot></slot>
   </div>
@@ -19,8 +20,14 @@
       @mouseenter="openDropdown"
       @mouseleave="closeDropdown"
       v-if="dropdownActive"
-      class="absolute right-0 z-50 my-2 flex w-40 origin-top-right flex-col rounded-xl border border-secondary border-opacity-70 bg-white py-2 text-lg"
+      class="absolute right-0 z-50 my-2 flex w-40 origin-top-right flex-col rounded-xl bg-white py-2 text-base shadow-md"
     >
+      <div class="profile mb-2 cursor-default border-b border-b-cream">
+        <div class="text-bold px-4 text-lg">{{ username }}</div>
+        <div class="mb-2 px-4 text-sm italic">
+          {{ isAdmin ? "administrator" : "user" }}
+        </div>
+      </div>
       <router-link
         to="/profile"
         class="px-4 py-2 text-secondary hover:bg-cream hover:text-primary"
@@ -30,6 +37,12 @@
         to="/favorite"
         class="px-4 py-2 text-secondary hover:bg-cream hover:text-primary"
         >Favorite</router-link
+      >
+      <router-link
+        v-if="isAdmin"
+        to="/dashboard"
+        class="px-4 py-2 text-secondary hover:bg-cream hover:text-primary"
+        >Dashboard</router-link
       >
       <button
         @click="logout"
@@ -42,25 +55,52 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+
+const props = defineProps({
+  username: String,
+  route: Boolean,
+});
 
 import axios from "axios";
 let dropdownActive = ref(false);
 let dropdownTimeout;
 
+const hover = ref(false);
+
 const openDropdown = () => {
   dropdownActive.value = true;
+  hover.value = true;
+  console.log(hover.value);
   clearTimeout(dropdownTimeout);
 };
 
 const closeDropdown = () => {
   dropdownTimeout = setTimeout(() => {
     dropdownActive.value = false;
+    hover.value = false;
   }, 300);
 };
 
 const router = useRouter();
+
+const isAdmin = ref(false);
+
+onMounted(() => {
+  axios
+    .get("/api/is-admin")
+    .then((res) => {
+      if (res.data) {
+        isAdmin.value = true;
+      } else {
+        isAdmin.value = false;
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 const logout = () => {
   axios.post("/api/logout").then(() => {

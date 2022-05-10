@@ -29,7 +29,7 @@
       <transition name="slide" mode="out-in">
         <div
           v-if="isLogin && isLoaded"
-          class="profile flex w-full flex-row place-content-end place-items-center gap-[15%] text-secondary lg:gap-[7%]"
+          class="profile flex w-full flex-row place-content-end place-items-center gap-[12%] text-secondary lg:gap-[4%]"
         >
           <profile-nav></profile-nav>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -27,27 +28,18 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
+        $this->validateLogin($request);
 
-        if (Auth::attempt($request->only('email', 'password'))){
-            return response()->json(Auth::user(), 200);
-        }
-        throw ValidationException::withMessages([
-            'email' =>['The provided credentials are incorect.']
-        ]);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        if (method_exists($this, 'hasTooManyLoginAttempts') &&
-            $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+        // if (method_exists($this, 'hasTooManyLoginAttempts') &&
+        //     $this->hasTooManyLoginAttempts($request)) {
+        //     $this->fireLockoutEvent($request);
 
-            return $this->sendLockoutResponse($request);
-        }
+        //     return $this->sendLockoutResponse($request);
+        // }
 
         if ($this->attemptLogin($request)) {
             if ($request->hasSession()) {
@@ -57,10 +49,10 @@ class LoginController extends Controller
             return $this->sendLoginResponse($request);
         }
 
-        // If the login attempt was unsuccessful we will increment the number of attempts
-        // to login and redirect the user back to the login form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
-        $this->incrementLoginAttempts($request);
+        // // If the login attempt was unsuccessful we will increment the number of attempts
+        // // to login and redirect the user back to the login form. Of course, when this
+        // // user surpasses their maximum number of attempts they will get locked out.
+        // $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
     }
@@ -115,7 +107,7 @@ class LoginController extends Controller
     {
         $request->session()->regenerate();
 
-        $this->clearLoginAttempts($request);
+        // $this->clearLoginAttempts($request);
 
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
@@ -135,6 +127,10 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        $user->update([
+            'last_login_at' => Carbon::now()->toDateTimeString(),
+            'last_login_ip' => $request->getClientIp()
+        ]);
         //
     }
 

@@ -89,7 +89,13 @@ const submit = () => {
   axios
     .post("/api/login", form)
     .then(() => {
-      router.push({ name: "profile" });
+      axios.get("/api/is-admin").then((res) => {
+        if (res.data) {
+          router.push({ name: "dashboard" });
+        } else {
+          router.push({ name: "profile" });
+        }
+      });
       emit("closeMenu");
     })
     .catch((error) => {

@@ -19,17 +19,17 @@
 import { ref } from "vue";
 
 const emit = defineEmits(["update:modelValue"]);
+const props = defineProps({
+  label: String,
+  placeholder: String,
+  type: String,
+  textvalue: String,
+});
 
-const modelValue = ref("");
+const modelValue = ref(props.textvalue);
 
 const updateValue = (event) => {
   modelValue.value = event.target.value;
   emit("update:modelValue", event.target.value);
 };
-
-const props = defineProps({
-  label: String,
-  placeholder: String,
-  type: String,
-});
 </script>

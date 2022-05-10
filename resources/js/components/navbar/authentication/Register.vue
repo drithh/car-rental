@@ -52,12 +52,13 @@
 
 <script setup>
 import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
+import { useRouter } from "vue-router";
 import { ref } from "vue";
 import axios from "axios";
 import InputBox from "@/components/contact/InputBox.vue";
 
 const emit = defineEmits(["login", "closeMenu"]);
+const router = useRouter();
 
 let form = {
   name: String,
@@ -84,9 +85,8 @@ const submit = () => {
   axios
     .post("/api/register", form)
     .then(() => {
-      emit("closeMenu");
       router.push({ name: "profile" });
-      console.log("register successful");
+      emit("closeMenu");
     })
     .catch((error) => {
       errors = error.response.data.errors;

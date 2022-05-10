@@ -21,6 +21,17 @@ Route::get('{any}', function () {
     return view('app');
 })->where('any', '.*');
 
+Route::get('dashboard', function () {
+    if(Auth::check() && Auth::user->role === 1) {
+        return auth()
+            ->user()
+            ->createToken('auth_token', ['admin'])
+            ->plainTextToken;
+    }
+    return redirect("/");
+
+})->middleware('auth');
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
