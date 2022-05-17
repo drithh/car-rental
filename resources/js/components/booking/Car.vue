@@ -13,13 +13,13 @@
       </div>
       <div class="favorite">
         <div
-          @click="favorite = !favorite"
+          @click="toggleFavorite"
           class="relative top-1 z-0 origin-right cursor-pointer"
         >
           <transition name="bounce">
             <font-awesome-icon
               v-if="favorite"
-              class="absolute left-0 top-[1px] z-10 h-6 w-6 origin-center text-red-400"
+              class="absolute left-[-0.5px] top-[0.3px] z-10 h-[25px] w-[25px] origin-center text-red-400"
               icon="heart"
             />
           </transition>
@@ -68,10 +68,11 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-// const favorite = ref(false);
+import { onMounted, onUpdated, ref, toRef, watch } from "vue";
+import axios from "axios";
 
-const props = defineProps({
+let props = defineProps({
+  id: Number,
   name: String,
   type: String,
   transmission: String,
@@ -79,6 +80,30 @@ const props = defineProps({
   price: Number,
   favorite: Boolean,
 });
+const favorite = ref(false);
+
+onMounted(() => {
+  favorite.value = props.favorite;
+});
+
+onUpdated(() => {
+  favorite.value = props.favorite;
+});
+
+const toggleFavorite = () => {
+  favorite.value = !favorite.value;
+  if (favorite.value) {
+    axios.post("/api/favorite/store", {
+      armada_id: props.id,
+    });
+  } else {
+    axios.delete("/api/favorite/destroy", {
+      data: {
+        armada_id: props.id,
+      },
+    });
+  }
+};
 </script>
 
 <style lang="postcss" scoped>

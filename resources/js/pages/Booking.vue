@@ -52,12 +52,13 @@
             <car
               v-for="(car, index) in cars"
               :key="index"
+              :id="car.id"
               :name="car.nama"
               :type="car.type"
               :transmission="car.tipe_transmisi"
               :capacity="car.kapasitas"
               :price="Math.ceil(car.harga_sewa / 1000)"
-              :favorite="car.favorite"
+              :favorite="car.favorite ? true : false"
             ></car>
           </div>
         </div>
