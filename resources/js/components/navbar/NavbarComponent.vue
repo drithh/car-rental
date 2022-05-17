@@ -5,7 +5,7 @@
     >
       <nav
         ref="nav"
-        class="relative flex h-full w-full min-w-[38rem] flex-row items-center gap-4 lg:gap-[4%]"
+        class="relative flex h-full w-full min-w-[38rem] flex-row items-center gap-4 lg:gap-8"
       >
         <div
           @click="hideLine"
@@ -14,20 +14,25 @@
           <router-link to="/">Rental</router-link>
         </div>
         <navbar-button id="booking" link="/booking">Booking</navbar-button>
-        <navbar-button v-if="isAdmin" id="dashboard" link="/dashboard"
-          >Dashboard</navbar-button
-        >
-        <navbar-button v-if="isAdmin" id="orders" link="/orders"
-          >Orders</navbar-button
-        >
-
-        <navbar-button v-if="!isAdmin" id="about" link="/about-us"
-          >About Us</navbar-button
-        >
-        <navbar-button v-if="!isAdmin" id="contact" link="/contact"
-          >Contact</navbar-button
-        >
-        <navbar-button v-if="!isAdmin" id="faq" link="/faq">Faq</navbar-button>
+        <div class="relative mt-[2px]">
+          <transition name="nav-slide" mode="out-in" @after-enter="changeLine">
+            <div v-if="isAdmin && isLoaded" class="flex gap-4 lg:gap-8">
+              <navbar-button id="dashboard" link="/dashboard"
+                >Dashboard</navbar-button
+              >
+              <navbar-button id="orders" link="/orders">Orders</navbar-button>
+            </div>
+            <div v-else-if="isLoaded" class="flex gap-4 lg:gap-8">
+              <navbar-button id="about" link="/about-us"
+                >About Us</navbar-button
+              >
+              <navbar-button id="contact" link="/contact"
+                >Contact</navbar-button
+              >
+              <navbar-button id="faq" link="/faq">Faq</navbar-button>
+            </div>
+          </transition>
+        </div>
         <div
           :style="{
             width: `${navWidth}px`,
@@ -75,9 +80,9 @@ const scaleX = ref(0);
 
 const nav = ref("");
 
-onUpdated(() => {
-  changeLine();
-});
+// onUpdated(() => {
+//   changeLine();
+// });
 
 onMounted(() => {
   checkUser();
@@ -88,13 +93,9 @@ const checkUser = () => {
     .get("/api/authenticated")
     .then((res) => {
       axios.get("/api/is-admin").then((resp) => {
-        if (isAdmin.value === false) {
-          isAdmin.value = resp.data;
-        } else {
-          isAdmin.value = resp.data;
-        }
+        isAdmin.value = resp.data;
+        isLoaded.value = true;
       });
-      isLoaded.value = true;
 
       if (res.data === "auth") {
         isLogin.value = true;
@@ -138,6 +139,7 @@ const moveLine = (routeName) => {
   const navElement = nav.value
     .querySelector(`#${routeName}`)
     .getBoundingClientRect();
+
   const parentElement = nav.value.getBoundingClientRect();
   scaleX.value = 1.1;
   navWidth.value = navElement.width;
@@ -149,6 +151,21 @@ function hideLine() {
 </script>
 
 <style lang="postcss" scoped>
+.nav-slide-enter-from,
+.nav-slide-leave-to {
+  @apply translate-y-[-200%];
+}
+
+.nav-slide-enter-active,
+.nav-slide-leave-active {
+  @apply transition-all duration-700;
+}
+
+.nav-slide-enter-to,
+.nav-slide-leave-from {
+  @apply -translate-y-[0%];
+}
+
 .slide-enter-from,
 .slide-leave-to {
   @apply translate-x-[200%];

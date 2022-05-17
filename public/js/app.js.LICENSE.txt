@@ -1,11 +1,71 @@
 /*!
+   * Adventurer Neutral (@dicebear/adventurer-neutral)
+   *
+   * Code licensed under MIT License.
+   * Copyright (c) 2021 Florian Körner
+   *
+   * Design "Adventurer Neutral" by Lisa Wischofsky licensed under CC BY 4.0.
+   * Source: https://www.instagram.com/lischis_adventures/
+   * License: https://creativecommons.org/licenses/by/4.0/
+   */
+
+/*!
+   * deep-rename-keys <https://github.com/jonschlinkert/deep-rename-keys>
+   *
+   * Copyright (c) 2015 Jon Schlinkert, contributors.
+   * Licensed under the MIT license.
+   */
+
+/*!
+   * has-value <https://github.com/jonschlinkert/has-value>
+   *
+   * Copyright (c) 2014-2016, Jon Schlinkert.
+   * Licensed under the MIT License.
+   */
+
+/*!
+   * is-plain-object <https://github.com/jonschlinkert/is-plain-object>
+   *
+   * Copyright (c) 2014-2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
+   * isobject <https://github.com/jonschlinkert/isobject>
+   *
+   * Copyright (c) 2014-2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
+   * unset-value <https://github.com/jonschlinkert/unset-value>
+   *
+   * Copyright (c) 2015, 2017, Jon Schlinkert.
+   * Released under the MIT License.
+   */
+
+/*!
   * vue-router v4.0.13
   * (c) 2022 Eduardo San Martin Morote
   * @license MIT
   */
 
 /*!
+ * ApexCharts v3.35.2
+ * (c) 2018-2022 ApexCharts
+ * Released under the MIT License.
+ */
+
+/*!
  * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  * Copyright 2022 Fonticons, Inc.
  */
+
+/*! svg.draggable.js - v2.2.2 - 2019-01-08
+* https://github.com/svgdotjs/svg.draggable.js
+* Copyright (c) 2019 Wout Fierens; Licensed MIT */
+
+/*! svg.filter.js - v2.0.2 - 2016-02-24
+* https://github.com/wout/svg.filter.js
+* Copyright (c) 2016 Wout Fierens; Licensed MIT */

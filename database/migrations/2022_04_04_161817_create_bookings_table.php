@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pelanggan_id');
+            $table->foreignId('user_id');
             $table->dateTime('tanggal_transaksi');
             $table->string('booking_code');
             $table->string('no_tagihan');

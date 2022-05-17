@@ -5,12 +5,10 @@
     <div class="car-name flex place-content-between font-Yantramanav">
       <div class="name-wrapper text-left">
         <div class="text-2xl font-bold text-dark">
-          <!-- <slot name="name"></slot> -->
-          Mustang GT
+          {{ name }}
         </div>
         <div class="text-xl text-secondary">
-          <!-- <slot name="description"></slot> -->
-          Fastback
+          {{ type }}
         </div>
       </div>
       <div class="favorite">
@@ -45,21 +43,21 @@
       <div class="capacity">
         <font-awesome-icon class="h-4 w-4 text-blue" :icon="['fas', 'user']" />
         <span class="mx-1 text-lg text-primary">
-          2
+          {{ capacity }}
           <!-- <slot name="capacity"></slot> -->
         </span>
       </div>
       <div class="transmission">
         <font-awesome-icon class="h-5 w-5 text-blue" :icon="['fas', 'cogs']" />
         <span class="mx-1 text-lg text-primary">
-          Manual
+          {{ transmission }}
           <!-- <slot name="cogs"></slot> -->
         </span>
       </div>
       <div class="price">
         <span class="text-lg font-bold text-primary">
           <span>
-            IDR 100
+            IDR {{ price }}
             <!-- <slot name="price"></slot> -->
           </span>
         </span>
@@ -71,7 +69,16 @@
 
 <script setup>
 import { ref, watch } from "vue";
-const favorite = ref(false);
+// const favorite = ref(false);
+
+const props = defineProps({
+  name: String,
+  type: String,
+  transmission: String,
+  capacity: Number,
+  price: Number,
+  favorite: Boolean,
+});
 </script>
 
 <style lang="postcss" scoped>

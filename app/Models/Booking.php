@@ -11,9 +11,9 @@ class Booking extends Model
 
     protected $guarded = ['id'];
 
-    public function pelanggan()
+    public function user()
     {
-        return $this->belongsTo(Pelanggan::class);
+        return $this->belongsTo(User::class);
     }
 
     public function booking_armada()

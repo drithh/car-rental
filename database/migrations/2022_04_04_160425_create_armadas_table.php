@@ -26,6 +26,7 @@ return new class extends Migration
 
             $table->string('tahun_perolehan');
             $table->bigInteger('harga_satuan');
+            $table->bigInteger('harga_sewa');
             $table->binary('poto_kendaraan');
             
             $table->timestamps();

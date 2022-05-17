@@ -19,11 +19,10 @@ class UlasanFactory extends Factory
         return [
             'booking_armada_id' => mt_rand(1, 300),
             'armada_id' => mt_rand(1, 100),
-            'pelanggan_id' => mt_rand(1, 50),
+            'user_id' => mt_rand(1, 20),
             'nilai' => mt_rand(1, 5),
             'ulasan' => $this->faker->text(),
             'tanggal_ulasan' => $this->faker->date(),
-            //
         ];
     }
 }

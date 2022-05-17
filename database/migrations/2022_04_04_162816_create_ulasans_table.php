@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('booking_armada_id');
             $table->foreignId('armada_id');
-            $table->foreignId('pelanggan_id');
+            $table->foreignId('user_id');
 
             $table->smallInteger('nilai');
             $table->text('ulasan');

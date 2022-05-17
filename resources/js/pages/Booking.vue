@@ -49,28 +49,16 @@
           <div
             class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
           >
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
-            <car></car>
+            <car
+              v-for="(car, index) in cars"
+              :key="index"
+              :name="car.nama"
+              :type="car.type"
+              :transmission="car.tipe_transmisi"
+              :capacity="car.kapasitas"
+              :price="Math.ceil(car.harga_sewa / 1000)"
+              :favorite="car.favorite"
+            ></car>
           </div>
         </div>
       </section></main
@@ -78,13 +66,37 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import BookingForm from "@/components/booking/BookingForm.vue";
 import Car from "@/components/booking/Car.vue";
 import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import axios from "axios";
+
+const cars = ref([]);
+
+onMounted(() => {
+  axios
+    .get("/api/car")
+    .then((res) => {
+      cars.value = res.data;
+
+      axios.get("/api/authenticated").then((res) => {
+        if (res.data) {
+          axios.get("/api/favorite-id").then((res) => {
+            res.data.forEach((favorite) => {
+              cars.value[favorite.armada_id - 1].favorite = true;
+            });
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 const filters = [
   {

@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     protected $guarded = [
-        'isAdmin',
+        'id', 'isAdmin',
     ];
 
     /**
@@ -47,5 +47,21 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function booking()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany(Favorite::class);
+    }
 
 }

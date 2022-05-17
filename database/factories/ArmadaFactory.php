@@ -17,7 +17,7 @@ class ArmadaFactory extends Factory
     public function definition()
     {
         return [
-            'merk_id' => mt_rand(1, 20),
+            'merk_id' => mt_rand(1, 50),
             'tanggal_pajak' => $this->faker->date(),
             'no_polisi' => $this->faker->vehicleRegistration('[A-Z]{1,2} [0-9]{1,4} [A-Z]{1,3}'),
             'kapasitas' => mt_rand(1, 10),
@@ -26,6 +26,7 @@ class ArmadaFactory extends Factory
             'tipe_transmisi' => $this->faker->vehicleGearBoxType(),
             'tahun_perolehan' => $this->faker->year(),
             'harga_satuan' => mt_rand(1000000, 10000000),
+            'harga_sewa' => mt_rand(100000, 1000000),
             'poto_kendaraan' => $this->faker->imageUrl(),
         ];
     }
