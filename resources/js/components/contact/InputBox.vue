@@ -10,13 +10,12 @@
       :type="type"
       :placeholder="placeholder"
       :value="modelValue"
-      @input="updateValue"
     />
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onUpdated } from "vue";
 
 const emit = defineEmits(["update:modelValue"]);
 const props = defineProps({
@@ -26,7 +25,11 @@ const props = defineProps({
   textvalue: String,
 });
 
-const modelValue = ref(props.textvalue);
+const modelValue = ref();
+
+onUpdated(() => {
+  modelValue.value = props.textvalue;
+});
 
 const updateValue = (event) => {
   modelValue.value = event.target.value;

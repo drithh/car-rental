@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CheckAuthenticationController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Merk;
@@ -40,6 +41,7 @@ Route::get('favorite', [FavoriteController::class, 'index']);
 Route::post('favorite/store', [FavoriteController::class, 'store']);
 Route::delete('favorite/destroy', [FavoriteController::class, 'destroy']);
 
+Route::put('user', [UserController::class, 'update']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

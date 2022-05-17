@@ -528,6 +528,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-\[0\.35px\] {
   top: 0.35px;
 }
+.top-8 {
+  top: 2rem;
+}
+.top-10 {
+  top: 2.5rem;
+}
 .-z-0 {
   z-index: 0;
 }
@@ -1360,6 +1366,21 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .pt-28 {
   padding-top: 7rem;
+}
+.pt-1 {
+  padding-top: 0.25rem;
+}
+.pt-\[6px\] {
+  padding-top: 6px;
+}
+.pt-\[5px\] {
+  padding-top: 5px;
+}
+.pb-\[9xp\] {
+  padding-bottom: 9xp;
+}
+.pb-\[9px\] {
+  padding-bottom: 9px;
 }
 .text-left {
   text-align: left;

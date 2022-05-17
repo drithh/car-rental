@@ -27,7 +27,6 @@
       <date-picker v-model="date" :min-date="new Date()" class="flex-grow">
         <template v-slot="{ inputValue, inputEvents }">
           <input
-            id="date"
             class="w-full rounded-xl border border-secondary bg-gray py-3 px-6 font-Yantramanav text-xl hover:border-blue hover:bg-white hover:outline-none"
             :value="inputValue"
             v-on="inputEvents"
