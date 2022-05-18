@@ -9,14 +9,16 @@
         label="Email"
         placeholder="your@email.com"
         type="email"
-        v-model="form.email"
+        :textvalue="form.email"
+        v-on:update:modelValue="(e) => (form.email = e)"
       ></input-box>
       <div class="password relative">
         <input-box
           label="Password"
           placeholder="password"
           :type="visibility"
-          v-model="form.password"
+          :textvalue="form.password"
+          v-on:update:modelValue="(e) => (form.password = e)"
         ></input-box>
         <font-awesome-icon
           @click="togglePasswordVisibility"
@@ -65,10 +67,10 @@ const emit = defineEmits(["register", "forgotPassword", "closeMenu"]);
 
 const router = useRouter();
 
-let form = {
-  email: String,
-  password: String,
-};
+const form = ref({
+  email: "",
+  password: "",
+});
 
 const visibility = ref("password");
 const icon = ref("eye");
@@ -87,7 +89,7 @@ let errors = [];
 
 const submit = () => {
   axios
-    .post("/api/login", form)
+    .post("/api/login", form.value)
     .then(() => {
       axios.get("/api/is-admin").then((res) => {
         if (res.data) {

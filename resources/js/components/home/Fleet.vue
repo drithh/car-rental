@@ -1,9 +1,17 @@
 <template>
   <div class="w-[95%]">
-    <Carousel :items-to-show="4" :wrap-around="true">
-      <Slide v-for="slide in 10" :key="slide">
+    <Carousel v-if="cars.length !== 0" :items-to-show="4" :wrap-around="true">
+      <Slide v-for="(car, index) in cars" :key="index">
         <div class="carousel__item">
-          <car></car>
+          <car
+            :id="car.id"
+            :name="car.nama"
+            :type="car.type"
+            :transmission="car.tipe_transmisi"
+            :capacity="car.kapasitas"
+            :price="Math.ceil(car.harga_sewa / 1000)"
+            :favorite="car.favorite ? true : false"
+          ></car>
         </div>
       </Slide>
 
@@ -15,9 +23,34 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
 import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide, Pagination, Navigation } from "vue3-carousel";
 import Car from "@/components/booking/Car.vue";
+import axios from "axios";
+
+const cars = ref([]);
+
+onMounted(() => {
+  axios
+    .get("/api/car")
+    .then((res) => {
+      cars.value = res.data;
+
+      axios.get("/api/authenticated").then((res) => {
+        if (res.data != "guest") {
+          axios.get("/api/favorite-id").then((res) => {
+            res.data.forEach((favorite) => {
+              cars.value[favorite.armada_id - 1].favorite = true;
+            });
+          });
+        }
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 </script>
 
 <style lang="postcss">

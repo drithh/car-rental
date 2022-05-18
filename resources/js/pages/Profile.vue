@@ -30,12 +30,22 @@
           <div class="my-2 pl-3 text-2xl font-semibold">Edit Profile</div>
           <input-box
             :textvalue="profile.name"
+            v-on:update:modelValue="
+              (e) => {
+                profile.name = e;
+              }
+            "
             label="Full Name"
             placeholder="Jane Doe"
             type="text"
           ></input-box>
           <input-box
             :textvalue="profile.email"
+            v-on:update:modelValue="
+              (e) => {
+                profile.email = e;
+              }
+            "
             label="Email"
             placeholder="your@email.com"
             type="email"
@@ -69,25 +79,28 @@
           </date-picker>
           <input-box
             :textvalue="profile.nik"
-            v-on:update:modelValue="updateNik"
+            v-on:update:modelValue="(e) => (profile.nik = e)"
             label="NIK"
             placeholder="5314196206960065"
             type="text"
           ></input-box>
           <input-box
             :textvalue="profile.alamat"
+            v-on:update:modelValue="(e) => (profile.alamat = e)"
             label="Alamat"
             placeholder="Jl Makan Nasi Goreng"
             type="text"
           ></input-box>
           <input-box
             :textvalue="profile.notelpon"
+            v-on:update:modelValue="(e) => (profile.notelpon = e)"
             label="Nomor Telepon"
             placeholder="0728 3894 127"
             type="text"
           ></input-box>
           <input-box
             :textvalue="profile.nowa"
+            v-on:update:modelValue="(e) => (profile.nowa = e)"
             label="Nomor Whatsapp"
             placeholder="0728 3894 127"
             type="text"
@@ -262,13 +275,10 @@ onMounted(() => {
     });
 });
 const updateProfile = () => {
-  console.log(profile);
   console.log(profile.value);
   axios
     .put("/api/user", profile.value)
-    .then((res) => {
-      console.log(res);
-    })
+    .then((res) => {})
     .catch((err) => {
       console.log(err);
     });

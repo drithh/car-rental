@@ -85,7 +85,7 @@ onMounted(() => {
       cars.value = res.data;
 
       axios.get("/api/authenticated").then((res) => {
-        if (res.data) {
+        if (res.data != "guest") {
           axios.get("/api/favorite-id").then((res) => {
             res.data.forEach((favorite) => {
               cars.value[favorite.armada_id - 1].favorite = true;

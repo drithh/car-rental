@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        DB::update('update users set name = ?, email = ?, nik = ? where id = ?', [$request->name, $request->email, $request->nik, $request->user()->id]);
+        DB::update('update users set name = ?, email = ?,  nik = ?, jenis_kelamin = ?, tanggal_lahir = ?, alamat = ?, no_telp = ?, no_wa = ? where id = ?', [$request->name, $request->email, $request->nik, $request->jenisKelamin, $request->tanggalLahir, $request->alamat, $request->notelpon, $request->no_wa, $request->user()->id]);
     }
 
     /**

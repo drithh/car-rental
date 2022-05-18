@@ -8,20 +8,23 @@
         label="Full Name"
         placeholder="Jane Doe"
         type="text"
-        v-model="form.name"
+        :textvalue="form.name"
+        v-on:update:modelValue="(e) => (form.name = e)"
       ></input-box>
       <input-box
         label="Email"
         placeholder="your@email.com"
         type="email"
-        v-model="form.email"
+        :textvalue="form.email"
+        v-on:update:modelValue="(e) => (form.email = e)"
       ></input-box>
       <div class="password relative">
         <input-box
           label="Password"
           placeholder="password"
           :type="visibility"
-          v-model="form.password"
+          :textvalue="form.password"
+          v-on:update:modelValue="(e) => (form.password = e)"
         ></input-box>
         <font-awesome-icon
           @click="togglePasswordVisibility"
@@ -60,16 +63,16 @@ import InputBox from "@/components/contact/InputBox.vue";
 const emit = defineEmits(["login", "closeMenu"]);
 const router = useRouter();
 
-let form = {
-  name: String,
-  email: String,
-  password: String,
-};
+const form = ref({
+  name: "",
+  email: "",
+  password: "",
+});
 
 const visibility = ref("password");
 const icon = ref("eye");
 
-const togglePasswordVisibility = () => {
+const togglePasswordVisibility = (e) => {
   if (visibility.value === "password") {
     visibility.value = "text";
     icon.value = "eye-slash";
@@ -83,7 +86,7 @@ let errors = [];
 
 const submit = () => {
   axios
-    .post("/api/register", form)
+    .post("/api/register", form.value)
     .then(() => {
       router.push({ name: "profile" });
       emit("closeMenu");
