@@ -1,17 +1,19 @@
 <template>
   <div class="p-1">
     <div
-      @click="checkboxActive = !checkboxActive"
+      :value="modelValue"
+      :checked="isChecked"
+      @click="$emit('toggleCheck', modelValue)"
       class="flex cursor-pointer items-center"
     >
       <div
-        :class="{ 'border-blue': checkboxActive }"
+        :class="{ 'border-blue': isChecked }"
         class="focus-within:border-blue-500 mr-2 flex h-[18px] w-[18px] flex-shrink-0 items-center justify-center rounded-md border-2 bg-white opacity-70 transition-all duration-500"
       >
         <transition name="fade">
           <svg
             class="pointer-events-none h-3 w-3 fill-current text-blue opacity-70 transition-all duration-500"
-            v-if="checkboxActive"
+            v-if="isChecked"
             version="1.1"
             viewBox="0 0 17 12"
             xmlns="http://www.w3.org/2000/svg"
@@ -32,9 +34,9 @@
       </div>
       <div
         class="opacity-70 transition-all duration-500"
-        :class="{ 'text-blue': checkboxActive }"
+        :class="{ 'text-blue': isChecked }"
       >
-        {{ filterName }}
+        {{ modelValue }}
       </div>
     </div>
   </div>
@@ -44,10 +46,9 @@
 import { ref, watch } from "vue";
 
 const props = defineProps({
-  filterName: String,
+  modelValue: { type: String, default: "" },
+  isChecked: Boolean,
 });
-
-const checkboxActive = ref(false);
 </script>
 
 <style lang="postcss" scoped>

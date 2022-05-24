@@ -42,7 +42,8 @@
                 v-for="(filter, index) in filters"
                 :key="index"
                 :filterType="filter.filterType"
-                :filterList="filter.filterList"
+                :filterCollection="filter.filterCollection"
+                @toggleCheckbox="toggleCheckbox"
               ></filter-type>
             </div>
           </div>
@@ -75,14 +76,132 @@ import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import axios from "axios";
+import { toLower, update } from "lodash";
 
-const cars = ref([]);
+const allCars = ref([]);
+const cars = ref();
+
+const filters = ref([
+  {
+    filterType: "Capacity",
+    filterCollection: [
+      { name: "2-4", check: false },
+      { name: "5 or more", check: false },
+    ],
+  },
+  {
+    filterType: "Transmission Type",
+    filterCollection: [
+      { name: "Automatic", check: false },
+      { name: "Manual", check: false },
+    ],
+  },
+]);
+
+const toggleCheckbox = (type, name) => {
+  filters.value.forEach((filter) => {
+    if (filter.filterType === type) {
+      filter.filterCollection.forEach((item) => {
+        if (item.name === name) {
+          item.check = !item.check;
+        }
+      });
+    }
+  });
+  updateFilter();
+};
+
+const updateFilter = () => {
+  console.log("update filter");
+  const filter = filters.value.map((filter) => {
+    return {
+      filterType: filter.filterType,
+      filterCollection: filter.filterCollection.filter((item) => {
+        return item.check;
+      }),
+    };
+  });
+
+  let filterEnabled = false;
+
+  let carFilterType = "";
+  let carFilterSize = 0;
+  let carFilterTransmission = 0;
+  cars.value = [];
+  filter.forEach((filter, i) => {
+    filter.filterCollection.forEach((item) => {
+      if (item.check) {
+        switch (filter.filterType) {
+          case "Car Type":
+            carFilterType += `${item.name}|`;
+            break;
+          case "Capacity":
+            if (item.name === "2-4") {
+              carFilterSize = 1;
+            } else {
+              carFilterSize = 2;
+            }
+            break;
+          case "Transmission Type":
+            if (item.name === "Automatic") {
+              carFilterTransmission = 1;
+            } else if (item.name === "Manual") {
+              carFilterTransmission = 2;
+            }
+            break;
+        }
+      }
+    });
+  });
+  const carFilter = ["type", "kapasitas", "tipe_transmisi"];
+
+  cars.value = allCars.value.filter((car) => {
+    let filterType = true;
+    let filterSize = true;
+    let filterTransmission = true;
+
+    if (carFilterType.length) {
+      filterType = toLower(carFilterType).includes(toLower(car["type"]));
+    }
+
+    if (carFilterSize === 1) {
+      filterSize = car["kapasitas"] >= 2 && car["kapasitas"] <= 4;
+    } else if (carFilterSize === 2) {
+      filterSize = car["kapasitas"] >= 5;
+    }
+
+    if (carFilterTransmission === 1) {
+      filterTransmission = car["tipe_transmisi"] === "automatic";
+    } else if (carFilterTransmission === 2) {
+      filterTransmission = car["tipe_transmisi"] === "manual";
+    }
+
+    return filterType && filterSize && filterTransmission;
+  });
+  // cars.value = new Set([...filteredCars, ...cars.value]);
+  // console.log(cars.value);
+  // if (!filterEnabled) {
+  //   cars.value = allCars.value;
+  // }
+};
 
 onMounted(() => {
   axios
     .get("/api/car")
     .then((res) => {
+      allCars.value = res.data;
       cars.value = res.data;
+      filters.value = [
+        {
+          filterType: "Car Type",
+          filterCollection: [
+            ...new Set(allCars.value.map((car) => car.type)),
+          ].map((type) => {
+            return { name: type, check: false };
+          }),
+        },
+        ...filters.value,
+      ];
 
       axios.get("/api/authenticated").then((res) => {
         if (res.data != "guest") {
@@ -99,27 +218,6 @@ onMounted(() => {
     });
 });
 
-const filters = [
-  {
-    filterType: "Car Type",
-    filterList: [
-      "SUV (10)",
-      "Sedan (15)",
-      "Hatchback (18)",
-      "MPV (10)",
-      "Coupe (19)",
-    ],
-  },
-  {
-    filterType: "Capacity",
-    filterList: ["2-4 (53)", "5 or more (20)"],
-  },
-  {
-    filterType: "Transmission Type",
-    filterList: ["Automatic", "Manual"],
-  },
-];
-
 const header = ref("");
 
 const animateCar = (start, end) => {
@@ -128,7 +226,7 @@ const animateCar = (start, end) => {
     translateY: [start, end],
     easing: "easeInOutQuart",
     duration: 800,
-  }).finished;
+  });
 };
 const animateHeader = (start, end) => {
   anime({
@@ -136,7 +234,7 @@ const animateHeader = (start, end) => {
     translateX: [start, end],
     easing: "easeInOutQuart",
     duration: 800,
-  }).finished;
+  });
 };
 const animateBook = (start, end) => {
   anime({
@@ -145,7 +243,7 @@ const animateBook = (start, end) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: 100,
-  }).finished;
+  });
 };
 
 const onPageEnter = () => {

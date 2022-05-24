@@ -267,7 +267,6 @@ onMounted(() => {
         notelpon: res.data.no_telp,
         nowa: res.data.no_wa,
       };
-
       date.value = new Date(res.data.tanggal_lahir);
     })
     .catch((err) => {

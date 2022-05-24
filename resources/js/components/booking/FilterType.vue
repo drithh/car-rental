@@ -28,9 +28,11 @@
         class="check-box-wrapper mb-6 mt-4 transition-all duration-[1.5s]"
       >
         <filter-checkbox
-          v-for="(item, index) in props.filterList"
+          v-for="(item, index) in props.filterCollection"
           :key="index"
-          :filterName="item"
+          :isChecked="item.check"
+          @toggleCheck="toggleFilterCheck"
+          :modelValue="item.name"
         >
         </filter-checkbox>
       </div>
@@ -50,22 +52,30 @@ let buttonEnabled = true;
 
 const props = defineProps({
   filterType: String,
-  filterList: Array,
+  filterCollection: Array,
 });
-
-const filterList = ref(props.filterList);
 
 function toggleContent() {
   if (buttonEnabled) {
     content.value = !content.value;
     containerHeight.value = content.value
-      ? 32 * filterList.value.length + 24 + dropdownHeight
+      ? 32 * props.filterCollection.length + 24 + dropdownHeight
       : dropdownHeight;
-
     buttonEnabled = false;
     waitForContent();
   }
 }
+
+const emit = defineEmits(["toggleCheckbox"]);
+
+const toggleFilterCheck = (name) => {
+  emit("toggleCheckbox", props.filterType, name);
+  // props.filterCollection.forEach((item) => {
+  //   if (item.name === name) {
+  //     item.check = !item.check;
+  //   }
+  // });
+};
 
 function waitForContent() {
   setTimeout(() => {
