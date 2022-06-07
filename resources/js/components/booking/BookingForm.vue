@@ -1,6 +1,6 @@
 <template>
-  <div class="input-wrapper grid w-full grid-cols-2 gap-6">
-    <div class="full-form col-span-2">
+  <div class="input-wrapper grid w-full grid-cols-1 gap-6">
+    <div class="full-form">
       <div class="label flex flex-row place-items-center gap-x-3 px-2">
         <font-awesome-icon
           class="scale-x-[1.1] text-blue"
@@ -11,57 +11,75 @@
         </p>
       </div>
       <input
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
         class="w-full rounded-xl border border-secondary bg-gray py-3 px-6 font-Yantramanav text-xl opacity-70 focus:border-blue focus:bg-white focus:outline-none"
       />
     </div>
-    <div class="half-form col-span-1">
-      <div class="label flex flex-row place-items-center gap-x-3 px-2">
-        <font-awesome-icon
-          class="scale-x-[1.1] text-blue"
-          :icon="['fas', 'calendar']"
-        />
-        <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
-          {{ text }} Date
-        </p>
-      </div>
-      <date-picker v-model="date" :min-date="new Date()" class="flex-grow">
-        <template v-slot="{ inputValue, inputEvents }">
-          <input
-            class="w-full rounded-xl border border-secondary bg-gray py-3 px-6 font-Yantramanav text-xl hover:border-blue hover:bg-white hover:outline-none"
-            :value="inputValue"
-            v-on="inputEvents"
+    <div class="half-form grid grid-cols-1 gap-6 2xl:grid-cols-2">
+      <div class="half-form">
+        <div class="label flex flex-row place-items-center gap-x-3 px-2">
+          <font-awesome-icon
+            class="scale-x-[1.1] text-blue"
+            :icon="['fas', 'calendar']"
           />
-        </template>
-      </date-picker>
-    </div>
-    <div class="half-form col-span-1">
-      <div class="label flex flex-row place-items-center gap-x-3 px-2">
-        <font-awesome-icon
-          class="scale-x-[1.1] text-blue"
-          :icon="['fas', 'clock']"
-        />
-        <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
-          {{ text }} Time
-        </p>
+          <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
+            {{ text }} Date
+          </p>
+        </div>
+        <date-picker v-model="date" :min-date="new Date()" class="flex-grow">
+          <template v-slot="{ inputValue, inputEvents }">
+            <input
+              class="w-full rounded-xl border border-secondary bg-gray py-3 px-6 font-Yantramanav text-xl hover:border-blue hover:bg-white hover:outline-none"
+              :value="inputValue"
+              v-on="inputEvents"
+            />
+          </template>
+        </date-picker>
       </div>
-      <date-picker mode="time" v-model="date" :min-date="date" />
-      <!-- <div class="w-full rounded-xl bg-gray py-3 px-6 font-Yantramanav text-xl">
-        Solo
-      </div> -->
+      <div class="half-form">
+        <div class="label flex flex-row place-items-center gap-x-3 px-2">
+          <font-awesome-icon
+            class="scale-x-[1.1] text-blue"
+            :icon="['fas', 'clock']"
+          />
+          <p class="font-Yantramanav text-lg font-bold tracking-wide text-dark">
+            {{ text }} Time
+          </p>
+        </div>
+        <date-picker class="time" mode="time" v-model="date" :min-date="date" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { Calendar, DatePicker } from "v-calendar";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 const props = defineProps({
   text: String,
+  modelValue: String,
 });
 
 const date = ref(new Date());
+
+const emit = defineEmits(["update:date", "update:modelValue"]);
+
+watch(
+  () => date.value,
+  (newVal) => {
+    if (newVal) {
+      emit("update:date", newVal);
+    }
+  }
+);
+
 const inputValue = ref("");
 const inputEvents = ref("");
+
+const takeTime = () => {
+  console.log(date.value);
+};
 </script>
 
 <style>
@@ -74,15 +92,24 @@ const inputEvents = ref("");
   @apply hidden;
 }
 
-.vc-container {
-  @apply border-0;
-}
 .vc-time-picker select,
 .vc-time-picker .vc-am-pm {
   @apply bg-gray;
 }
 
+.time.vc-container.vc-blue {
+  @apply flex h-[54px] w-full flex-col place-content-center rounded-xl border border-secondary bg-gray hover:border-blue hover:bg-white hover:outline-none;
+}
+
+.vc-time-content {
+  @apply w-full;
+}
+
 .vc-time-picker {
-  @apply w-full appearance-none rounded-xl border border-secondary bg-gray py-3 px-6 font-Yantramanav text-xl hover:border-blue hover:bg-white hover:outline-none;
+  @apply flex  place-content-between;
+}
+
+.vc-time-picker {
+  @apply w-full appearance-none  py-3 px-6 font-Yantramanav text-xl;
 }
 </style>

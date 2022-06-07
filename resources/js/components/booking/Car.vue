@@ -1,6 +1,7 @@
 <template>
   <div
-    class="flex h-[max(max-content,_19rem)] w-full flex-col place-content-between rounded-3xl bg-white p-6"
+    @click="$emit('openCar', id)"
+    class="flex h-[max(max-content,_19rem)] w-full cursor-pointer flex-col place-content-between rounded-3xl bg-white p-6"
   >
     <div class="car-name flex place-content-between font-Yantramanav">
       <div class="name-wrapper text-left">
@@ -13,7 +14,7 @@
       </div>
       <div class="favorite">
         <div
-          @click="toggleFavorite"
+          @click.stop.prevent="toggleFavorite"
           class="relative top-1 z-0 origin-right cursor-pointer"
         >
           <transition name="bounce">
@@ -92,17 +93,21 @@ onUpdated(() => {
 
 const toggleFavorite = () => {
   favorite.value = !favorite.value;
-  if (favorite.value) {
-    axios.post("/api/favorite/store", {
-      armada_id: props.id,
-    });
-  } else {
-    axios.delete("/api/favorite/destroy", {
-      data: {
-        armada_id: props.id,
-      },
-    });
-  }
+  axios.get("/api/authenticated").then((res) => {
+    if (res.data != "guest") {
+      if (favorite.value) {
+        axios.post("/api/favorite/store", {
+          armada_id: props.id,
+        });
+      } else {
+        axios.delete("/api/favorite/destroy", {
+          data: {
+            armada_id: props.id,
+          },
+        });
+      }
+    }
+  });
 };
 </script>
 

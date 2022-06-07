@@ -6,9 +6,10 @@
       {{ label }}
     </label>
     <input
-      autocomplete="username"
-      class="text-gray-700 mb-3 block w-full appearance-none rounded-xl border border-secondary border-opacity-60 bg-darkencream bg-opacity-100 py-3 px-4 leading-tight opacity-70 focus:border-blue focus:bg-white focus:outline-none"
       :type="type"
+      :name="label"
+      autocomplete="off"
+      class="text-gray-700 mb-3 block w-full appearance-none rounded-xl border border-secondary border-opacity-60 bg-darkencream bg-opacity-100 py-3 px-4 leading-tight opacity-70 focus:border-blue focus:bg-white focus:outline-none"
       :placeholder="placeholder"
       :value="modelValue"
       @input="updateValue"

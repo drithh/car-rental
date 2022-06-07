@@ -26,7 +26,8 @@
                   v-for="(filter, index) in filters"
                   :key="index"
                   :filterType="filter.filterType"
-                  :filterList="filter.filterList"
+                  :filterCollection="filter.filterCollection"
+                  @toggleCheckbox="toggleCheckbox"
                 ></filter-type>
               </div>
             </div>
@@ -34,7 +35,7 @@
               class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
             >
               <car
-                v-for="(car, index) in cars"
+                v-for="(car, index) in allCars"
                 :key="index"
                 :id="car.id"
                 :name="car.nama"
@@ -61,39 +62,136 @@ import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import axios from "axios";
 
-const cars = ref([]);
+const allCars = ref([]);
+
+const cars = ref();
 
 onMounted(() => {
   axios
     .get("/api/favorite")
     .then((res) => {
+      allCars.value = res.data;
       cars.value = res.data;
+
+      filters.value = [
+        {
+          filterType: "Car Type",
+          filterCollection: [
+            ...new Set(allCars.value.map((car) => car.type)),
+          ].map((type) => {
+            return { name: type, check: false };
+          }),
+        },
+        ...filters.value,
+      ];
     })
     .catch((err) => {
       console.log(err);
     });
 });
 
-const filters = [
+const filters = ref([
   {
-    filterType: "Car Type",
-    filterList: [
-      "SUV (10)",
-      "Sedan (15)",
-      "Hatchback (18)",
-      "MPV (10)",
-      "Coupe (19)",
+    filterType: "Capacity",
+    filterCollection: [
+      { name: "2-4", check: false },
+      { name: "5 or more", check: false },
     ],
   },
   {
-    filterType: "Capacity",
-    filterList: ["2-4 (53)", "5 or more (20)"],
-  },
-  {
     filterType: "Transmission Type",
-    filterList: ["Automatic", "Manual"],
+    filterCollection: [
+      { name: "Automatic", check: false },
+      { name: "Manual", check: false },
+    ],
   },
-];
+]);
+
+const toggleCheckbox = (type, name) => {
+  filters.value.forEach((filter) => {
+    if (filter.filterType === type) {
+      filter.filterCollection.forEach((item) => {
+        if (item.name === name) {
+          item.check = !item.check;
+        }
+      });
+    }
+  });
+  updateFilter();
+};
+
+const updateFilter = () => {
+  const filter = filters.value.map((filter) => {
+    return {
+      filterType: filter.filterType,
+      filterCollection: filter.filterCollection.filter((item) => {
+        return item.check;
+      }),
+    };
+  });
+
+  let filterEnabled = false;
+
+  let carFilterType = "";
+  let carFilterSize = 0;
+  let carFilterTransmission = 0;
+  cars.value = [];
+  filter.forEach((filter, i) => {
+    filter.filterCollection.forEach((item) => {
+      if (item.check) {
+        switch (filter.filterType) {
+          case "Car Type":
+            carFilterType += `${item.name}|`;
+            break;
+          case "Capacity":
+            if (item.name === "2-4") {
+              carFilterSize = 1;
+            } else {
+              carFilterSize = 2;
+            }
+            break;
+          case "Transmission Type":
+            if (item.name === "Automatic") {
+              carFilterTransmission = 1;
+            } else if (item.name === "Manual") {
+              carFilterTransmission = 2;
+            }
+            break;
+        }
+      }
+    });
+  });
+  const carFilter = ["type", "kapasitas", "tipe_transmisi"];
+
+  cars.value = allCars.value.filter((car) => {
+    let filterType = true;
+    let filterSize = true;
+    let filterTransmission = true;
+
+    if (carFilterType.length) {
+      filterType = toLower(carFilterType).includes(toLower(car["type"]));
+    }
+
+    if (carFilterSize === 1) {
+      filterSize = car["kapasitas"] >= 2 && car["kapasitas"] <= 4;
+    } else if (carFilterSize === 2) {
+      filterSize = car["kapasitas"] >= 5;
+    }
+
+    if (carFilterTransmission === 1) {
+      filterTransmission = car["tipe_transmisi"] === "automatic";
+    } else if (carFilterTransmission === 2) {
+      filterTransmission = car["tipe_transmisi"] === "manual";
+    }
+
+    return filterType && filterSize && filterTransmission;
+  });
+  // cars.value = new Set([...filteredCars, ...cars.value]);
+  // console.log(cars.value);
+  // if (!filterEnabled) {
+  //   cars.value = allCars.value;
+  // }
+};
 
 const header = ref("");
 

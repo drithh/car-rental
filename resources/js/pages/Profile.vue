@@ -125,7 +125,8 @@
               label="Current Password"
               placeholder="password"
               :type="visibility"
-              v-model="formPassword.currentPassword"
+              :textvalue="formPassword.currentPassword"
+              v-on:update:modelValue="(e) => (formPassword.currentPassword = e)"
             ></input-box>
             <font-awesome-icon
               @click="togglePasswordVisibility"
@@ -135,10 +136,11 @@
           </div>
           <div class="password relative">
             <input-box
-              label="New Password"
+              label="Current Password"
               placeholder="password"
               :type="visibility"
-              v-model="formPassword.newPassword"
+              :textvalue="formPassword.newPassword"
+              v-on:update:modelValue="(e) => (formPassword.newPassword = e)"
             ></input-box>
             <font-awesome-icon
               @click="togglePasswordVisibility"
@@ -217,10 +219,10 @@ const username = ref("");
 const email = ref("");
 const lastLogin = ref();
 
-let formPassword = {
-  currentPassword: String,
-  newPassword: String,
-};
+let formPassword = ref({
+  currentPassword: "",
+  newPassword: "",
+});
 
 import { createAvatar } from "@dicebear/avatars";
 import * as style from "@dicebear/adventurer-neutral";
@@ -274,6 +276,7 @@ onMounted(() => {
     });
 });
 const updateProfile = () => {
+  profile.value.jenisKelamin = profile.value.jenisKelamin.title;
   console.log(profile.value);
   axios
     .put("/api/user", profile.value)

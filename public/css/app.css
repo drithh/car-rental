@@ -483,12 +483,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .top-12 {
   top: 3rem;
 }
-.top-\[-4rem\] {
-  top: -4rem;
-}
-.right-6 {
-  right: 1.5rem;
-}
 .top-1 {
   top: 0.25rem;
 }
@@ -497,6 +491,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .top-\[0\.3px\] {
   top: 0.3px;
+}
+.top-\[-4rem\] {
+  top: -4rem;
+}
+.right-6 {
+  right: 1.5rem;
 }
 .top-0 {
   top: 0px;
@@ -528,12 +528,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .col-span-12 {
   grid-column: span 12 / span 12;
 }
-.col-span-2 {
-  grid-column: span 2 / span 2;
-}
-.col-span-1 {
-  grid-column: span 1 / span 1;
-}
 .m-auto {
   margin: auto;
 }
@@ -551,6 +545,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 .mx-auto {
   margin-left: auto;
@@ -579,10 +577,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
-}
-.mx-1 {
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
 }
 .mx-4 {
   margin-left: 1rem;
@@ -691,13 +685,30 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-32 {
   height: 8rem;
 }
-.h-80 {
-  height: 20rem;
-}
 .h-fit {
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
+}
+.h-\[max\(max-content\2c _19rem\)\] {
+  height: max(-webkit-max-content, 19rem);
+  height: max(-moz-max-content, 19rem);
+  height: max(max-content, 19rem);
+}
+.h-\[25px\] {
+  height: 25px;
+}
+.h-6 {
+  height: 1.5rem;
+}
+.h-full {
+  height: 100%;
+}
+.h-4 {
+  height: 1rem;
+}
+.h-5 {
+  height: 1.25rem;
 }
 .h-\[50rem\] {
   height: 50rem;
@@ -717,25 +728,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-\[30rem\] {
   height: 30rem;
 }
-.h-5 {
-  height: 1.25rem;
-}
-.h-\[max\(max-content\2c _19rem\)\] {
-  height: max(-webkit-max-content, 19rem);
-  height: max(-moz-max-content, 19rem);
-  height: max(max-content, 19rem);
-}
-.h-\[25px\] {
-  height: 25px;
-}
-.h-6 {
-  height: 1.5rem;
-}
-.h-full {
-  height: 100%;
-}
-.h-4 {
-  height: 1rem;
+.h-\[54px\] {
+  height: 54px;
 }
 .h-\[18px\] {
   height: 18px;
@@ -788,6 +782,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-\[92vw\] {
   width: 92vw;
 }
+.w-\[25px\] {
+  width: 25px;
+}
+.w-6 {
+  width: 1.5rem;
+}
+.w-4 {
+  width: 1rem;
+}
+.w-5 {
+  width: 1.25rem;
+}
 .w-\[36rem\] {
   width: 36rem;
 }
@@ -817,18 +823,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .w-8 {
   width: 2rem;
-}
-.w-\[25px\] {
-  width: 25px;
-}
-.w-6 {
-  width: 1.5rem;
-}
-.w-4 {
-  width: 1rem;
-}
-.w-5 {
-  width: 1.25rem;
 }
 .w-\[18px\] {
   width: 18px;
@@ -989,6 +983,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .grid-cols-12 {
   grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .flex-row {
   flex-direction: row;
@@ -1393,13 +1390,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.text-6xl {
+  font-size: 3.75rem;
+  line-height: 1;
 }
 .text-xs {
   font-size: 0.75rem;
@@ -1479,21 +1476,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-text-opacity: 1;
   color: rgb(41 44 45 / var(--tw-text-opacity));
 }
-.text-purple-200 {
+.text-red-400 {
   --tw-text-opacity: 1;
-  color: rgb(233 213 255 / var(--tw-text-opacity));
+  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 .text-blue {
   --tw-text-opacity: 1;
   color: rgb(67 118 249 / var(--tw-text-opacity));
 }
+.text-purple-200 {
+  --tw-text-opacity: 1;
+  color: rgb(233 213 255 / var(--tw-text-opacity));
+}
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-red-400 {
-  --tw-text-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 .text-opacity-70 {
   --tw-text-opacity: 0.7;
@@ -1748,6 +1745,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .xl\:col-span-6 {
     grid-column: span 6 / span 6;
+  }
+}
+@media (min-width: 1536px) {
+
+  .\32xl\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 

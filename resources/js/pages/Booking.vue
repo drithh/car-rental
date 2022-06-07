@@ -18,10 +18,18 @@
         </div>
         <div
           id="book-panel"
-          class="grid h-80 w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
+          class="grid min-h-[20rem] w-full grid-cols-2 gap-8 rounded-3xl border-2 border-secondary border-opacity-30 p-10"
         >
-          <booking-form text="Pick-up"></booking-form>
-          <booking-form text="Drop-off"></booking-form>
+          <booking-form
+            v-model="pickUp.location"
+            @update:date="updatePickUpDate"
+            text="Pick-up"
+          ></booking-form>
+          <booking-form
+            v-model="dropOff.location"
+            @update:date="updateDropOffDate"
+            text="Drop-off"
+          ></booking-form>
         </div>
       </section>
       <section
@@ -51,6 +59,7 @@
             class="grid w-full grid-cols-[repeat(auto-fit,minmax(18rem,_max-content))] gap-10"
           >
             <car
+              @openCar="openCar"
               v-for="(car, index) in cars"
               :key="index"
               :id="car.id"
@@ -69,14 +78,42 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 import BookingForm from "@/components/booking/BookingForm.vue";
 import Car from "@/components/booking/Car.vue";
 import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import axios from "axios";
-import { toLower, update } from "lodash";
+import { toLower } from "lodash";
+
+const pickUp = ref({
+  location: "",
+  date: new Date(),
+});
+const dropOff = ref({
+  location: "",
+  date: new Date(),
+});
+
+const updatePickUpDate = (newVal) => {
+  pickUp.value.date = newVal;
+};
+
+const updateDropOffDate = (newVal) => {
+  dropOff.value.date = newVal;
+};
+const router = useRouter();
+
+const openCar = (id) => {
+  console.log("pickUp", pickUp.value);
+  console.log("dropOff", dropOff.value);
+
+  router.push({
+    name: "car",
+    params: { id: id },
+  });
+};
 
 const allCars = ref([]);
 const cars = ref();
@@ -112,7 +149,6 @@ const toggleCheckbox = (type, name) => {
 };
 
 const updateFilter = () => {
-  console.log("update filter");
   const filter = filters.value.map((filter) => {
     return {
       filterType: filter.filterType,
