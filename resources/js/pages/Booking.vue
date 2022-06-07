@@ -106,12 +106,15 @@ const updateDropOffDate = (newVal) => {
 const router = useRouter();
 
 const openCar = (id) => {
-  console.log("pickUp", pickUp.value);
-  console.log("dropOff", dropOff.value);
-
   router.push({
-    name: "car",
-    params: { id: id },
+    name: "singleCar",
+    params: {
+      id: id,
+      pickUpLocation: pickUp.value.location,
+      pickUpDate: pickUp.value.date,
+      dropOffLocation: dropOff.value.location,
+      dropOffDate: dropOff.value.date,
+    },
   });
 };
 

@@ -59,9 +59,14 @@ import { ref, watch } from "vue";
 const props = defineProps({
   text: String,
   modelValue: String,
+  date: String,
 });
 
 const date = ref(new Date());
+
+if (props.date) {
+  date.value = props.date;
+}
 
 const emit = defineEmits(["update:date", "update:modelValue"]);
 
@@ -79,6 +84,19 @@ const inputEvents = ref("");
 
 const takeTime = () => {
   console.log(date.value);
+};
+
+const openCar = (id) => {
+  router.push({
+    name: "singleCar",
+    params: {
+      id: id,
+      pickUpLocation: pickUp.value.location,
+      pickUpDate: pickUp.value.date,
+      dropOffLocation: dropOff.value.location,
+      dropOffDate: dropOff.value.date,
+    },
+  });
 };
 </script>
 

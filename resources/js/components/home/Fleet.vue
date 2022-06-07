@@ -4,6 +4,7 @@
       <Slide v-for="(car, index) in cars" :key="index">
         <div class="carousel__item">
           <car
+            @openCar="openCar"
             :id="car.id"
             :name="car.nama"
             :type="car.type"
@@ -51,6 +52,12 @@ onMounted(() => {
       console.log(err);
     });
 });
+
+const emit = defineEmits(["openFleetCar"]);
+
+const openCar = (id) => {
+  emit("openFleetCar", id);
+};
 </script>
 
 <style lang="postcss">

@@ -40,7 +40,6 @@ class FavoriteController extends Controller
     {
         $user_id = $request->user()->id;
         DB::insert('insert into favorites (user_id, armada_id) values (?, ?)', [$user_id, $request->armada_id]);
-
     }
 
     /**
@@ -76,6 +75,5 @@ class FavoriteController extends Controller
     public function destroy(Request $request)
     {
         DB::delete('delete from favorites where user_id = ? and armada_id = ?', [$request->user()->id, $request->armada_id]);
-
     }
 }

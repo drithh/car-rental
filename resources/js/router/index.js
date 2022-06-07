@@ -10,7 +10,7 @@ import Profile from "../pages/Profile";
 import Favorite from "../pages/Favorite";
 import Dashboard from "../pages/Dashboard";
 import Orders from "../pages/Orders";
-import Car from "../pages/Car";
+import SingleCar from "../pages/SingleCar";
 
 export const routes = [
   {
@@ -78,9 +78,12 @@ export const routes = [
     },
   },
   {
-    name: "car",
-    path: "/car",
-    component: Car,
+    name: "singleCar",
+    path: "/car/:id",
+    component: SingleCar,
+    props: (route) => ({
+      ...route.params,
+    }),
   },
   {
     name: "dashboard",
