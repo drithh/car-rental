@@ -10,6 +10,8 @@
     <div class="input-container mt-10 flex flex-col gap-y-4">
       <input-box
         label="Email"
+        :textvalue="email"
+        v-on:update:modelValue="(e) => (email = e)"
         placeholder="your@email.com"
         type="email"
       ></input-box>
@@ -23,11 +25,12 @@
         >
           back to login
         </div>
-        <div
+        <button
+          @click="forgotPassword"
           class="w-36 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-6 opacity-70 hover:border-blue hover:opacity-100"
         >
           Submit
-        </div>
+        </button>
       </button>
     </div>
   </div>
@@ -37,6 +40,35 @@
 import InputBox from "@/components/contact/InputBox.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import { ref, onMounted } from "vue";
+import axios from "axios";
+
+const email = ref("");
+const forgotPassword = () => {
+  if (email.value) {
+    axios
+      .post("/api/forgot-password", {
+        email: email.value,
+      })
+      .then((res) => {
+        console.log(res);
+        anime({
+          targets: ".input-container",
+          opacity: 0,
+          duration: 500,
+          easing: "easeInOutQuad",
+          complete: () => {
+            onBeforeRouteLeave(() => {
+              window.location.href = "/login";
+            });
+          },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+};
 
 defineEmits(["login"]);
 </script>

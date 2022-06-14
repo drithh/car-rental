@@ -5,38 +5,62 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Carbon\Carbon;
 
 class VerificationController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Email Verification Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling email verification for any
-    | user that recently registered with the application. Emails may also
-    | be re-sent if the user didn't receive the original email message.
-    |
-    */
-
     use VerifiesEmails;
 
-    /**
-     * Where to redirect users after verification.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function verify(Request $request)
     {
-        $this->middleware('auth');
-        $this->middleware('signed')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
+        $user = User::find($request->id);
+        // change email_verified at
+
+        // do this check, only if you allow unverified user to login
+        //        if (! hash_equals((string) $request->id, (string) $request->user()->getKey())) {
+        //            throw new AuthorizationException;
+        //        }
+
+        if (!hash_equals((string) $request->hash, sha1($user->getEmailForVerification()))) {
+            return response()->json([
+                "message" => "Unauthorized",
+                "success" => false
+            ]);
+        }
+
+        if ($user->hasVerifiedEmail()) {
+            return response()->json([
+                "message" => "User already verified!",
+                "success" => false
+            ]);
+        }
+        $user->email_verified_at = Carbon::now();
+
+
+        return redirect('/result/success/email-verified');
+
+        // render vue
+    }
+
+    public function resendVerificationEmail(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                "message" => "Failed to send!",
+                "success" => false
+            ]);
+        }
+
+        $user->sendEmailVerificationNotification();
+
+        return response()->json([
+            "message" => "Check your email!",
+            "success" => true
+        ]);
     }
 }

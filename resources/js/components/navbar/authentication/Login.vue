@@ -7,25 +7,23 @@
     <div class="input-container mt-10 flex flex-col gap-y-4">
       <input-box
         label="Email"
+        :wrong="emailWrong"
+        :wrongMessage="emailWrongMessage"
         placeholder="your@email.com"
         type="email"
         :textvalue="form.email"
         v-on:update:modelValue="(e) => (form.email = e)"
       ></input-box>
-      <div class="password relative">
-        <input-box
-          label="Password"
-          placeholder="password"
-          :type="visibility"
-          :textvalue="form.password"
-          v-on:update:modelValue="(e) => (form.password = e)"
-        ></input-box>
-        <font-awesome-icon
-          @click="togglePasswordVisibility"
-          class="absolute right-6 top-12 h-5 w-8 cursor-pointer opacity-10"
-          :icon="icon"
-        />
-      </div>
+      <input-box
+        label="Password"
+        :wrong="passwordWrong"
+        :wrongMessage="passwordWrongMessage"
+        placeholder="password"
+        type="password"
+        :textvalue="form.password"
+        v-on:update:modelValue="(e) => (form.password = e)"
+      ></input-box>
+
       <div class="flex w-full place-content-between px-3 text-lg">
         <div
           class="forgot cursor-pointer text-blue opacity-70 hover:underline"
@@ -72,22 +70,16 @@ const form = ref({
   password: "",
 });
 
-const visibility = ref("password");
-const icon = ref("eye");
-
-const togglePasswordVisibility = () => {
-  if (visibility.value === "password") {
-    visibility.value = "text";
-    icon.value = "eye-slash";
-  } else {
-    visibility.value = "password";
-    icon.value = "eye";
-  }
-};
+const emailWrong = ref(false);
+const passwordWrong = ref(false);
+const emailWrongMessage = ref("");
+const passwordWrongMessage = ref("");
 
 let errors = [];
 
 const submit = () => {
+  emailWrong.value = true;
+  passwordWrong.value = true;
   axios
     .post("/api/login", form.value)
     .then(() => {
@@ -102,7 +94,14 @@ const submit = () => {
     })
     .catch((error) => {
       errors = error.response.data.errors;
-      console.log(errors);
+      if (errors.email) {
+        emailWrong.value = true;
+        emailWrongMessage.value = errors.email[0];
+      }
+      if (errors.password) {
+        passwordWrong.value = true;
+        passwordWrongMessage.value = errors.password[0];
+      }
     });
 };
 </script>

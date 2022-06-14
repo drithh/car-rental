@@ -5,15 +5,30 @@
     >
       {{ label }}
     </label>
-    <input
-      :type="type"
-      :name="label"
-      autocomplete="off"
-      class="text-gray-700 mb-3 block w-full appearance-none rounded-xl border border-secondary border-opacity-60 bg-darkencream bg-opacity-100 py-3 px-4 leading-tight opacity-70 focus:border-blue focus:bg-white focus:outline-none"
-      :placeholder="placeholder"
-      :value="modelValue"
-      @input="updateValue"
-    />
+    <div
+      v-if="wrongMessage"
+      class="mb-2 font-Yantramanav text-sm font-medium tracking-wide text-red-500 opacity-70"
+    >
+      {{ wrongMessage }}
+    </div>
+    <div class="relative">
+      <input
+        :type="visibility"
+        :name="label"
+        autocomplete="off"
+        class="text-gray-700 mb-3 block w-full appearance-none rounded-xl border border-secondary border-opacity-60 bg-darkencream bg-opacity-100 py-3 px-4 leading-tight opacity-70 focus:border-blue focus:bg-white focus:outline-none"
+        :class="{ 'border-red-500 ring-1 ring-red-500': wrong }"
+        :placeholder="placeholder"
+        :value="modelValue"
+        @input="updateValue"
+      />
+      <font-awesome-icon
+        v-show="type === 'password'"
+        @click="togglePasswordVisibility"
+        class="absolute right-4 bottom-3 h-5 w-8 cursor-pointer opacity-10"
+        :icon="icon"
+      />
+    </div>
   </div>
 </template>
 
@@ -26,7 +41,22 @@ const props = defineProps({
   placeholder: String,
   type: String,
   textvalue: String,
+  wrong: Boolean,
+  wrongMessage: String,
 });
+
+const visibility = ref(props.type || "text");
+const icon = ref("eye");
+
+const togglePasswordVisibility = (e) => {
+  if (visibility.value === "password") {
+    visibility.value = "text";
+    icon.value = "eye-slash";
+  } else {
+    visibility.value = "password";
+    icon.value = "eye";
+  }
+};
 
 const modelValue = ref();
 

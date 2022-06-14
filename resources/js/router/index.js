@@ -123,12 +123,31 @@ export const routes = [
         });
     },
   },
+  {
+    name: "result",
+    path: "/result/:result/:message",
+    component: Home,
+    props: (route) => ({
+      ...route.params,
+    }),
+  },
+  {
+    name: "redirect",
+    path: "*",
+    path: "/",
+    component: Home,
+  },
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
   linkExactActiveClass: "exact-active",
+  scrollBehavior(to, from, savedPosition) {
+    document.querySelector("header").scrollIntoView({
+      behavior: "smooth",
+    });
+  },
 });
 
 export default router;

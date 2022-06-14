@@ -69,7 +69,7 @@
       </section>
       <section
         id="fleet"
-        class="fleet relative z-0 mx-auto mt-10 flex flex-col place-content-center place-items-center bg-cream pb-10"
+        class="fleet relative -z-10 mx-auto mt-10 flex flex-col place-content-center place-items-center bg-cream pb-10"
       >
         <div class="w-4/5 py-16">
           <div
@@ -87,7 +87,7 @@
 </template>
 
 <script setup>
-import { onMounted, onUpdated, ref, toRef, watch } from "vue";
+import { onBeforeMount, onUpdated, ref, toRef, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import axios from "axios";
@@ -117,7 +117,7 @@ const updateDropOffDate = (newVal) => {
   dropOff.value.date = newVal;
 };
 // const doneFetching = ref(false);
-onMounted(() => {
+onBeforeMount(() => {
   loadCar();
 });
 
@@ -138,10 +138,10 @@ watch(
     document.querySelector("header").scrollIntoView({
       behavior: "smooth",
     });
+    loadCar();
     setTimeout(() => {
       animateEnterCar();
-      loadCar();
-    }, 700);
+    }, 400);
   }
 );
 

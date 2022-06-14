@@ -20,6 +20,19 @@
             Last login&nbsp;
             <div class="font-bold">{{ lastLogin }}</div>
           </div>
+          <div class="flex text-2xl">
+            Status&nbsp;
+            <div v-if="verified" class="font-bold text-lime-500">verified</div>
+            <div else>
+              <div class="font-bold text-red-500">not verified</div>
+            </div>
+          </div>
+          <button
+            v-if="!verified"
+            class="flex text-base text-blue hover:underline"
+          >
+            resend email verification
+          </button>
         </div>
       </section>
       <section class="form flex w-full place-content-center gap-16 px-6">
@@ -120,34 +133,22 @@
         >
           <div class="my-2 pl-3 text-2xl font-semibold">Change Password</div>
 
-          <div class="password relative">
-            <input-box
-              label="Current Password"
-              placeholder="password"
-              :type="visibility"
-              :textvalue="formPassword.currentPassword"
-              v-on:update:modelValue="(e) => (formPassword.currentPassword = e)"
-            ></input-box>
-            <font-awesome-icon
-              @click="togglePasswordVisibility"
-              class="absolute right-6 top-12 h-5 w-8 cursor-pointer opacity-10"
-              :icon="icon"
-            />
-          </div>
-          <div class="password relative">
-            <input-box
-              label="Current Password"
-              placeholder="password"
-              :type="visibility"
-              :textvalue="formPassword.newPassword"
-              v-on:update:modelValue="(e) => (formPassword.newPassword = e)"
-            ></input-box>
-            <font-awesome-icon
-              @click="togglePasswordVisibility"
-              class="absolute right-6 top-12 h-5 w-8 cursor-pointer opacity-10"
-              :icon="icon"
-            />
-          </div>
+          <input-box
+            label="Current Password"
+            placeholder="password"
+            type="password"
+            :textvalue="formPassword.currentPassword"
+            v-on:update:modelValue="(e) => (formPassword.currentPassword = e)"
+          ></input-box>
+
+          <input-box
+            label="Current Password"
+            placeholder="password"
+            type="password"
+            :textvalue="formPassword.newPassword"
+            v-on:update:modelValue="(e) => (formPassword.newPassword = e)"
+          ></input-box>
+
           <div class="mt-4 mb-8 pl-3">
             <button
               class="w-36 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-6 opacity-70 hover:border-blue hover:opacity-100"
@@ -224,6 +225,8 @@ let formPassword = ref({
   newPassword: "",
 });
 
+const verified = ref(false);
+
 import { createAvatar } from "@dicebear/avatars";
 import * as style from "@dicebear/adventurer-neutral";
 
@@ -251,6 +254,7 @@ onMounted(() => {
       let login = Math.ceil(
         Math.abs(new Date() - new Date(res.data.last_login_at)) / 1000 / 60
       );
+      verified.value = res.data.email_verified_at ? true : false;
 
       lastLogin.value = `${login} ${login == 1 ? "minute" : "minutes"} ago`;
       svg.value = createAvatar(style, {

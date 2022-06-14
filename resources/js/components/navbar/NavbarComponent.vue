@@ -136,14 +136,14 @@ const changeLine = () => {
 };
 
 const moveLine = (routeName) => {
-  const navElement = nav.value
-    .querySelector(`#${routeName}`)
-    .getBoundingClientRect();
-
-  const parentElement = nav.value.getBoundingClientRect();
-  scaleX.value = 1.1;
-  navWidth.value = navElement.width;
-  positionX.value = navElement.x - parentElement.x;
+  const navLink = nav.value.querySelector(`#${routeName}`);
+  if (navLink) {
+    const navElement = navLink.getBoundingClientRect();
+    const parentElement = nav.value.getBoundingClientRect();
+    scaleX.value = 1.1;
+    navWidth.value = navElement.width;
+    positionX.value = navElement.x - parentElement.x;
+  }
 };
 function hideLine() {
   scaleX.value = 0;

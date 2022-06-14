@@ -140,6 +140,14 @@ import Fleet from "@/components/home/Fleet.vue";
 
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import { onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
+
+onMounted(() => {
+  console.log(route.params);
+});
 
 const animateHorizontal = (id, start, end, delay) => {
   anime({

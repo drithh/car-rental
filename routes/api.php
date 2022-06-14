@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CheckAuthenticationController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\Merk;
 
@@ -49,3 +50,9 @@ Route::put('user', [UserController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
+
+Route::get('email-verification', [VerificationController::class, 'verify'])->name('verification.verify');
