@@ -27,6 +27,7 @@ import {
   faXmark,
   faEye,
   faEyeSlash,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -46,7 +47,8 @@ library.add(
   faUser,
   faCogs,
   faCalendar,
-  faClock
+  faClock,
+  faStar
 );
 
 const app = createApp(App)

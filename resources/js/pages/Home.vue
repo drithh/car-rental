@@ -2,6 +2,12 @@
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
       <div class="header relative m-auto my-32 mt-48 w-full">
+        <flash
+          :open="flash"
+          :message="flashMessage"
+          @close="flash = false"
+        ></flash>
+
         <div
           class="flex-between relative flex h-[32rem] w-full overflow-x-hidden overflow-y-hidden pl-[4vw]"
         >
@@ -137,16 +143,32 @@ import WhyUs from "@/components/home/WhyUs.vue";
 import WhatYouGet from "@/components/home/WhatYouGet.vue";
 import BottomBorder from "@/components/BottomBorder.vue";
 import Fleet from "@/components/home/Fleet.vue";
+import Flash from "@/components/flash/Flash.vue";
 
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 
 const route = useRoute();
 
+const flash = ref(false);
+const flashMessage = ref("");
+
 onMounted(() => {
-  console.log(route.params);
+  if (route.params) {
+    if (route.params.result === "success") {
+      setTimeout(() => {
+        flash.value = true;
+      }, 1000);
+      setTimeout(() => {
+        flash.value = false;
+      }, 5000);
+      if (route.params.message == "email-verified") {
+        flashMessage.value = "Email Anda telah diverifikasi";
+      }
+    }
+  }
 });
 
 const animateHorizontal = (id, start, end, delay) => {
@@ -156,7 +178,7 @@ const animateHorizontal = (id, start, end, delay) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: delay,
-  }).finished;
+  });
 };
 
 const animateVertical = (id, start, end, delay) => {
@@ -166,7 +188,7 @@ const animateVertical = (id, start, end, delay) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: delay,
-  }).finished;
+  });
 };
 
 const animateCar = (id, start, end, delay) => {
@@ -177,7 +199,7 @@ const animateCar = (id, start, end, delay) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: delay,
-  }).finished;
+  });
 };
 
 const onPageEnter = () => {

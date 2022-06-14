@@ -60,7 +60,18 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        DB::update('update users set name = ?, email = ?,  nik = ?, jenis_kelamin = ?, tanggal_lahir = ?, alamat = ?, no_telp = ?, no_wa = ? where id = ?', [$request->name, $request->email, $request->nik, $request->jenisKelamin, $request->tanggalLahir, $request->alamat, $request->notelpon, $request->nowa, $request->user()->id]);
+        if ($request->user()->email_verified_at) {
+            DB::update('update users set name = ?, email = ?,  nik = ?, jenis_kelamin = ?, tanggal_lahir = ?, alamat = ?, no_telp = ?, no_wa = ? where id = ?', [$request->name, $request->email, $request->nik, $request->jenisKelamin, $request->tanggalLahir, $request->alamat, $request->notelpon, $request->nowa, $request->user()->id]);
+            return response()->json([
+                "message" => "Profile berhasil diupdate",
+                "success" => true
+            ]);
+        } else {
+            return response()->json([
+                "message" => "Emailmu Belum Terverifikasi!",
+                "success" => false
+            ]);
+        }
     }
 
     /**

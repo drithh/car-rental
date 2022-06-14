@@ -17,27 +17,24 @@ class VerificationController extends Controller
     public function verify(Request $request)
     {
         $user = User::find($request->id);
-        // change email_verified at
 
         // do this check, only if you allow unverified user to login
         //        if (! hash_equals((string) $request->id, (string) $request->user()->getKey())) {
         //            throw new AuthorizationException;
         //        }
 
+
         if (!hash_equals((string) $request->hash, sha1($user->getEmailForVerification()))) {
-            return response()->json([
-                "message" => "Unauthorized",
-                "success" => false
-            ]);
+            return redirect('/result/fail/unauthorized');
         }
 
         if ($user->hasVerifiedEmail()) {
-            return response()->json([
-                "message" => "User already verified!",
-                "success" => false
-            ]);
+            return redirect('/result/success/email-verified');
         }
+
         $user->email_verified_at = Carbon::now();
+        $user->save();
+
 
 
         return redirect('/result/success/email-verified');
@@ -47,6 +44,7 @@ class VerificationController extends Controller
 
     public function resendVerificationEmail(Request $request)
     {
+
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {

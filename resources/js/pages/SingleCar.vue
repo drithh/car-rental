@@ -1,7 +1,7 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main class="relative -z-0" v-if="singleCar">
-      <section id="car" class="m-auto my-20 flex w-[90vw] gap-10">
+      <section id="car" class="m-auto mt-20 mb-10 flex w-[90vw] gap-10">
         <div class="flex h-[28rem] min-h-max w-1/2 place-items-center">
           <div>
             <img
@@ -67,6 +67,48 @@
           </div>
         </div>
       </section>
+      <section class="ulasan mx-auto mb-24 grid w-[90vw] grid-cols-2 gap-7">
+        <div
+          v-for="(review, index) in reviews"
+          :key="index"
+          class="gap-y flex flex-col rounded-lg border border-secondary border-opacity-30 p-4 font-Yantramanav"
+        >
+          <div class="text-lg font-semibold">{{ review.name }}</div>
+          <div class="rating">
+            <span class="text-xl font-medium text-dark">
+              <font-awesome-icon
+                icon="star"
+                class="h-5 w-5 text-slate-300"
+                :class="{ 'text-orange-200': review.nilai > 0 }"
+              />
+              <font-awesome-icon
+                icon="star"
+                class="h-5 w-5 text-slate-300"
+                :class="{ 'text-orange-200': review.nilai > 1 }"
+              />
+              <font-awesome-icon
+                icon="star"
+                class="h-5 w-5 text-slate-300"
+                :class="{ 'text-orange-200': review.nilai > 2 }"
+              />
+              <font-awesome-icon
+                icon="star"
+                class="h-5 w-5 text-slate-300"
+                :class="{ 'text-orange-200': review.nilai > 3 }"
+              />
+              <font-awesome-icon
+                icon="star"
+                class="h-5 w-5 text-slate-300"
+                :class="{ 'text-orange-200': review.nilai > 4 }"
+              />
+            </span>
+          </div>
+          <div class="tanggal opacity-50">{{ review.created_at }}</div>
+          <div class="mt-2 opacity-75">
+            {{ review.ulasan }}
+          </div>
+        </div>
+      </section>
       <section
         id="fleet"
         class="fleet relative -z-10 mx-auto mt-10 flex flex-col place-content-center place-items-center bg-cream pb-10"
@@ -117,6 +159,8 @@ const updateDropOffDate = (newVal) => {
   dropOff.value.date = newVal;
 };
 // const doneFetching = ref(false);
+
+const reviews = ref(null);
 onBeforeMount(() => {
   loadCar();
 });
@@ -128,6 +172,10 @@ const loadCar = () => {
   dropOff.value.date = route.params.dropOffDate;
   axios.get(`/api/car/${route.params.id}`).then((res) => {
     singleCar.value = res.data[0];
+  });
+  axios.get(`/api/car/ulasan/${route.params.id}`).then((res) => {
+    console.log(res.data);
+    reviews.value = res.data;
   });
 };
 
@@ -160,6 +208,16 @@ const openCar = (id) => {
   });
 };
 
+const bookCar = () => {
+  axios.post("/api/booking", {
+    car_id: route.params.id,
+    pick_up_location: pickUp.value.location,
+    pick_up_date: pickUp.value.date,
+    drop_off_location: dropOff.value.location,
+    drop_off_date: dropOff.value.date,
+  });
+};
+
 const animateHorizontal = (id, start, end, delay) => {
   anime({
     targets: id,
@@ -167,7 +225,7 @@ const animateHorizontal = (id, start, end, delay) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: delay,
-  }).finished;
+  });
 };
 
 const animateVertical = (id, start, end, delay) => {
@@ -177,7 +235,7 @@ const animateVertical = (id, start, end, delay) => {
     easing: "easeInOutQuart",
     duration: 800,
     delay: delay,
-  }).finished;
+  });
 };
 
 const animateEnterCar = () => {

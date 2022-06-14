@@ -82,4 +82,15 @@ class CarController extends Controller
         $car = Merk::select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
         return $car;
     }
+
+    public function getUlasan($id)
+    {
+        $ulasan = DB::table('ulasans')
+            ->select('ulasans.id', 'ulasans.ulasan', 'ulasans.nilai', 'ulasans.created_at', 'users.name')
+            ->orderBy('ulasans.id', 'asc')
+            ->join('users', 'users.id', '=', 'ulasans.user_id')
+            ->where('armada_id', $id)
+            ->get();
+        return $ulasan;
+    }
 }

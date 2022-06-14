@@ -1,6 +1,12 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main>
+      <flash
+        :open="flash"
+        :message="flashMessage"
+        @close="flash = false"
+      ></flash>
+
       <section
         id="profile"
         class="profile py-14xl my-8 flex h-[30rem] flex-row place-content-center place-items-center gap-[7%]"
@@ -23,12 +29,11 @@
           <div class="flex text-2xl">
             Status&nbsp;
             <div v-if="verified" class="font-bold text-lime-500">verified</div>
-            <div else>
-              <div class="font-bold text-red-500">not verified</div>
-            </div>
+            <div v-else class="font-bold text-red-500">not verified</div>
           </div>
           <button
             v-if="!verified"
+            @click="resendEmail"
             class="flex text-base text-blue hover:underline"
           >
             resend email verification
@@ -173,6 +178,7 @@ import { Calendar, DatePicker } from "v-calendar";
 import vSelect from "vue-select";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import Flash from "@/components/flash/Flash.vue";
 
 const date = ref();
 const inputValue = ref("");
@@ -254,6 +260,7 @@ onMounted(() => {
       let login = Math.ceil(
         Math.abs(new Date() - new Date(res.data.last_login_at)) / 1000 / 60
       );
+      console.log(res.data);
       verified.value = res.data.email_verified_at ? true : false;
 
       lastLogin.value = `${login} ${login == 1 ? "minute" : "minutes"} ago`;
@@ -279,12 +286,40 @@ onMounted(() => {
       console.log(err);
     });
 });
+
+const resendEmail = () => {
+  flash.value = true;
+  setTimeout(() => {
+    flash.value = false;
+  }, 5000);
+  flashMessage.value = "Verikasi email telah dikirim ke email anda";
+  axios
+    .get("/api/resend-email-verification")
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const flash = ref(false);
+const flashMessage = ref("");
+
 const updateProfile = () => {
-  profile.value.jenisKelamin = profile.value.jenisKelamin.title;
-  console.log(profile.value);
+  if (profile.value.jenisKelamin) {
+    profile.value.jenisKelamin = profile.value.jenisKelamin.title;
+  }
   axios
     .put("/api/user", profile.value)
-    .then((res) => {})
+    .then((res) => {
+      flash.value = true;
+      setTimeout(() => {
+        flash.value = false;
+      }, 5000);
+      flashMessage.value = res.data.message;
+      console.log(res.data);
+    })
     .catch((err) => {
       console.log(err);
     });

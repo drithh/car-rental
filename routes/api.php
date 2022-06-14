@@ -36,6 +36,8 @@ Route::get('is-admin', [CheckAuthenticationController::class, 'checkAdmin']);
 
 Route::get('car/{id}', [CarController::class, 'getCar']);
 
+Route::get('car/ulasan/{id}', [CarController::class, 'getUlasan']);
+
 
 Route::get('car', [Merk::class, 'carInformation']);
 
@@ -56,3 +58,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail']);
 
 Route::get('email-verification', [VerificationController::class, 'verify'])->name('verification.verify');
+
+Route::get('resend-email-verification', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
