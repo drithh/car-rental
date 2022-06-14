@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\CheckAuthenticationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\BookingArmadaController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
@@ -48,10 +49,12 @@ Route::post('favorite/store', [FavoriteController::class, 'store']);
 Route::delete('favorite/destroy', [FavoriteController::class, 'destroy']);
 
 Route::put('user', [UserController::class, 'update']);
+Route::post('booking', [BookingArmadaController::class, 'store']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 
 
 

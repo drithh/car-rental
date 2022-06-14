@@ -59,7 +59,7 @@ import { ref, watch } from "vue";
 const props = defineProps({
   text: String,
   modelValue: String,
-  date: String,
+  date: Date,
 });
 
 const date = ref(new Date());

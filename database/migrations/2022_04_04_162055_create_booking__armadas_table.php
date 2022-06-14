@@ -19,10 +19,15 @@ return new class extends Migration
             $table->foreignId('booking_id');
 
             $table->bigInteger('harga');
-            $table->date('tanggal_pengembalian');
-            $table->date('tanggal_harus_kembali');
             $table->date('tanggal_mulai');
-            
+            $table->time('waktu_mulai');
+            $table->date('tanggal_pengembalian');
+            $table->time('waktu_pengembalian');
+            $table->date('tanggal_harus_kembali');
+
+            $table->string('tempat_mulai');
+            $table->string('tempat_pengembalian');
+
             $table->string('durasi');
             $table->boolean('status')->default(false);
             $table->text('keterangan');

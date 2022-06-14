@@ -1,6 +1,11 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main class="relative -z-0" v-if="singleCar">
+      <flash
+        :open="flash"
+        :message="flashMessage"
+        @close="flash = false"
+      ></flash>
       <section id="car" class="m-auto mt-20 mb-10 flex w-[90vw] gap-10">
         <div class="flex h-[28rem] min-h-max w-1/2 place-items-center">
           <div>
@@ -136,11 +141,15 @@ import axios from "axios";
 import Fleet from "@/components/home/Fleet.vue";
 import Car from "@/components/booking/Car.vue";
 import BookingForm from "@/components/booking/BookingForm.vue";
+import Flash from "@/components/flash/Flash.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 const route = useRoute();
 
 const singleCar = ref(null);
+
+const flash = ref(false);
+const flashMessage = ref("");
 
 const pickUp = ref({
   location: "",
@@ -209,13 +218,47 @@ const openCar = (id) => {
 };
 
 const bookCar = () => {
-  axios.post("/api/booking", {
-    car_id: route.params.id,
-    pick_up_location: pickUp.value.location,
-    pick_up_date: pickUp.value.date,
-    drop_off_location: dropOff.value.location,
-    drop_off_date: dropOff.value.date,
-  });
+  const tanggal_mulai = pickUp.value.date.toISOString().split("T")[0];
+  const waktu_mulai = pickUp.value.date
+    .toISOString()
+    .split("T")[1]
+    .split(".")[0];
+  const tanggal_selesai = dropOff.value.date.toISOString().split("T")[0];
+  const waktu_selesai = dropOff.value.date
+    .toISOString()
+    .split("T")[1]
+    .split(".")[0];
+  const tanggalSelesai = new Date(dropOff.value.date);
+  var tanggal_harus_kembali = new Date(
+    tanggalSelesai.setDate(tanggalSelesai.getDate() + 3)
+  )
+    .toISOString()
+    .split("T")[0];
+  const durasi = parseInt(
+    (dropOff.value.date.getTime() - pickUp.value.date.getTime()) /
+      (1000 * 60 * 60 * 24)
+  );
+
+  console.log(pickUp.value);
+  axios
+    .post("/api/booking", {
+      armada_id: route.params.id,
+      tanggal_mulai: tanggal_mulai,
+      waktu_mulai: waktu_mulai,
+      tanggal_selesai: tanggal_selesai,
+      waktu_selesai: waktu_selesai,
+      tanggal_harus_kembali: tanggal_harus_kembali,
+      tempat_mulai: pickUp.value.location,
+      tempat_pengembalian: dropOff.value.location,
+      durasi: durasi,
+    })
+    .then((res) => {
+      flash.value = true;
+      setTimeout(() => {
+        flash.value = false;
+      }, 3000);
+      flashMessage.value = res.data.message;
+    });
 };
 
 const animateHorizontal = (id, start, end, delay) => {
