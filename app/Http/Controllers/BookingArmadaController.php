@@ -121,4 +121,32 @@ class BookingArmadaController extends Controller
     {
         //
     }
+
+    public function getTransactionPage(Request $request)
+    {
+        // if (!$request->user()) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Kamu harus login untuk melakukan booking.'
+        //     ], 401);
+        // } else if (!$request->user()->isAdmin) {
+        //     return response()->json([
+        //         'success' => false,
+        //         'message' => 'Kamu harus login sebagai admin untuk melakukan booking.'
+        //     ], 401);
+        // }
+        $bookings = DB::table('bookings')
+            ->select('booking__armadas.id', 'tanggal_transaksi', 'users.name', 'harga_sewa', 'keterangan', DB::raw("CONCAT(brand,' ',model) AS nama"))
+            ->join('users', 'users.id', '=', 'bookings.user_id')
+            ->join('booking__armadas', 'booking__armadas.booking_id', '=', 'bookings.id')
+            ->join('armadas', 'armadas.id', '=', 'booking__armadas.armada_id')
+            ->join('merks', 'merks.id', '=', 'armadas.merk_id')
+            ->orderBy('booking__armadas.id', 'desc')
+            ->paginate(15);
+
+        return response()->json([
+            "success" => true,
+            "result" => $bookings
+        ]);
+    }
 }

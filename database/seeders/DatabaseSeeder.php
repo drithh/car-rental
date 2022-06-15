@@ -30,5 +30,13 @@ class DatabaseSeeder extends Seeder
         Pembayaran::factory(300)->create();
         Ulasan::factory(300)->create();
         Favorite::factory(300)->create();
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin',
+            'password' => bcrypt('adminadmin'),
+            'email_verified_at' => now(),
+            'is_admin' => true
+        ]);
     }
 }

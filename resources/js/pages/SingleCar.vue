@@ -28,7 +28,9 @@
           >
             <div class="tersewa my-2 text-xl font-medium text-dark">
               <span class="opacity-50">Tersewa: </span>
-              <span class="opacity-80">20</span>
+              <span v-if="reviews" class="opacity-80">{{
+                reviews.length
+              }}</span>
             </div>
             <div class="harga my-2 text-xl font-medium text-dark">
               <span class="opacity-50">Harga: </span>
@@ -175,15 +177,22 @@ onBeforeMount(() => {
 });
 
 const loadCar = () => {
-  pickUp.value.location = route.params.pickUpLocation;
-  dropOff.value.location = route.params.dropOffLocation;
-  pickUp.value.date = route.params.pickUpDate;
-  dropOff.value.date = route.params.dropOffDate;
+  pickUp.value.location = route.params.pickUpLocation
+    ? route.params.pickUpLocation
+    : "";
+  dropOff.value.location = route.params.dropOffLocation
+    ? route.params.dropOffLocation
+    : "";
+  pickUp.value.date = route.params.pickUpDate
+    ? new Date(route.params.pickUpDate)
+    : new Date();
+  dropOff.value.date = route.params.dropOffDate
+    ? new Date(route.params.dropOffDate)
+    : new Date();
   axios.get(`/api/car/${route.params.id}`).then((res) => {
     singleCar.value = res.data[0];
   });
   axios.get(`/api/car/ulasan/${route.params.id}`).then((res) => {
-    console.log(res.data);
     reviews.value = res.data;
   });
 };
@@ -239,7 +248,6 @@ const bookCar = () => {
       (1000 * 60 * 60 * 24)
   );
 
-  console.log(pickUp.value);
   axios
     .post("/api/booking", {
       armada_id: route.params.id,

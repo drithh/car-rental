@@ -1,41 +1,3 @@
-<script setup>
-import {
-  dashboardOne,
-  dashboardTwo,
-  splineAreaWidgetTwo,
-  splineAreaWidgetThree,
-} from "@/data/dashboard.js";
-import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
-import BaseBtn from "@/components/dashboard/BaseBtn.vue";
-import BaseCard from "@/components/dashboard/BaseCard.vue";
-import BottomBorder from "@/components/BottomBorder.vue";
-
-import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
-
-const animateHorizontal = (id, start, end, delay) => {
-  anime({
-    targets: id,
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-    delay: delay,
-  });
-};
-
-const onPageEnter = () => {
-  animateHorizontal("#page", "100vw", "0", 0);
-};
-
-onBeforeRouteLeave((to, from, next) => {
-  animateHorizontal("#page", "0", "-100vw", 0);
-
-  setTimeout(() => {
-    next();
-  }, 800);
-});
-</script>
-
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <div id="page" class="container mx-auto mt-12">
@@ -97,31 +59,28 @@ onBeforeRouteLeave((to, from, next) => {
                       </th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody v-if="laravelData">
                     <tr
                       class="hover:bg-gray-100 cursor-pointer"
-                      v-for="(n, index) in 8"
-                      :key="index"
+                      v-for="order in laravelData.result.data"
+                      :key="order.id"
                     >
                       <td class="py-5 px-4">
-                        {{ index + 1 }}
+                        {{ order.id }}
                       </td>
 
-                      <td class="">Jhon {{ index + 1 }}</td>
+                      <td class="">{{ order.name }}</td>
                       <td class="py-5">
-                        <div class="flex">
-                          <div>Mustang GT&nbsp;</div>
-                          <div class="text-secondary">Fastback</div>
-                        </div>
+                        <div class="text-secondary">{{ order.nama }}</div>
                       </td>
                       <td class="py-5">
                         <span
                           class="mr-3 rounded-full border border-blue px-3 py-1 text-xs text-blue"
-                          >Selesai</span
+                          >{{ order.keterangan }}</span
                         >
                       </td>
-                      <td class="py-5">Rp.{{ 33400 * (index + 1) }}</td>
-                      <td class="py-5">10-05-22</td>
+                      <td class="py-5">Rp{{ order.harga_sewa }}</td>
+                      <td class="py-5">{{ order.tanggal_transaksi }}</td>
                       <td class="py-5">
                         <BaseBtn
                           rounded
@@ -135,10 +94,12 @@ onBeforeRouteLeave((to, from, next) => {
                 </table>
               </div>
               <div class="dataTable-bottom">
-                <div class="dataTable-info">Showing 1 to 8 of 8 entries</div>
-                <nav class="dataTable-pagination">
-                  <ul class="dataTable-pagination-list"></ul>
-                </nav>
+                <div class="dataTable-pagination">
+                  <pagination
+                    :data="laravelData"
+                    @pagination-change-page="getResults"
+                  ></pagination>
+                </div>
               </div>
             </div>
           </div>
@@ -148,3 +109,65 @@ onBeforeRouteLeave((to, from, next) => {
   </transition>
   <BottomBorder />
 </template>
+
+<script setup>
+import {
+  dashboardOne,
+  dashboardTwo,
+  splineAreaWidgetTwo,
+  splineAreaWidgetThree,
+} from "@/data/dashboard.js";
+import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
+import BaseBtn from "@/components/dashboard/BaseBtn.vue";
+import BaseCard from "@/components/dashboard/BaseCard.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+const animateHorizontal = (id, start, end, delay) => {
+  anime({
+    targets: id,
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: delay,
+  });
+};
+
+const onPageEnter = () => {
+  animateHorizontal("#page", "100vw", "0", 0);
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  animateHorizontal("#page", "0", "-100vw", 0);
+
+  setTimeout(() => {
+    next();
+  }, 800);
+});
+
+onMounted(() => {
+  axios
+    .get(`/api/transactions?page=${page}`)
+    .then((res) => {
+      laravelData.value = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+const laravelData = ref();
+const getResults = (page) => {
+  axios
+    .get(`/api/transactions?page=${page}`)
+    .then((res) => {
+      laravelData.value = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+</script>

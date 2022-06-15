@@ -28,6 +28,7 @@ import {
   faEye,
   faEyeSlash,
   faStar,
+  faCar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
@@ -48,11 +49,13 @@ library.add(
   faCogs,
   faCalendar,
   faClock,
-  faStar
+  faStar,
+  faCar
 );
 
 const app = createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
+  .component("pagination", require("laravel-vue-pagination"))
   .use(router)
   .use(VueClickAway)
   .use(VueApexCharts)

@@ -63,3 +63,5 @@ Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLinkE
 Route::get('email-verification', [VerificationController::class, 'verify'])->name('verification.verify');
 
 Route::get('resend-email-verification', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
+
+Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage']);

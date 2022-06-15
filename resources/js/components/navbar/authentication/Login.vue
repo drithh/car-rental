@@ -78,8 +78,8 @@ const passwordWrongMessage = ref("");
 let errors = [];
 
 const submit = () => {
-  emailWrong.value = true;
-  passwordWrong.value = true;
+  emailWrong.value = false;
+  passwordWrong.value = false;
   axios
     .post("/api/login", form.value)
     .then(() => {
