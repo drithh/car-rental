@@ -21,14 +21,13 @@ class UserFactory extends Factory
             // 'password' => $this->faker->password(),
             'password' => '$2y$10$pR3GEI8tpJqintXfUDPbqOfGiyftGoekqTVHTCzYFeBgBq3shfRbm',
             'email' => $this->faker->unique()->safeEmail(),
-            
+
             'nik' => $this->faker->nik(),
             'jenis_kelamin' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
             'tanggal_lahir' => $this->faker->date(),
             'alamat' => $this->faker->address(),
             'no_telp' => $this->faker->phoneNumber(),
             'no_wa' => $this->faker->phoneNumber(),
-            'poto_profil' => $this->faker->imageUrl(),
         ];
     }
 }

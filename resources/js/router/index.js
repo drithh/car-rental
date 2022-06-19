@@ -11,6 +11,7 @@ import Favorite from "../pages/Favorite";
 import Dashboard from "../pages/Dashboard";
 import Orders from "../pages/Orders";
 import SingleCar from "../pages/SingleCar";
+import EditCar from "../pages/EditCar";
 
 export const routes = [
   {
@@ -108,6 +109,28 @@ export const routes = [
     name: "orders",
     path: "/orders",
     component: Orders,
+    beforeEnter: (to, form, next) => {
+      axios
+        .get("/api/is-admin")
+        .then((res) => {
+          if (res.data) {
+            next();
+          } else {
+            return next({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  {
+    name: "editCar",
+    path: "/car/edit/:id",
+    props: (route) => ({
+      ...route.params,
+    }),
+    component: EditCar,
     beforeEnter: (to, form, next) => {
       axios
         .get("/api/is-admin")

@@ -9,11 +9,7 @@ import {
 export const dashboardOne = {
   series: [
     {
-      name: "Net Profit",
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-    },
-    {
-      name: "Revenue",
+      name: "Pendapatan",
       data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
     },
   ],
@@ -60,7 +56,7 @@ export const dashboardOne = {
     tooltip: {
       y: {
         formatter: function (val) {
-          return "Rp. " + val + " thousands";
+          return "Rp." + val + "K";
         },
       },
     },

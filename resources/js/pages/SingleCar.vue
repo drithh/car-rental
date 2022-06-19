@@ -17,12 +17,26 @@
           </div>
         </div>
         <div id="detail" class="right-panel w-1/2 font-Yantramanav">
-          <div class="car-name text-4xl font-bold text-dark">
-            {{ singleCar.nama }}
+          <div class="flex flex-row place-content-between">
+            <div class="wrapper">
+              <div class="car-name text-4xl font-bold text-dark">
+                {{ singleCar.nama }}
+              </div>
+              <div
+                class="car-name text-3xl font-medium text-dark text-opacity-50"
+              >
+                {{ singleCar.type }}
+              </div>
+            </div>
+            <button
+              v-if="isAdmin"
+              class="h-8 w-32 rounded-md border border-secondary bg-darkencream py-1 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+              @click="editCar"
+            >
+              Edit Details
+            </button>
           </div>
-          <div class="car-name text-3xl font-medium text-dark text-opacity-50">
-            {{ singleCar.type }}
-          </div>
+
           <div
             class="detail my-8 border-y border-y-secondary border-opacity-30 py-4"
           >
@@ -149,7 +163,7 @@ import { onBeforeRouteLeave } from "vue-router";
 const route = useRoute();
 
 const singleCar = ref(null);
-
+const isAdmin = ref(false);
 const flash = ref(false);
 const flashMessage = ref("");
 
@@ -171,10 +185,26 @@ const updateDropOffDate = (newVal) => {
 };
 // const doneFetching = ref(false);
 
+const checkUser = () => {
+  axios.get("/api/is-admin").then((resp) => {
+    isAdmin.value = resp.data;
+  });
+};
+
 const reviews = ref(null);
 onBeforeMount(() => {
   loadCar();
+  checkUser();
 });
+
+const editCar = () => {
+  router.push({
+    name: "editCar",
+    params: {
+      id: route.params.id,
+    },
+  });
+};
 
 const loadCar = () => {
   pickUp.value.location = route.params.pickUpLocation

@@ -1,94 +1,38 @@
-<script setup>
-import {
-  dashboardOne,
-  dashboardTwo,
-  splineAreaWidgetTwo,
-  splineAreaWidgetThree,
-} from "@/data/dashboard.js";
-import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
-import BaseBtn from "@/components/dashboard/BaseBtn.vue";
-import BaseCard from "@/components/dashboard/BaseCard.vue";
-import BottomBorder from "@/components/BottomBorder.vue";
-import { onMounted } from "vue";
-
-import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
-
-const animateHorizontal = (id, start, end, delay) => {
-  anime({
-    targets: id,
-    translateX: [start, end],
-    easing: "easeInOutQuart",
-    duration: 800,
-    delay: delay,
-  });
-};
-
-const onPageEnter = () => {
-  animateHorizontal("#page", "100vw", "0", 0);
-};
-
-onBeforeRouteLeave((to, from, next) => {
-  animateHorizontal("#page", "0", "-100vw", 0);
-
-  setTimeout(() => {
-    next();
-  }, 800);
-});
-</script>
-
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <div id="page" class="container mx-auto mt-12">
       <div class="grid grid-cols-12 gap-5">
-        <div
-          class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-3"
-        >
+        <div class="col-span-12 xl:col-span-4">
           <BaseCard>
             <div class="align-center flex">
               <i class="i-Add-User text-6xl text-purple-200"></i>
               <div class="m-auto">
-                <p class="text-gray-400">Pelanggan</p>
-                <p class="text-xl text-blue">205</p>
+                <p class="text-gray-400">User</p>
+                <p class="text-xl text-blue">{{ data.totalUser }}</p>
               </div>
             </div>
           </BaseCard>
         </div>
-        <div
-          class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-3"
-        >
+        <div class="col-span-12 xl:col-span-4">
           <BaseCard>
             <div class="align-center flex">
               <i class="i-Financial text-6xl text-purple-200"></i>
               <div class="m-auto">
                 <p class="text-gray-400">Penjualan</p>
-                <p class="text-xl text-blue">Rp.4021</p>
+                <p class="text-xl text-blue">
+                  Rp.{{ data.pendapatan / 1000 }}K
+                </p>
               </div>
             </div>
           </BaseCard>
         </div>
-        <div
-          class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-3"
-        >
+        <div class="col-span-12 xl:col-span-4">
           <BaseCard>
             <div class="align-center flex">
               <i class="i-Car-2 text-6xl text-purple-200"></i>
               <div class="m-auto">
                 <p class="text-gray-400">Orders</p>
-                <p class="text-xl text-blue">20</p>
-              </div>
-            </div>
-          </BaseCard>
-        </div>
-        <div
-          class="col-span-12 sm:col-span-6 md:col-span-6 lg:col-span-6 xl:col-span-3"
-        >
-          <BaseCard>
-            <div class="align-center flex">
-              <i class="i-Money-2 text-6xl text-purple-200"></i>
-              <div class="m-auto">
-                <p class="text-gray-400">Pengeluaran</p>
-                <p class="text-xl text-blue">Rp.200</p>
+                <p class="text-xl text-blue">{{ data.totalBooking }}</p>
               </div>
             </div>
           </BaseCard>
@@ -233,3 +177,51 @@ onBeforeRouteLeave((to, from, next) => {
   </transition>
   <BottomBorder />
 </template>
+
+<script setup>
+import {
+  dashboardOne,
+  dashboardTwo,
+  splineAreaWidgetTwo,
+  splineAreaWidgetThree,
+} from "@/data/dashboard.js";
+import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
+import BaseBtn from "@/components/dashboard/BaseBtn.vue";
+import BaseCard from "@/components/dashboard/BaseCard.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
+import { onMounted, ref } from "vue";
+import axios from "axios";
+import anime from "animejs";
+import { onBeforeRouteLeave } from "vue-router";
+
+const data = ref({});
+
+onMounted(() => {
+  axios.get("/api/dashboard/data").then((res) => {
+    data.value = res.data;
+    console.log(data.value);
+  });
+});
+
+const animateHorizontal = (id, start, end, delay) => {
+  anime({
+    targets: id,
+    translateX: [start, end],
+    easing: "easeInOutQuart",
+    duration: 800,
+    delay: delay,
+  });
+};
+
+const onPageEnter = () => {
+  animateHorizontal("#page", "100vw", "0", 0);
+};
+
+onBeforeRouteLeave((to, from, next) => {
+  animateHorizontal("#page", "0", "-100vw", 0);
+
+  setTimeout(() => {
+    next();
+  }, 800);
+});
+</script>

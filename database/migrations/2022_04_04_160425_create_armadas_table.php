@@ -21,14 +21,14 @@ return new class extends Migration
 
             $table->smallInteger('kapasitas');
             $table->string('bahan_bakar');
-            $table->string('warna');
             $table->string('tipe_transmisi');
 
             $table->string('tahun_perolehan');
             $table->bigInteger('harga_satuan');
             $table->bigInteger('harga_sewa');
             $table->binary('poto_kendaraan');
-            
+
+
             $table->timestamps();
         });
     }

@@ -28,8 +28,7 @@ return new class extends Migration
             $table->string('tempat_mulai');
             $table->string('tempat_pengembalian');
 
-            $table->string('durasi');
-            $table->boolean('status')->default(false);
+            $table->integer('durasi');
             $table->text('keterangan');
 
             $table->timestamps();

@@ -40,7 +40,7 @@ const props = defineProps({
   label: String,
   placeholder: String,
   type: String,
-  textvalue: String,
+  textvalue: String | Number,
   wrong: Boolean,
   wrongMessage: String,
 });

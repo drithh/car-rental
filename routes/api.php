@@ -36,6 +36,8 @@ Route::get('is-admin', [CheckAuthenticationController::class, 'checkAdmin']);
 
 
 Route::get('car/{id}', [CarController::class, 'getCar']);
+Route::get('car/information/{id}', [CarController::class, 'getInformation']);
+Route::post('car/edit/confirm', [CarController::class, 'update']);
 
 Route::get('car/ulasan/{id}', [CarController::class, 'getUlasan']);
 
@@ -65,3 +67,5 @@ Route::get('email-verification', [VerificationController::class, 'verify'])->nam
 Route::get('resend-email-verification', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
 
 Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage']);
+
+Route::get('dashboard/data', [BookingArmadaController::class, 'getPendapatan']);

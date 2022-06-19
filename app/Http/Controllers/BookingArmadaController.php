@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking_Armada;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -120,6 +121,24 @@ class BookingArmadaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getPendapatan()
+    {
+        $totalUser = DB::table('users')->count();
+        $totalBooking = Booking_Armada::count();
+
+        $pendapatan = DB::table('booking__armadas')
+            ->select(DB::raw("SUM(harga) AS pendapatan"))
+            ->where('Keterangan', '=', 'Selesai')
+            ->get();
+        return response()->json([
+            "message" => "Pendapatan berhasil.",
+            "success" => true,
+            "totalUser" => $totalUser,
+            "totalBooking" => $totalBooking,
+            "pendapatan" => $pendapatan[0]->pendapatan
+        ]);
     }
 
     public function getTransactionPage(Request $request)

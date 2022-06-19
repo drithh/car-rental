@@ -29,6 +29,12 @@ class CarController extends Controller
         return DB::table('cars')->select('armada_id')->where('user_id', $request->user()->id)->get();
     }
 
+    public function getInformation($id)
+    {
+        $car = Merk::select('brand', 'model', 'type', 'tanggal_pajak', 'no_polisi',  'kapasitas', 'bahan_bakar', 'tipe_transmisi', 'tahun_perolehan', 'harga_satuan', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
+        return $car;
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -61,9 +67,23 @@ class CarController extends Controller
      * @param  \App\Models\Car  $car
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Merk $car)
+    public function update(Request $request)
     {
-        //
+        // validate request
+        $this->validate($request, [
+            'carInformation' => 'required',
+        ]);
+
+
+        // get merks id
+        $merk_id = DB::table('armadas')->select('merk_id')->where('id', $request->id)->get()[0]->merk_id;
+
+        DB::table('merks')->where('merks.id', $merk_id)->update(['merks.brand' => $request->carInformation['brand'], 'merks.model' => $request->carInformation['model'], 'merks.type' => $request->carInformation['type']]);
+
+
+        DB::table('armadas')->where('armadas.id', $request->id)->update(['armadas.tanggal_pajak' => $request->carInformation['tanggal_pajak'], 'armadas.no_polisi' => $request->carInformation['no_polisi'], 'armadas.kapasitas' => $request->carInformation['kapasitas'], 'armadas.bahan_bakar' => $request->carInformation['bahan_bakar'], 'armadas.tipe_transmisi' => $request->carInformation['tipe_transmisi'], 'armadas.tahun_perolehan' => $request->carInformation['tahun_perolehan'], 'armadas.harga_satuan' => $request->carInformation['harga_satuan'], 'armadas.harga_sewa' => $request->carInformation['harga_sewa']]);
+
+        return response()->json(['message' => 'Data berhasil diubah']);
     }
 
     /**

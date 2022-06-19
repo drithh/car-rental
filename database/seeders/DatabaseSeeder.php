@@ -25,11 +25,11 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
         Merk::factory(50)->create();
         Armada::factory(100)->create();
-        Booking::factory(200)->create();
-        Booking_Armada::factory(300)->create();
-        Pembayaran::factory(300)->create();
-        Ulasan::factory(300)->create();
-        Favorite::factory(300)->create();
+        Booking::factory(600)->create();
+        Booking_Armada::factory(600)->create();
+        Pembayaran::factory(600)->create();
+        Ulasan::factory(600)->create();
+        Favorite::factory(700)->create();
 
         User::create([
             'name' => 'Admin',

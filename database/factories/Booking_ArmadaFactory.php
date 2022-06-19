@@ -21,7 +21,7 @@ class Booking_ArmadaFactory extends Factory
         return [
             'booking_id' => mt_rand(1, 200),
             'armada_id' => mt_rand(1, 100),
-            'harga' => mt_rand(1000000, 10000000),
+            'harga' => mt_rand(100, 10000) * 1000,
             'tanggal_mulai' => $this->faker->dateTimeBetween('-7 days', '-1 days'),
             'waktu_mulai' => $this->faker->time(),
             'tanggal_pengembalian' => $this->faker->dateTimeBetween('now', '+4 days'),

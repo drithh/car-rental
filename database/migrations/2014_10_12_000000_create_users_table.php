@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
             $table->string('alamat')->nullable();
             $table->string('no_telp')->nullable();
             $table->string('no_wa')->nullable();
-            $table->binary('poto_profil')->nullable();
 
             $table->string('last_login_at')->nullable();
             $table->string('last_login_ip')->nullable();
