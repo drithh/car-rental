@@ -18,7 +18,7 @@ class BookingFactory extends Factory
     {
         return [
             'user_id' => mt_rand(1, 20),
-            'tanggal_transaksi' => $this->faker->date(),
+            'tanggal_transaksi' => $this->faker->dateTimeBetween('-1 years', '-1 days'),
             'booking_code' => $this->faker->uuid(),
             'no_tagihan' => $this->faker->regexify('[A-Z]{5}[0-4]{3}'),
         ];

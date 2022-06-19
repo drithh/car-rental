@@ -111,12 +111,6 @@
 </template>
 
 <script setup>
-import {
-  dashboardOne,
-  dashboardTwo,
-  splineAreaWidgetTwo,
-  splineAreaWidgetThree,
-} from "@/data/dashboard.js";
 import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
 import BaseBtn from "@/components/dashboard/BaseBtn.vue";
 import BaseCard from "@/components/dashboard/BaseCard.vue";

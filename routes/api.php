@@ -69,3 +69,9 @@ Route::get('resend-email-verification', [VerificationController::class, 'resend'
 Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage']);
 
 Route::get('dashboard/data', [BookingArmadaController::class, 'getPendapatan']);
+
+Route::get('dashboard/data/tahunan', [BookingArmadaController::class, 'getPendapatanTahunSetiapBulan']);
+Route::get('dashboard/data/bulanan', [BookingArmadaController::class, 'getPendapatanSebulanTerakhir']);
+
+Route::get('dashboard/data/tipe', [BookingArmadaController::class, 'getPendapatanByTipe']);
+Route::get('dashboard/data/mobil', [CarController::class, 'getMostRent']);

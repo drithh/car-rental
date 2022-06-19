@@ -113,4 +113,32 @@ class CarController extends Controller
             ->get();
         return $ulasan;
     }
+
+    public function getMostRent()
+    {
+        $car = DB::table('ulasans')
+            ->select(
+                'armadas.id',
+                DB::raw("CONCAT(brand,' ',model) AS nama"),
+                DB::raw("COUNT(*) AS jumlah"),
+                'type',
+                'harga_sewa'
+            )
+            ->join('armadas', 'ulasans.armada_id', '=', 'armadas.id')
+            ->join('merks', 'merks.id', '=', 'armadas.merk_id')
+            ->groupBy('armadas.id')
+            ->groupBy('type')
+            ->groupBy('nama')
+            ->groupBy('harga_sewa')
+            ->orderBy('jumlah', 'desc')
+            ->limit(3)
+            ->get();
+
+
+        return response()->json([
+            "message" => "Ambil Data berhasil.",
+            "success" => true,
+            "car" => $car,
+        ]);
+    }
 }

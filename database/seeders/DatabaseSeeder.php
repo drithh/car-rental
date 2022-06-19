@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
         Merk::factory(50)->create();
         Armada::factory(100)->create();
-        Booking::factory(600)->create();
-        Booking_Armada::factory(600)->create();
-        Pembayaran::factory(600)->create();
-        Ulasan::factory(600)->create();
+        Booking::factory(800)->create();
+        Booking_Armada::factory(800)->create();
+        Pembayaran::factory(800)->create();
+        Ulasan::factory(800)->create();
         Favorite::factory(700)->create();
 
         User::create([
