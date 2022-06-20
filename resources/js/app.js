@@ -55,7 +55,6 @@ library.add(
 
 const app = createApp(App)
   .component("font-awesome-icon", FontAwesomeIcon)
-  .component("pagination", require("laravel-vue-pagination"))
   .use(router)
   .use(VueClickAway)
   .use(VueApexCharts)

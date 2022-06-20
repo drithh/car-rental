@@ -15,9 +15,17 @@ class BookingArmadaController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index($id)
   {
-    //
+    $booking = DB::table('booking__armadas')
+      ->select(DB::raw('booking__armadas.id as booking_armada_id'), 'booking__armadas.*', 'armadas.*')
+      ->join('armadas', 'booking__armadas.armada_id', '=', 'armadas.id')
+      ->where('booking__armadas.id', $id)
+      ->get();
+    return response()->json([
+      'success' => true,
+      'order' =>  $booking,
+    ]);
   }
 
   /**
@@ -109,7 +117,16 @@ class BookingArmadaController extends Controller
    */
   public function update(Request $request, $id)
   {
-    //
+    // update keterangan column
+    $booking = Booking_Armada::find($id);
+
+    $booking->keterangan = $request->keterangan;
+    $booking->save();
+
+    return response()->json([
+      "message" => "Booking berhasil diupdate.",
+      "success" => true
+    ]);
   }
 
   /**

@@ -1,6 +1,9 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <div id="page" class="container mx-auto mt-12">
+      <div v-if="editOrder">
+        <edit-order :orderItem="orderItem" @closeMenu="closeModal"></edit-order>
+      </div>
       <div class="col-span-12">
         <BaseCard>
           <template v-slot:cardHeader>
@@ -59,9 +62,13 @@
                       </th>
                     </tr>
                   </thead>
-                  <tbody v-if="laravelData">
+                  <tbody
+                    id="data-table"
+                    class="cursor-default"
+                    v-if="laravelData"
+                  >
                     <tr
-                      class="hover:bg-gray-100 cursor-pointer"
+                      class="hover:bg-gray-100 cursor-default"
                       v-for="order in laravelData.result.data"
                       :key="order.id"
                     >
@@ -84,7 +91,8 @@
                       <td class="py-5">
                         <BaseBtn
                           rounded
-                          class="border border-blue text-blue hover:bg-blue hover:text-white"
+                          class="cursor-pointer border border-blue text-blue hover:bg-blue hover:text-white"
+                          @click="OpenModal(order.id)"
                         >
                           View
                         </BaseBtn>
@@ -93,13 +101,8 @@
                   </tbody>
                 </table>
               </div>
-              <div class="dataTable-bottom">
-                <div class="dataTable-pagination">
-                  <pagination
-                    :data="laravelData"
-                    @pagination-change-page="getResults"
-                  ></pagination>
-                </div>
+              <div class="dataTable-bottom" v-if="laravelData">
+                <Pagination :result="laravelData" @changePage="changePage" />
               </div>
             </div>
           </div>
@@ -115,10 +118,26 @@ import Breadcrumbs from "@/components/dashboard/Breadcrumbs.vue";
 import BaseBtn from "@/components/dashboard/BaseBtn.vue";
 import BaseCard from "@/components/dashboard/BaseCard.vue";
 import BottomBorder from "@/components/BottomBorder.vue";
+import Pagination from "@/components/orders/Pagination.vue";
+import EditOrder from "@/components/orders/EditOrder.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+
+const editOrder = ref(false);
+const orderItem = ref({});
+const closeModal = () => {
+  editOrder.value = false;
+};
+
+const OpenModal = (id) => {
+  axios.get(`/api/transactions/${id}`).then((res) => {
+    orderItem.value = res.data.order[0];
+    editOrder.value = true;
+    console.log(orderItem.value);
+  });
+};
 
 const animateHorizontal = (id, start, end, delay) => {
   anime({
@@ -143,18 +162,24 @@ onBeforeRouteLeave((to, from, next) => {
 });
 
 onMounted(() => {
+  getResults();
+});
+
+const changePage = (page) => {
   axios
-    .get(`/api/transactions?page=${page}`)
+    .get(page)
     .then((res) => {
       laravelData.value = res.data;
+      animateHorizontal("#data-table", "0", "-100vw", 0);
+      animateHorizontal("#data-table", "100vw", "0", 200);
     })
     .catch((err) => {
       console.log(err);
     });
-});
+};
 
 const laravelData = ref();
-const getResults = (page) => {
+const getResults = (page = 1) => {
   axios
     .get(`/api/transactions?page=${page}`)
     .then((res) => {

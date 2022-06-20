@@ -67,6 +67,8 @@ Route::get('email-verification', [VerificationController::class, 'verify'])->nam
 Route::get('resend-email-verification', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
 
 Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage']);
+Route::get('transactions/{id}', [BookingArmadaController::class, 'index']);
+Route::put('transactions/edit/{id}', [BookingArmadaController::class, 'update']);
 
 Route::get('dashboard/data', [BookingArmadaController::class, 'getPendapatan']);
 
