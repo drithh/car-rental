@@ -9,11 +9,7 @@
       <section id="car" class="m-auto mt-20 mb-10 flex w-[90vw] gap-10">
         <div class="flex h-[28rem] min-h-max w-1/2 place-items-center">
           <div>
-            <img
-              class="h-fit w-fit"
-              src="../../../public/images/car/mustang.jpg"
-              alt="car"
-            />
+            <img class="h-fit w-fit" :src="singleCar.image_link" alt="car" />
           </div>
         </div>
         <div id="detail" class="right-panel w-1/2 font-Yantramanav">

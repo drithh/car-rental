@@ -103,8 +103,8 @@
               class="mb-4 flex flex-col items-center md:flex-row"
             >
               <img
-                class="avatar-md mr-2 h-20 w-44 rounded"
-                :src="require(`public/images/car/mustang.jpg`).default"
+                class="avatar-md mr-2 h-20 w-32 rounded"
+                :src="item.image_link"
                 alt=""
               />
               <div class="flex-grow text-center md:text-left">

@@ -19,7 +19,7 @@ class Merk extends Model
 
     public function carInformation()
     {
-        $car = Merk::select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->get();
+        $car = Merk::select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'image_link', 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->get();
         return $car;
     }
 }

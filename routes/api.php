@@ -34,15 +34,13 @@ Route::post('logout', [LoginController::class, 'logout']);
 Route::get('authenticated', [CheckAuthenticationController::class, 'testAuth']);
 Route::get('is-admin', [CheckAuthenticationController::class, 'checkAdmin']);
 
-
+Route::get('car', [Merk::class, 'carInformation']);
 Route::get('car/{id}', [CarController::class, 'getCar']);
 Route::get('car/information/{id}', [CarController::class, 'getInformation']);
 Route::post('car/edit/confirm', [CarController::class, 'update']);
-
 Route::get('car/ulasan/{id}', [CarController::class, 'getUlasan']);
 
 
-Route::get('car', [Merk::class, 'carInformation']);
 
 
 Route::get('favorite-id', [FavoriteController::class, 'id']);

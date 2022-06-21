@@ -50,6 +50,13 @@
             >
               Mengapa Menyewa Dengan Kami?
             </div>
+            <cld-image
+              cloudName="demo"
+              publicId="sample"
+              width="300"
+              crop="scale"
+            />
+
             <div class="wrapper mt-20 mb-32 flex w-full place-content-between">
               <why-us
                 title="Check-in super cepat"

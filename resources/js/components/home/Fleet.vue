@@ -12,6 +12,7 @@
             :capacity="car.kapasitas"
             :price="Math.ceil(car.harga_sewa / 1000)"
             :favorite="car.favorite ? true : false"
+            :imageLink="car.image_link"
           ></car>
         </div>
       </Slide>

@@ -10,7 +10,7 @@
         <div class="mx-auto">
           <img
             class="h-fit max-h-80 w-fit"
-            src="../../../public/images/car/mustang.jpg"
+            :src="carInformation.image_link"
             alt="car"
           />
         </div>

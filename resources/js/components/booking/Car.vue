@@ -33,11 +33,7 @@
     </div>
 
     <div class="car-image">
-      <img
-        class="h-full w-full"
-        src="../../../../public/images/car/mustang.jpg"
-        alt="car"
-      />
+      <img class="h-full w-full" :src="imageLink" alt="car" />
     </div>
 
     <div class="specification flex place-content-between">
@@ -80,7 +76,11 @@ let props = defineProps({
   capacity: Number,
   price: Number,
   favorite: Boolean,
+  imageLink: String,
 });
+
+console.log(props.imageLink);
+
 const favorite = ref(false);
 
 onMounted(() => {

@@ -31,7 +31,7 @@ class CarController extends Controller
 
     public function getInformation($id)
     {
-        $car = Merk::select('brand', 'model', 'type', 'tanggal_pajak', 'no_polisi',  'kapasitas', 'bahan_bakar', 'tipe_transmisi', 'tahun_perolehan', 'harga_satuan', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
+        $car = Merk::select('brand', 'model', 'type', 'tanggal_pajak', 'no_polisi',  'kapasitas', 'bahan_bakar', 'tipe_transmisi', 'tahun_perolehan', 'harga_satuan', 'image_link', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
         return $car;
     }
 
@@ -99,7 +99,7 @@ class CarController extends Controller
 
     public function getCar($id)
     {
-        $car = Merk::select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
+        $car = Merk::select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'image_link', 'tipe_transmisi', 'kapasitas', 'harga_sewa')->join('armadas', 'merks.id', '=', 'merk_id')->where('armadas.id', $id)->get();
         return $car;
     }
 
@@ -122,7 +122,8 @@ class CarController extends Controller
                 DB::raw("CONCAT(brand,' ',model) AS nama"),
                 DB::raw("COUNT(*) AS jumlah"),
                 'type',
-                'harga_sewa'
+                'harga_sewa',
+                'image_link'
             )
             ->join('armadas', 'ulasans.armada_id', '=', 'armadas.id')
             ->join('merks', 'merks.id', '=', 'armadas.merk_id')
@@ -130,6 +131,7 @@ class CarController extends Controller
             ->groupBy('type')
             ->groupBy('nama')
             ->groupBy('harga_sewa')
+            ->groupBy('image_link')
             ->orderBy('jumlah', 'desc')
             ->limit(3)
             ->get();

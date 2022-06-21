@@ -69,6 +69,7 @@
               :capacity="car.kapasitas"
               :price="Math.ceil(car.harga_sewa / 1000)"
               :favorite="car.favorite ? true : false"
+              :imageLink="car.image_link"
             ></car>
           </div>
         </div>
@@ -228,6 +229,7 @@ onMounted(() => {
   axios
     .get("/api/car")
     .then((res) => {
+      console.log(res.data);
       allCars.value = res.data;
       cars.value = res.data;
       filters.value = [
