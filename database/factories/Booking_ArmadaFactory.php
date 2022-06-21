@@ -17,7 +17,7 @@ class Booking_ArmadaFactory extends Factory
      */
     public function definition()
     {
-        $kereranganElement = ['Belum Bayar', 'Sudah Bayar', 'Dibatalkan', 'Sedang Berjalan', 'Selesai'];
+        $kereranganElement = ['Belum Bayar', 'Sudah Bayar', 'Dibatalkan', 'Sedang Berjalan',  "Ulasan", 'Selesai'];
         return [
             'booking_id' => mt_rand(1, 200),
             'armada_id' => mt_rand(1, 100),

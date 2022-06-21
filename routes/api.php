@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\CheckAuthenticationController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BookingArmadaController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
@@ -43,10 +44,13 @@ Route::get('car/ulasan/{id}', [CarController::class, 'getUlasan']);
 
 
 
-Route::get('favorite-id', [FavoriteController::class, 'id']);
-Route::get('favorite', [FavoriteController::class, 'index']);
-Route::post('favorite/store', [FavoriteController::class, 'store']);
-Route::delete('favorite/destroy', [FavoriteController::class, 'destroy']);
+Route::get('favorite-id', [FavoriteController::class, 'id'])->middleware('auth:sanctum');
+Route::get('favorite', [FavoriteController::class, 'index'])->middleware('auth:sanctum');
+Route::post('favorite/store', [FavoriteController::class, 'store'])->middleware('auth:sanctum');
+Route::delete('favorite/destroy', [FavoriteController::class, 'destroy'])->middleware('auth:sanctum');
+
+Route::get('books', [BookingController::class, 'getAll'])->middleware('auth:sanctum');
+Route::post('books/cancel', [BookingController::class, 'cancel'])->middleware('auth:sanctum');
 
 Route::put('user', [UserController::class, 'update']);
 Route::post('booking', [BookingArmadaController::class, 'store']);
@@ -64,14 +68,14 @@ Route::get('email-verification', [VerificationController::class, 'verify'])->nam
 
 Route::get('resend-email-verification', [VerificationController::class, 'resend'])->middleware('auth:sanctum');
 
-Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage']);
-Route::get('transactions/{id}', [BookingArmadaController::class, 'index']);
-Route::put('transactions/edit/{id}', [BookingArmadaController::class, 'update']);
+Route::get('transactions', [BookingArmadaController::class, 'getTransactionPage'])->middleware('auth:sanctum');
+Route::get('transactions/{id}', [BookingArmadaController::class, 'index'])->middleware('auth:sanctum');
+Route::put('transactions/edit/{id}', [BookingArmadaController::class, 'update'])->middleware('auth:sanctum');
 
-Route::get('dashboard/data', [BookingArmadaController::class, 'getPendapatan']);
+Route::get('dashboard/data', [BookingArmadaController::class, 'getPendapatan'])->middleware('auth:sanctum');;
 
-Route::get('dashboard/data/tahunan', [BookingArmadaController::class, 'getPendapatanTahunSetiapBulan']);
-Route::get('dashboard/data/bulanan', [BookingArmadaController::class, 'getPendapatanSebulanTerakhir']);
+Route::get('dashboard/data/tahunan', [BookingArmadaController::class, 'getPendapatanTahunSetiapBulan'])->middleware('auth:sanctum');
+Route::get('dashboard/data/bulanan', [BookingArmadaController::class, 'getPendapatanSebulanTerakhir'])->middleware('auth:sanctum');
 
-Route::get('dashboard/data/tipe', [BookingArmadaController::class, 'getPendapatanByTipe']);
-Route::get('dashboard/data/mobil', [CarController::class, 'getMostRent']);
+Route::get('dashboard/data/tipe', [BookingArmadaController::class, 'getPendapatanByTipe'])->middleware('auth:sanctum');
+Route::get('dashboard/data/mobil', [CarController::class, 'getMostRent'])->middleware('auth:sanctum');

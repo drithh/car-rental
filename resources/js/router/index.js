@@ -12,6 +12,7 @@ import Dashboard from "../pages/Dashboard";
 import Orders from "../pages/Orders";
 import SingleCar from "../pages/SingleCar";
 import EditCar from "../pages/EditCar";
+import Books from "../pages/Books";
 
 export const routes = [
   {
@@ -44,6 +45,25 @@ export const routes = [
     name: "profile",
     path: "/profile",
     component: Profile,
+    beforeEnter: (to, form, next) => {
+      axios
+        .get("/api/authenticated")
+        .then((res) => {
+          if (res.data === "auth") {
+            next();
+          } else {
+            return next({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  {
+    name: "books",
+    path: "/books",
+    component: Books,
     beforeEnter: (to, form, next) => {
       axios
         .get("/api/authenticated")

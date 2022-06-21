@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(20)->create();
+        User::factory(50)->create();
         Merk::factory(55)->create();
         Armada::factory(100)->create();
         Booking::factory(800)->create();
