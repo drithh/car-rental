@@ -79,8 +79,6 @@ let props = defineProps({
   imageLink: String,
 });
 
-console.log(props.imageLink);
-
 const favorite = ref(false);
 
 onMounted(() => {

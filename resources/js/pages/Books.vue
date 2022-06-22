@@ -90,7 +90,7 @@
 
 <script setup>
 import anime from "animejs";
-import { BottomBorder } from "@/components/BottomBorder.vue";
+import BottomBorder from "@/components/BottomBorder.vue";
 import { onBeforeRouteLeave } from "vue-router";
 import { ref, onMounted } from "vue";
 import axios from "axios";

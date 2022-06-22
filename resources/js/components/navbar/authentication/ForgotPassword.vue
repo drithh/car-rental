@@ -1,5 +1,12 @@
 <template>
   <div id="forgot-password">
+    <div class="abslote z-50">
+      <flash
+        :open="flash"
+        :message="flashMessage"
+        @close="flash = false"
+      ></flash>
+    </div>
     <div class="text-center font-Yantramanav text-5xl font-bold opacity-80">
       Forgot password?
     </div>
@@ -10,6 +17,8 @@
     <div class="input-container mt-10 flex flex-col gap-y-4">
       <input-box
         label="Email"
+        :wrong="emailWrong"
+        :wrongMessage="emailWrongMessage"
         :textvalue="email"
         v-on:update:modelValue="(e) => (email = e)"
         placeholder="your@email.com"
@@ -41,31 +50,38 @@ import InputBox from "@/components/contact/InputBox.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import { ref, onMounted } from "vue";
-import axios from "axios";
+import Flash from "@/components/flash/Flash.vue";
 
+import axios from "axios";
+const emailWrong = ref(false);
+const emailWrongMessage = ref("");
 const email = ref("");
+const flash = ref(false);
+const flashMessage = ref("");
+
 const forgotPassword = () => {
   if (email.value) {
+    emailWrong.value = false;
+    emailWrongMessage.value = "";
     axios
       .post("/api/forgot-password", {
         email: email.value,
       })
       .then((res) => {
         console.log(res);
-        anime({
-          targets: ".input-container",
-          opacity: 0,
-          duration: 500,
-          easing: "easeInOutQuad",
-          complete: () => {
-            onBeforeRouteLeave(() => {
-              window.location.href = "/login";
-            });
-          },
-        });
+        flash.value = true;
+        flashMessage.value = "Email telah dikirimkan ke email anda";
+        setTimeout(() => {
+          flash.value = false;
+        }, 5000);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
+        const errors = error.response.data.errors;
+        if (errors.email) {
+          emailWrong.value = true;
+          emailWrongMessage.value = errors.email[0];
+        }
       });
   }
 };

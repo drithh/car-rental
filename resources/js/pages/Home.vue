@@ -7,6 +7,11 @@
           :message="flashMessage"
           @close="flash = false"
         ></flash>
+        <reset-password
+          v-if="resetPassword"
+          :token="token"
+          @closeMenu="closeReset"
+        ></reset-password>
 
         <div
           class="flex-between relative flex h-[32rem] w-full overflow-x-hidden overflow-y-hidden pl-[4vw]"
@@ -50,12 +55,6 @@
             >
               Mengapa Menyewa Dengan Kami?
             </div>
-            <cld-image
-              cloudName="demo"
-              publicId="sample"
-              width="300"
-              crop="scale"
-            />
 
             <div class="wrapper mt-20 mb-32 flex w-full place-content-between">
               <why-us
@@ -150,17 +149,22 @@ import WhyUs from "@/components/home/WhyUs.vue";
 import WhatYouGet from "@/components/home/WhatYouGet.vue";
 import BottomBorder from "@/components/BottomBorder.vue";
 import Fleet from "@/components/home/Fleet.vue";
+import ResetPassword from "@/components/home/ResetPassword.vue";
 import Flash from "@/components/flash/Flash.vue";
 
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import { onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
 
 const flash = ref(false);
 const flashMessage = ref("");
+
+const resetPassword = ref(false);
+const token = ref("");
 
 onMounted(() => {
   if (route.params) {
@@ -175,8 +179,25 @@ onMounted(() => {
         flashMessage.value = "Email Anda telah diverifikasi";
       }
     }
+    if (route.params.catchAll === "reset-password") {
+      token.value = window.location.search.split("=")[1];
+      setTimeout(() => {
+        resetPassword.value = true;
+      }, 2000);
+    }
   }
 });
+
+const closeReset = () => {
+  resetPassword.value = false;
+  token.value = "";
+  flash.value = true;
+  flashMessage.value = "Password berhasil direset";
+  setTimeout(() => {
+    flash.value = false;
+    router.push("home");
+  }, 4000);
+};
 
 const animateHorizontal = (id, start, end, delay) => {
   anime({

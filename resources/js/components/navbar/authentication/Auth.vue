@@ -2,7 +2,7 @@
   <teleport to="body">
     <transition name="overlay" @enter="wrapperModal = true">
       <div
-        class="overlay absolute left-0 top-0 z-50 m-auto flex h-screen w-screen place-content-center place-items-center overflow-hidden bg-black bg-opacity-40"
+        class="overlay absolute left-0 top-0 z-40 m-auto flex h-screen w-screen place-content-center place-items-center overflow-hidden bg-black bg-opacity-40"
         v-if="overlay"
       >
         <transition name="zoom" @after-leave="overlay = false">

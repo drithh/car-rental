@@ -1,7 +1,7 @@
 <template>
   <teleport to="body">
     <transition name="flash">
-      <div v-if="open" class="fixed top-4 left-0 w-full">
+      <div v-if="open" class="fixed top-4 left-0 z-[100] w-full">
         <div
           class="flash mx-auto flex h-16 w-[35rem] place-content-between place-items-center rounded-md bg-white py-2 px-6 shadow-lg"
         >
