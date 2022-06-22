@@ -27,7 +27,8 @@
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
         "tailwindcss": "^3.0.23",
-        "vue-loader": "^17.0.0"
+        "vue-loader": "^17.0.0",
+        "webpack-bundle-analyzer": "^4.5.0"
     },
     "dependencies": {
         "@dicebear/adventurer-neutral": "^4.10.2",

@@ -4,7 +4,10 @@
       class="image-wrapper flex h-56 w-56 place-content-center place-items-center rounded-full bg-white"
     >
       <img
-        :src="require(`public/images/home/${image}.png`).default"
+        :src="
+          'https://res.cloudinary.com/dcqu7m9lc/image/upload/v1655879528/car/' +
+          image
+        "
         class="h-4/5 w-4/5"
       />
     </div>

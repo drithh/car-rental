@@ -21,7 +21,10 @@
       class="header color-white relative z-0 box-border flex h-32 place-content-center pt-4 text-xl font-bold"
     >
       <img
-        :src="require(`public/images/home/${image}.png`).default"
+        :src="
+          'https://res.cloudinary.com/dcqu7m9lc/image/upload/v1655879528/car/' +
+          image
+        "
         class="h-40 w-40"
       />
     </div>

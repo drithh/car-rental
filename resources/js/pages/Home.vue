@@ -38,7 +38,7 @@
           <div class="hero-image flex flex-col">
             <img
               id="car"
-              :src="require(`public/images/car/mustang.jpg`).default"
+              src="https://res.cloudinary.com/dcqu7m9lc/image/upload/v1655879529/car/mustang_dqejxh.jpg"
               class="absolute top-[-4rem] h-[40rem] w-auto scale-x-[-1]"
             />
           </div>
@@ -60,17 +60,17 @@
               <why-us
                 title="Check-in super cepat"
                 description="Tidak menunggu. Tidak ada antrian. Dapatkan mengemudi dengan mobil sewaan Anda dalam waktu kurang dari 15 menit."
-                image="clock"
+                image="clock_sbao8z.png"
               ></why-us>
               <why-us
                 title="Tidak perlu kartu kredit"
                 description="Kami tidak mengambil uang Asuransi dari kartu kredit Anda saat mengambil mobil."
-                image="credit-card"
+                image="credit-card_q5jr3r.png"
               ></why-us>
               <why-us
                 title="Tidak ada biaya tambahan"
                 description="Tidak ada kejutan buruk atau biaya tak terduga saat Anda mengambil mobil sewaan Anda."
-                image="money-bag"
+                image="money-bag_tknelt.png"
               ></why-us>
             </div>
           </section>
@@ -98,17 +98,17 @@
               <what-you-get
                 title="Kilometer gratis tanpa batas"
                 description="Berkendara sejauh yang Anda inginkan secara gratis. Tidak ada batasan!"
-                image="speed"
+                image="speed_xq6483.png"
               ></what-you-get>
               <what-you-get
                 title="Gratis Bantuan Mekanik"
                 description="Jika terjadi keadaan yang tidak terduga, Anda akan mendapatkan bantuan mekanik langsung secara gratis."
-                image="mechanic"
+                image="mechanic_imclqu.png"
               ></what-you-get>
               <what-you-get
                 title="Pengiriman mobil ke hotel gratis"
                 description="Anda dapat menerima atau mengembalikan mobil sewaan di akomodasi Anda secara gratis."
-                image="hotel"
+                image="hotel_p0vtbd.png"
               ></what-you-get>
             </div>
           </section>
