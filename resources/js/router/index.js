@@ -17,12 +17,17 @@ const Books = () => import("../pages/Books");
 
 export const routes = [
   {
-    name: "home",
+    name: "default",
     path: "/:catchAll(.*)",
     component: Home,
     props: (route) => ({
       ...route.params,
     }),
+  },
+  {
+    name: "home",
+    path: "/home",
+    component: Home,
   },
   {
     name: "booking",
