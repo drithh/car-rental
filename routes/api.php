@@ -13,7 +13,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\XenditController;
 use App\Models\Merk;
 use Illuminate\Auth\Notifications\ResetPassword;
 
@@ -27,6 +27,9 @@ use Illuminate\Auth\Notifications\ResetPassword;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('xendit/va/list', [XenditController::class, 'getListVa']);
+Route::post('xendit/va/create', [XenditController::class, 'createVA']);
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);

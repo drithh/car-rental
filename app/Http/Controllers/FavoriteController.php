@@ -17,7 +17,7 @@ class FavoriteController extends Controller
     public function index(Request $request)
     {
         return DB::table('favorites')
-            ->select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa')
+            ->select('armadas.id', DB::raw("CONCAT(brand,' ',model) AS nama"), 'type', 'tipe_transmisi', 'kapasitas', 'harga_sewa', 'image_link')
             ->orderBy('armadas.id', 'asc')
             ->join('armadas', 'favorites.armada_id', '=', 'armadas.id')
             ->where('user_id', $request->user()->id)

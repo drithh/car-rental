@@ -973,10 +973,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           transmission: car.tipe_transmisi,
           capacity: car.kapasitas,
           price: Math.ceil(car.harga_sewa / 1000),
-          favorite: true
+          favorite: true,
+          imageLink: car.image_link
         }, null, 8
         /* PROPS */
-        , ["id", "name", "type", "transmission", "capacity", "price"]);
+        , ["id", "name", "type", "transmission", "capacity", "price", "imageLink"]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])])])];

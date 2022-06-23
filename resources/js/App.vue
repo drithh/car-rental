@@ -1,6 +1,8 @@
 <template>
   <navbar-component />
-  <router-view />
+  <div class="min-h-screen">
+    <router-view />
+  </div>
   <footer-component />
 </template>
 

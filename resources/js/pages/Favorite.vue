@@ -44,6 +44,7 @@
                 :capacity="car.kapasitas"
                 :price="Math.ceil(car.harga_sewa / 1000)"
                 :favorite="true"
+                :imageLink="car.image_link"
               ></car>
             </div>
           </div>
@@ -51,7 +52,7 @@
       </section></main
   ></transition>
 </template>
-
+fix favorite
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";

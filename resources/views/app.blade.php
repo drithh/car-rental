@@ -15,6 +15,7 @@
   <link rel="mask-icon" href="{{ asset('favicon/safari-pinned-tab.svg') }}" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@800&family=Yantramanav:wght@100;400;700&display=swap");
 
@@ -24,7 +25,6 @@
       font-weight: 400;
       src: url('/fonts/HelveticaNowText.ttf') format('truetype');
     }
-
   </style>
   <title>Rental Mobil</title>
 </head>

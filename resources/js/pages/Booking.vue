@@ -86,7 +86,6 @@ import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
 import axios from "axios";
-import { toLower } from "lodash";
 
 const pickUp = ref({
   location: "",
@@ -201,7 +200,9 @@ const updateFilter = () => {
     let filterTransmission = true;
 
     if (carFilterType.length) {
-      filterType = toLower(carFilterType).includes(toLower(car["type"]));
+      filterType = carFilterType
+        .toLowerCase()
+        .includes(car["type"].toLowerCase());
     }
 
     if (carFilterSize === 1) {

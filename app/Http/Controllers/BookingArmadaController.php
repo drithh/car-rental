@@ -161,7 +161,7 @@ class BookingArmadaController extends Controller
   public function getPendapatanTahunSetiapBulan()
   {
     $tahun = Carbon::now()->year;
-
+    // eloquent get pendapatan
     $pendapatan = DB::table('booking__armadas')
       ->select(DB::raw("SUM(harga) AS pendapatan"), DB::raw("MONTH(tanggal_mulai) AS bulan"))
       ->where('Keterangan', '=', 'Selesai')
@@ -257,17 +257,6 @@ class BookingArmadaController extends Controller
 
   public function getTransactionPage(Request $request)
   {
-    // if (!$request->user()) {
-    //     return response()->json([
-    //         'success' => false,
-    //         'message' => 'Kamu harus login untuk melakukan booking.'
-    //     ], 401);
-    // } else if (!$request->user()->isAdmin) {
-    //     return response()->json([
-    //         'success' => false,
-    //         'message' => 'Kamu harus login sebagai admin untuk melakukan booking.'
-    //     ], 401);
-    // }
     $bookings = DB::table('bookings')
       ->select('booking__armadas.id', 'tanggal_transaksi', 'users.name', 'harga_sewa', 'keterangan', DB::raw("CONCAT(brand,' ',model) AS nama"))
       ->join('users', 'users.id', '=', 'bookings.user_id')
