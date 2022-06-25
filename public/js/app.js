@@ -39183,15 +39183,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $setup.notificationActive = !$setup.notificationActive;
-    }),
-    "class": "relative cursor-pointer"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_font_awesome_icon, {
-    "class": "hover:text-blue hover:opacity-70",
-    icon: ['far', 'bell']
-  })]), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\n    @click=\"notificationActive = !notificationActive\"\n    class=\"relative cursor-pointer\"\n  >\n    <font-awesome-icon\n      class=\"hover:text-blue hover:opacity-70\"\n      :icon=\"['far', 'bell']\"\n    />\n  </div> "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/profile"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {

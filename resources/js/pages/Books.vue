@@ -53,6 +53,10 @@
                 </div>
               </div>
             </div>
+            <div v-if="openPayment">
+              <payment :orderItem="itemPay" @closeMenu="openPayment = false">
+              </payment>
+            </div>
             <div class="flex place-content-end gap-x-4">
               <div
                 v-for="(button, index) in item.buttons"
@@ -61,6 +65,7 @@
               >
                 <button
                   v-if="button === 'Bayar'"
+                  @click="openOrder(item)"
                   class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
                 >
                   {{ button }}
@@ -95,9 +100,16 @@ import { onBeforeRouteLeave } from "vue-router";
 import { ref, onMounted } from "vue";
 import axios from "axios";
 import Flash from "@/components/flash/Flash.vue";
+import Payment from "@/components/books/Payment.vue";
 const flash = ref(false);
 const flashMessage = ref("");
 const books = ref([]);
+const openPayment = ref(false);
+const itemPay = ref({});
+const openOrder = (item) => {
+  itemPay.value = item;
+  openPayment.value = true;
+};
 
 const cancelOrder = (id) => {
   axios

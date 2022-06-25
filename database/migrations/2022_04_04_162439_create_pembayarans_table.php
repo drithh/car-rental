@@ -18,7 +18,9 @@ return new class extends Migration
             $table->foreignId('booking_armada_id');
             $table->date('tanggal_bayar');
             $table->bigInteger('jumlah_bayar');
-            $table->string('tipe_bayar');
+            $table->string('external_id');
+            $table->string('virtual_account');
+            $table->string('payment_channel');
             $table->timestamps();
         });
     }

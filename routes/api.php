@@ -29,7 +29,8 @@ use Illuminate\Auth\Notifications\ResetPassword;
 */
 
 Route::get('xendit/va/list', [XenditController::class, 'getListVa']);
-Route::post('xendit/va/create', [XenditController::class, 'createVA']);
+Route::post('payment/create', [XenditController::class, 'createVA']);
+Route::post('payment/check/{id}', [XenditController::class, 'checkVA']);
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);

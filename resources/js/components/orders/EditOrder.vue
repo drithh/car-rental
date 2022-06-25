@@ -141,6 +141,11 @@ const close = () => {
 };
 </script>
 
+<style>
+@import "v-calendar/dist/style.css";
+@import "vue-select/dist/vue-select.css";
+</style>
+
 <style lang="postcss">
 .overlay-enter-from,
 .overlay-leave-to {

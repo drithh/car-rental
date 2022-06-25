@@ -50,7 +50,7 @@
       :icon="['far', 'heart']"
     />
   </router-link>
-  <div
+  <!-- <div
     @click="notificationActive = !notificationActive"
     class="relative cursor-pointer"
   >
@@ -58,7 +58,7 @@
       class="hover:text-blue hover:opacity-70"
       :icon="['far', 'bell']"
     />
-  </div>
+  </div> -->
   <div class="divider block h-10 w-[1px] bg-secondary"></div>
   <div class="profile relative">
     <router-link to="/profile">

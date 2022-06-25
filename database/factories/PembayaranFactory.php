@@ -20,7 +20,9 @@ class PembayaranFactory extends Factory
             'booking_armada_id' => mt_rand(1, 300),
             'tanggal_bayar' => $this->faker->date(),
             'jumlah_bayar' => mt_rand(1000000, 10000000),
-            'tipe_bayar' => $this->faker->randomElement(['Cash', 'Transfer']),
+            'external_id' => $this->faker->regexify('[a-z0-9]{13}'),
+            'virtual_account' => $this->faker->regexify('[0-9]{15}'),
+            'payment_channel' => $this->faker->randomElement(['BNI', 'BRI', 'BCA', 'Mandiri', 'BSI', 'CIMB']),
         ];
     }
 }
