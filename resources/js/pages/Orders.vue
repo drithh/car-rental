@@ -1,9 +1,11 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <div id="page" class="container mx-auto mt-12">
-      <div v-if="editOrder">
-        <edit-order :orderItem="orderItem" @closeMenu="closeModal"></edit-order>
-      </div>
+      <edit-order
+        :editOrder="editOrder"
+        :orderItem="orderItem"
+        @closeMenu="closeModal"
+      ></edit-order>
       <div class="col-span-12">
         <BaseCard>
           <template v-slot:cardHeader>

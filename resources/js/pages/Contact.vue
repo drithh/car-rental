@@ -1,6 +1,12 @@
 <template>
   <transition name="page" @enter="onPageEnter" appear>
     <main class="overflow-hidden">
+      <flash
+        :open="flash"
+        :message="flashMessage"
+        @close="flash = false"
+      ></flash>
+
       <section
         class="contact m-auto mb-20 mt-32 flex flex-row place-content-center gap-x-20 lg:w-[92vw]"
       >
@@ -31,22 +37,30 @@
                 label="First Name"
                 placeholder="John"
                 type="text"
+                :textvalue="form.firstName"
+                v-on:update:modelValue="(e) => (form.firstName = e)"
               ></input-box>
               <input-box
                 label="Last Name"
                 placeholder="Doe"
                 type="text"
+                :textvalue="form.lastName"
+                v-on:update:modelValue="(e) => (form.lastName = e)"
               ></input-box>
             </div>
             <input-box
               label="Email"
               placeholder="your@email.com"
               type="email"
+              :textvalue="form.email"
+              v-on:update:modelValue="(e) => (form.email = e)"
             ></input-box>
             <input-box
               label="Category"
               placeholder="Refund"
               type="text"
+              :textvalue="form.category"
+              v-on:update:modelValue="(e) => (form.category = e)"
             ></input-box>
             <div class="w-full px-3">
               <label
@@ -55,12 +69,14 @@
                 Message
               </label>
               <textarea
+                v-model="form.message"
                 class="text-gray-700 mb-3 block w-full appearance-none rounded-xl border border-secondary border-opacity-60 bg-darkencream py-4 px-4 leading-tight opacity-70 focus:border-blue focus:bg-white focus:outline-none"
                 rows="10"
                 placeholder="How might we help you?"
               ></textarea>
               <button class="mt-12 flex w-full place-content-end">
                 <div
+                  @click="submitForm"
                   class="w-36 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-6 opacity-70 hover:border-blue hover:opacity-100"
                 >
                   Submit
@@ -80,6 +96,35 @@ import InputBox from "@/components/contact/InputBox.vue";
 import BottomBorder from "@/components/BottomBorder.vue";
 import anime from "animejs";
 import { onBeforeRouteLeave } from "vue-router";
+import { ref } from "vue";
+import axios from "axios";
+import Flash from "@/components/flash/Flash.vue";
+const flash = ref(false);
+const flashMessage = ref("");
+
+const form = ref({
+  firstName: "",
+  lastName: "",
+  email: "",
+  category: "",
+  message: "",
+});
+
+const submitForm = async () => {
+  console.log(form.value);
+  axios
+    .post("/api/contact", form.value)
+    .then((response) => {
+      flash.value = true;
+      setTimeout(() => {
+        flash.value = false;
+      }, 3000);
+      flashMessage.value = "Terima kasih atas pesan anda";
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 const animateContactInformation = (start, end) => {
   anime({

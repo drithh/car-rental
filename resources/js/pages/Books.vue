@@ -155,6 +155,7 @@ const openUlasan = (item) => {
 };
 
 const closeUlasan = () => {
+  getBooks();
   isUlasan.value = false;
   document.documentElement.style = `overflow: auto;`;
 };
@@ -190,6 +191,7 @@ const cancelOrder = (id) => {
         flash.value = false;
       }, 5000);
       flashMessage.value = res.data.message;
+      getBooks();
     })
     .catch((err) => {
       console.log(err);
@@ -197,6 +199,10 @@ const cancelOrder = (id) => {
 };
 
 onMounted(() => {
+  getBooks();
+});
+
+const getBooks = () => {
   axios.get("/api/books").then((res) => {
     books.value = res.data;
     books.value.forEach((item, index) => {
@@ -219,7 +225,7 @@ onMounted(() => {
       }
     });
   });
-});
+};
 
 const animateContainer = (id, start, end, delay) => {
   anime({

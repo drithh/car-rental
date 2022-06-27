@@ -12,6 +12,7 @@ use App\Http\Controllers\BookingArmadaController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\SupportController;
 use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XenditController;
@@ -94,5 +95,7 @@ Route::get('dashboard/data/mobil', [CarController::class, 'getMostRent'])->middl
 Route::post('payment/create', [XenditController::class, 'createVA']);
 Route::post('payment/check/{id}', [XenditController::class, 'checkVA']);
 Route::post('payment/callback', [XenditController::class, 'callbackVA']);
+
+Route::post('contact', [SupportController::class, 'store']);
 
 Route::post('ulasan/store', [UlasanController::class, 'store']);
