@@ -2,7 +2,7 @@
   <teleport to="body">
     <transition name="overlay" @enter="viewModal">
       <div
-        class="overlay absolute left-0 top-0 z-40 m-auto flex h-screen w-screen place-content-center place-items-center overflow-hidden bg-black bg-opacity-40 opacity-100"
+        class="overlay fixed left-0 top-0 z-40 m-auto flex h-screen w-screen place-content-center place-items-center overflow-hidden bg-black bg-opacity-40 opacity-100"
         v-if="openPayment"
       >
         <transition name="zoom">
@@ -144,6 +144,7 @@ const setPayment = (channel) => {
   payment.value.bank_code = channel;
   payment.value.harga_sewa = props.orderItem.harga_sewa;
   payment.value.booking_armada_id = props.orderItem.booking_id;
+  console.log(payment.value);
   axios
     .post("/api/payment/create/", payment.value)
     .then((response) => {

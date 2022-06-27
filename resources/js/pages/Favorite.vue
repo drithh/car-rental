@@ -36,6 +36,7 @@
             >
               <car
                 v-for="(car, index) in allCars"
+                @openCar="openCar"
                 :key="index"
                 :id="car.id"
                 :name="car.nama"
@@ -52,20 +53,29 @@
       </section></main
   ></transition>
 </template>
-fix favorite
+
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
 import BookingForm from "@/components/booking/BookingForm.vue";
 import Car from "@/components/booking/Car.vue";
 import FilterType from "@/components/booking/FilterType.vue";
 import anime from "animejs";
-import { onBeforeRouteLeave } from "vue-router";
+import { onBeforeRouteLeave, useRouter } from "vue-router";
 import axios from "axios";
 
 const allCars = ref([]);
+const router = useRouter();
 
 const cars = ref();
+
+const openCar = (id) => {
+  router.push({
+    name: "singleCar",
+    params: {
+      id: id,
+    },
+  });
+};
 
 onMounted(() => {
   axios
