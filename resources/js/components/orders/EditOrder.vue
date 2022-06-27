@@ -105,6 +105,7 @@ const keterangan = [
   { title: "Dibatalkan" },
   { title: "Sudah Bayar" },
   { title: "Sedang Berjalan" },
+  { title: "Ulasan" },
   { title: "Selesai" },
 ];
 
@@ -127,7 +128,6 @@ const updateOrder = () => {
         flash.value = false;
       }, 5000);
       flashMessage.value = res.data.message;
-      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);

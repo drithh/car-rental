@@ -531,7 +531,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         return filterType && filterSize && filterTransmission;
       }); // cars.value = new Set([...filteredCars, ...cars.value]);
-      // console.log(cars.value);
       // if (!filterEnabled) {
       //   cars.value = allCars.value;
       // }
@@ -539,7 +538,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       axios__WEBPACK_IMPORTED_MODULE_5___default().get("/api/car").then(function (res) {
-        console.log(res.data);
         allCars.value = res.data;
         cars.value = res.data;
         filters.value = [{

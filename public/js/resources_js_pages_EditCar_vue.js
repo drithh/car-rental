@@ -139,7 +139,6 @@ __webpack_require__.r(__webpack_exports__);
     var loadCar = function loadCar() {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/car/information/".concat(route.params.id)).then(function (res) {
         carInformation.value = res.data[0];
-        console.log(res.data[0]);
       });
     };
 

@@ -444,7 +444,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 
         return filterType && filterSize && filterTransmission;
       }); // cars.value = new Set([...filteredCars, ...cars.value]);
-      // console.log(cars.value);
       // if (!filterEnabled) {
       //   cars.value = allCars.value;
       // }

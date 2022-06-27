@@ -223,7 +223,6 @@ onMounted(() => {
 
   axios.get("/api/dashboard/data/mobil").then((res) => {
     mobilDisewa.value = res.data;
-    console.log(mobilDisewa.value);
   });
 });
 

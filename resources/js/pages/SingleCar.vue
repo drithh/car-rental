@@ -287,11 +287,21 @@ const bookCar = () => {
       durasi: durasi,
     })
     .then((res) => {
+      router.push({
+        name: "books",
+      });
       flash.value = true;
       setTimeout(() => {
         flash.value = false;
       }, 3000);
       flashMessage.value = res.data.message;
+    })
+    .catch((err) => {
+      flash.value = true;
+      setTimeout(() => {
+        flash.value = false;
+      }, 3000);
+      flashMessage.value = "Isi formulir dengan benar";
     });
 };
 

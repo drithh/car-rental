@@ -147,6 +147,8 @@ __webpack_require__.r(__webpack_exports__);
     }, {
       title: "Sedang Berjalan"
     }, {
+      title: "Ulasan"
+    }, {
       title: "Selesai"
     }];
     var flash = (0,vue__WEBPACK_IMPORTED_MODULE_4__.ref)(false);
@@ -161,7 +163,6 @@ __webpack_require__.r(__webpack_exports__);
           flash.value = false;
         }, 5000);
         flashMessage.value = res.data.message;
-        console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -301,7 +302,6 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_7___default().get("/api/transactions/".concat(id)).then(function (res) {
         orderItem.value = res.data.order[0];
         editOrder.value = true;
-        console.log(orderItem.value);
       });
     };
 

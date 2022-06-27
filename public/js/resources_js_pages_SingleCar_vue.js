@@ -371,11 +371,20 @@ __webpack_require__.r(__webpack_exports__);
         tempat_pengembalian: dropOff.value.location,
         durasi: durasi
       }).then(function (res) {
+        router.push({
+          name: "books"
+        });
         flash.value = true;
         setTimeout(function () {
           flash.value = false;
         }, 3000);
         flashMessage.value = res.data.message;
+      })["catch"](function (err) {
+        flash.value = true;
+        setTimeout(function () {
+          flash.value = false;
+        }, 3000);
+        flashMessage.value = "Isi formulir dengan benar";
       });
     };
 

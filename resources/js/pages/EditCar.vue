@@ -156,7 +156,6 @@ const carInformation = ref({});
 const loadCar = () => {
   axios.get(`/api/car/information/${route.params.id}`).then((res) => {
     carInformation.value = res.data[0];
-    console.log(res.data[0]);
   });
 };
 

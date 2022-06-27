@@ -68,7 +68,6 @@ const forgotPassword = () => {
         email: email.value,
       })
       .then((res) => {
-        console.log(res);
         flash.value = true;
         flashMessage.value = "Email telah dikirimkan ke email anda";
         setTimeout(() => {

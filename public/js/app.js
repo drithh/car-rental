@@ -38195,7 +38195,6 @@ __webpack_require__.r(__webpack_exports__);
         axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/forgot-password", {
           email: email.value
         }).then(function (res) {
-          console.log(res);
           flash.value = true;
           flashMessage.value = "Email telah dikirimkan ke email anda";
           setTimeout(function () {

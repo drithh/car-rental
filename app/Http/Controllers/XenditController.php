@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Http\Requests\StoreCartRequest;
+use App\Models\Booking_Armada;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -46,7 +47,6 @@ class XenditController extends Controller
 
 
 
-    // check if pembayaran is already created
     $checkPembayaran = Pembayaran::where('booking_armada_id', $request->booking_armada_id)->first();
     if ($checkPembayaran) {
       $checkPembayaran->update([
@@ -74,5 +74,26 @@ class XenditController extends Controller
 
 
     return response()->json($createVa);
+  }
+
+  public function callbackVA(Request $request)
+  {
+    $external_id = $request->external_id;
+
+    $payment = Pembayaran::where('external_id', $external_id)->first();
+    if ($payment) {
+      Booking_Armada::where('id', $payment->booking_armada_id)->update([
+        'keterangan' => 'Sudah Bayar',
+      ]);
+      return response()->json([
+        'status' => 'success',
+        'message' => 'Pembayaran Berhasil',
+      ]);
+    }
+
+    return response()->json([
+      'status' => 'failed',
+      'message' => 'Pembayaran Gagal',
+    ]);
   }
 }

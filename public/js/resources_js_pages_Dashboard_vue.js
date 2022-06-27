@@ -202,7 +202,6 @@ __webpack_require__.r(__webpack_exports__);
       });
       axios__WEBPACK_IMPORTED_MODULE_6___default().get("/api/dashboard/data/mobil").then(function (res) {
         mobilDisewa.value = res.data;
-        console.log(mobilDisewa.value);
       });
     });
 

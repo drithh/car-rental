@@ -111,7 +111,6 @@ __webpack_require__.r(__webpack_exports__);
         username.value = res.data.name;
         email.value = res.data.email;
         var login = Math.ceil(Math.abs(new Date() - new Date(res.data.last_login_at)) / 1000 / 60);
-        console.log(res.data);
         verified.value = res.data.email_verified_at ? true : false;
         lastLogin.value = "".concat(login, " ").concat(login == 1 ? "minute" : "minutes", " ago");
         svg.value = (0,_dicebear_avatars__WEBPACK_IMPORTED_MODULE_8__.createAvatar)(_dicebear_adventurer_neutral__WEBPACK_IMPORTED_MODULE_9__, {
@@ -141,9 +140,7 @@ __webpack_require__.r(__webpack_exports__);
         flash.value = false;
       }, 5000);
       flashMessage.value = "Verikasi email telah dikirim ke email anda";
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/resend-email-verification").then(function (res) {
-        console.log(res.data);
-      })["catch"](function (err) {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/resend-email-verification").then(function (res) {})["catch"](function (err) {
         console.log(err);
       });
     };
@@ -162,7 +159,6 @@ __webpack_require__.r(__webpack_exports__);
           flash.value = false;
         }, 5000);
         flashMessage.value = res.data.message;
-        console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });

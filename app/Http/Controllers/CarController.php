@@ -107,7 +107,7 @@ class CarController extends Controller
     {
         $ulasan = DB::table('ulasans')
             ->select('ulasans.id', 'ulasans.ulasan', 'ulasans.nilai', 'ulasans.created_at', 'users.name')
-            ->orderBy('ulasans.id', 'asc')
+            ->orderBy('ulasans.id', 'desc')
             ->join('users', 'users.id', '=', 'ulasans.user_id')
             ->where('armada_id', $id)
             ->get();

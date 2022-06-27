@@ -260,7 +260,6 @@ onMounted(() => {
       let login = Math.ceil(
         Math.abs(new Date() - new Date(res.data.last_login_at)) / 1000 / 60
       );
-      console.log(res.data);
       verified.value = res.data.email_verified_at ? true : false;
 
       lastLogin.value = `${login} ${login == 1 ? "minute" : "minutes"} ago`;
@@ -296,7 +295,6 @@ const resendEmail = () => {
   axios
     .get("/api/resend-email-verification")
     .then((res) => {
-      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -318,7 +316,6 @@ const updateProfile = () => {
         flash.value = false;
       }, 5000);
       flashMessage.value = res.data.message;
-      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);

@@ -220,7 +220,6 @@ const updateFilter = () => {
     return filterType && filterSize && filterTransmission;
   });
   // cars.value = new Set([...filteredCars, ...cars.value]);
-  // console.log(cars.value);
   // if (!filterEnabled) {
   //   cars.value = allCars.value;
   // }
@@ -230,7 +229,6 @@ onMounted(() => {
   axios
     .get("/api/car")
     .then((res) => {
-      console.log(res.data);
       allCars.value = res.data;
       cars.value = res.data;
       filters.value = [

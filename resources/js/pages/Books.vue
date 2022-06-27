@@ -6,6 +6,18 @@
         :message="flashMessage"
         @close="flash = false"
       ></flash>
+      <payment
+        :openPayment="openPayment"
+        :orderItem="itemPay"
+        @closeMenu="closeOrder"
+      >
+      </payment>
+      <ulasan
+        :orderItem="ulasanItem"
+        :isUlasan="isUlasan"
+        @closeMenu="closeUlasan"
+      >
+      </ulasan>
       <section
         class="faq relative m-auto mt-14 flex flex-col place-content-center place-items-center lg:w-[92vw]"
       >
@@ -53,10 +65,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="openPayment">
-              <payment :orderItem="itemPay" @closeMenu="openPayment = false">
-              </payment>
-            </div>
+
             <div class="flex place-content-end gap-x-4">
               <div
                 v-for="(button, index) in item.buttons"
@@ -80,6 +89,7 @@
                 <button
                   v-else-if="button === 'Beri Ulasan'"
                   class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+                  @click="openUlasan(item)"
                 >
                   {{ button }}
                 </button>
@@ -98,6 +108,7 @@ import anime from "animejs";
 import BottomBorder from "@/components/BottomBorder.vue";
 import { onBeforeRouteLeave } from "vue-router";
 import { ref, onMounted } from "vue";
+import Ulasan from "@/components/books/Ulasan.vue";
 import axios from "axios";
 import Flash from "@/components/flash/Flash.vue";
 import Payment from "@/components/books/Payment.vue";
@@ -106,8 +117,27 @@ const flashMessage = ref("");
 const books = ref([]);
 const openPayment = ref(false);
 const itemPay = ref({});
+const isUlasan = ref(false);
+const ulasanItem = ref({});
+
+const openUlasan = (item) => {
+  ulasanItem.value = item;
+  isUlasan.value = true;
+  document.documentElement.style = `overflow: hidden;`;
+};
+
+const closeUlasan = () => {
+  isUlasan.value = false;
+  document.documentElement.style = `overflow: auto;`;
+};
+
+const closeOrder = () => {
+  openPayment.value = false;
+  document.documentElement.style = `overflow: auto;`;
+};
+
 const openOrder = (item) => {
-  console.log(item, "open payment");
+  document.documentElement.style = `overflow: hidden;`;
   itemPay.value = item;
   openPayment.value = true;
 };
@@ -123,7 +153,6 @@ const cancelOrder = (id) => {
         flash.value = false;
       }, 5000);
       flashMessage.value = res.data.message;
-      console.log(res.data);
     })
     .catch((err) => {
       console.log(err);
@@ -146,7 +175,6 @@ onMounted(() => {
           break;
       }
     });
-    console.log(books.value);
   });
 });
 

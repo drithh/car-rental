@@ -12,9 +12,11 @@ use App\Http\Controllers\BookingArmadaController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\XenditController;
 use App\Models\Merk;
+use App\Models\Ulasan;
 use Illuminate\Auth\Notifications\ResetPassword;
 
 /*
@@ -28,9 +30,7 @@ use Illuminate\Auth\Notifications\ResetPassword;
 |
 */
 
-Route::get('xendit/va/list', [XenditController::class, 'getListVa']);
-Route::post('payment/create', [XenditController::class, 'createVA']);
-Route::post('payment/check/{id}', [XenditController::class, 'checkVA']);
+
 
 Route::post('register', [RegisterController::class, 'register']);
 Route::post('login', [LoginController::class, 'login']);
@@ -72,14 +72,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('forgot-password', [ResetPasswordController::class, 'forgotPassword'])->name('password.reset');
 Route::post('reset-password', [ResetPasswordController::class, 'reset']);
 
-// Route::post('forgot-password', [ResetPasswordController::class, 'forgotPassword'])->name('password.reset');
-// Route::post('forgot-password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-// Route::get('reset-password/{token}', function (Request $request) {
-//     // get token from param
-//     $token = $request->token;
-//     return view('auth.passwords.reset')->with('token', $token);
-// })->name('password.reset');
 
 Route::get('email-verification', [VerificationController::class, 'verify'])->name('verification.verify');
 
@@ -96,3 +88,11 @@ Route::get('dashboard/data/bulanan', [BookingArmadaController::class, 'getPendap
 
 Route::get('dashboard/data/tipe', [BookingArmadaController::class, 'getPendapatanByTipe'])->middleware('auth:sanctum');
 Route::get('dashboard/data/mobil', [CarController::class, 'getMostRent'])->middleware('auth:sanctum');
+
+
+// Route::get('xendit/va/list', [XenditController::class, 'getListVa']);
+Route::post('payment/create', [XenditController::class, 'createVA']);
+Route::post('payment/check/{id}', [XenditController::class, 'checkVA']);
+Route::post('payment/callback', [XenditController::class, 'callbackVA']);
+
+Route::post('ulasan/store', [UlasanController::class, 'store']);

@@ -135,7 +135,6 @@ const OpenModal = (id) => {
   axios.get(`/api/transactions/${id}`).then((res) => {
     orderItem.value = res.data.order[0];
     editOrder.value = true;
-    console.log(orderItem.value);
   });
 };
 

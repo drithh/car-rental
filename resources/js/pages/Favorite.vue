@@ -188,7 +188,6 @@ const updateFilter = () => {
     return filterType && filterSize && filterTransmission;
   });
   // cars.value = new Set([...filteredCars, ...cars.value]);
-  // console.log(cars.value);
   // if (!filterEnabled) {
   //   cars.value = allCars.value;
   // }
