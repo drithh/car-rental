@@ -107,6 +107,7 @@ const books = ref([]);
 const openPayment = ref(false);
 const itemPay = ref({});
 const openOrder = (item) => {
+  console.log(item, "open payment");
   itemPay.value = item;
   openPayment.value = true;
 };

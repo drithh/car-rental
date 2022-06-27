@@ -125,6 +125,7 @@ __webpack_require__.r(__webpack_exports__);
     var itemPay = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({});
 
     var openOrder = function openOrder(item) {
+      console.log(item, "open payment");
       itemPay.value = item;
       openPayment.value = true;
     };
