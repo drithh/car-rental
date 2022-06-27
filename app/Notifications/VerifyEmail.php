@@ -54,9 +54,9 @@ class VerifyEmail extends Notification
         }
 
         return (new MailMessage)
-            ->line('THE VERIFY EMAIL')
+            ->line('Verifikasi email anda untuk bisa melakukan rental.')
             ->action('Verify Email', $url)
-            ->line('Thank you for using our application!');
+            ->line('Terimakasih telah mendaftar di Aplikasi Rental Mobil Kami.');
     }
 
     protected function verificationUrl($notifiable)

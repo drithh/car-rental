@@ -42,7 +42,7 @@
               </div>
             </div>
             <div class="car flex place-content-between gap-x-4">
-              <div class="flex flex-row gap-x-4">
+              <button @click="openCar(item.id)" class="flex flex-row gap-x-4">
                 <img
                   :src="item.image_link"
                   class="h-24 w-36 rounded-xl border border-secondary border-opacity-20"
@@ -52,12 +52,12 @@
                   <div class="text-lg font-medium text-primary">
                     {{ item.model }}
                   </div>
-                  <div class="text-secondary">{{ item.type }}</div>
+                  <div class="text-left text-secondary">{{ item.type }}</div>
                 </div>
-              </div>
+              </button>
               <div class="flex place-items-center gap-x-8 pr-6">
                 <div class="block h-16 w-[1px] bg-secondary opacity-50"></div>
-                <div class="flex flex-col place-content-center">
+                <div class="flex flex-col place-content-start">
                   <div class="text-secondary">Harga Sewa</div>
                   <div class="font-medium text-primary">
                     Rp{{ item.harga_sewa }}
@@ -66,33 +66,59 @@
               </div>
             </div>
 
-            <div class="flex place-content-end gap-x-4">
+            <div class="flex w-full place-content-between gap-x-4">
               <div
-                v-for="(button, index) in item.buttons"
-                :key="index"
-                @click="updateProfile"
+                class="tanggal flex place-content-center place-items-center gap-x-8"
               >
-                <button
-                  v-if="button === 'Bayar'"
-                  @click="openOrder(item)"
-                  class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+                <div class="mulai flex flex-col">
+                  <div class="text-base text-secondary">
+                    {{ item.tempat_mulai }}
+                  </div>
+                  <div class="text-sm text-secondary">
+                    {{ item.tanggal_mulai }}
+                  </div>
+                </div>
+                <font-awesome-icon
+                  class="scale-[1.5] text-secondary"
+                  :icon="['fas', 'angle-right']"
+                />
+                <div class="selesai flex-col">
+                  <div class="text-base text-secondary">
+                    {{ item.tempat_pengembalian }}
+                  </div>
+                  <div class="text-sm text-secondary">
+                    {{ item.tanggal_pengembalian }}
+                  </div>
+                </div>
+              </div>
+              <div class="flex gap-x-4">
+                <div
+                  v-for="(button, index) in item.buttons"
+                  :key="index"
+                  @click="updateProfile"
                 >
-                  {{ button }}
-                </button>
-                <button
-                  v-else-if="button === 'Batal'"
-                  @click="cancelOrder(item.booking_id)"
-                  class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
-                >
-                  {{ button }}
-                </button>
-                <button
-                  v-else-if="button === 'Beri Ulasan'"
-                  class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
-                  @click="openUlasan(item)"
-                >
-                  {{ button }}
-                </button>
+                  <button
+                    v-if="button === 'Bayar'"
+                    @click="openOrder(item)"
+                    class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+                  >
+                    {{ button }}
+                  </button>
+                  <button
+                    v-else-if="button === 'Batal'"
+                    @click="cancelOrder(item.booking_id)"
+                    class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+                  >
+                    {{ button }}
+                  </button>
+                  <button
+                    v-else-if="button === 'Beri Ulasan'"
+                    class="w-32 rounded-xl border border-secondary border-opacity-60 bg-darkencream py-2 px-4 text-base opacity-70 hover:border-blue hover:opacity-100"
+                    @click="openUlasan(item)"
+                  >
+                    {{ button }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -106,7 +132,7 @@
 <script setup>
 import anime from "animejs";
 import BottomBorder from "@/components/BottomBorder.vue";
-import { onBeforeRouteLeave } from "vue-router";
+import { onBeforeRouteLeave, useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import Ulasan from "@/components/books/Ulasan.vue";
 import axios from "axios";
@@ -119,6 +145,8 @@ const openPayment = ref(false);
 const itemPay = ref({});
 const isUlasan = ref(false);
 const ulasanItem = ref({});
+
+const router = useRouter();
 
 const openUlasan = (item) => {
   ulasanItem.value = item;
@@ -142,6 +170,15 @@ const openOrder = (item) => {
   openPayment.value = true;
 };
 
+const openCar = (id) => {
+  router.push({
+    name: "singleCar",
+    params: {
+      id: id,
+    },
+  });
+};
+
 const cancelOrder = (id) => {
   axios
     .post("/api/books/cancel", {
@@ -163,6 +200,12 @@ onMounted(() => {
   axios.get("/api/books").then((res) => {
     books.value = res.data;
     books.value.forEach((item, index) => {
+      // count duration
+      const duration =
+        new Date(item.tanggal_pengembalian) - new Date(item.tanggal_mulai);
+      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
+      books.value[index].harga_sewa = days * item.harga_sewa;
+      console.log(days);
       switch (item.keterangan) {
         case "Belum Bayar":
           books.value[index].buttons = ["Bayar", "Batal"];

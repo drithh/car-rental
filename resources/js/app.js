@@ -29,10 +29,12 @@ import {
   faEyeSlash,
   faStar,
   faCar,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(
+  faAngleRight,
   faEye,
   faEyeSlash,
   faXmark,

@@ -46,6 +46,13 @@ class XenditController extends Controller
     $createVa = \Xendit\VirtualAccounts::create($params);
 
 
+    // $bookingArmada = Booking_Armada::where('id', $request->booking_armada_id)->first();
+    // $tanggalMulai = Carbon::parse($bookingArmada->tanggal_mulai);
+    // $tanggalPengembalian = Carbon::parse($bookingArmada->tanggal_pengembalian);
+
+    // $duration = $tanggalPengembalian->diffInDays($tanggalMulai);
+
+
 
     $checkPembayaran = Pembayaran::where('booking_armada_id', $request->booking_armada_id)->first();
     if ($checkPembayaran) {

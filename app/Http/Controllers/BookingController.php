@@ -22,7 +22,7 @@ class BookingController extends Controller
     public function getAll(Request $request)
     {
         $books = DB::table('booking__armadas')
-            ->select(DB::raw('booking__armadas.id as booking_id'), 'bookings.tanggal_transaksi', 'bookings.booking_code', 'bookings.no_tagihan', 'armadas.id', 'merks.brand', 'merks.model', 'merks.type', 'armadas.tipe_transmisi', 'armadas.kapasitas', 'armadas.bahan_bakar', 'armadas.tahun_perolehan', 'armadas.harga_satuan', 'merks.image_link', 'armadas.harga_sewa', 'keterangan')
+            ->select(DB::raw('booking__armadas.id as booking_id'), 'bookings.tanggal_transaksi', 'bookings.booking_code', 'bookings.no_tagihan', 'armadas.id', 'merks.brand', 'merks.model', 'merks.type', 'armadas.tipe_transmisi', 'armadas.kapasitas', 'armadas.bahan_bakar', 'armadas.tahun_perolehan', 'armadas.harga_satuan', 'merks.image_link', 'armadas.harga_sewa', 'keterangan', 'booking__armadas.tanggal_mulai', 'booking__armadas.tanggal_pengembalian', 'booking__armadas.tempat_mulai', 'booking__armadas.tempat_pengembalian')
 
             ->join('bookings', 'bookings.id', '=', 'booking__armadas.booking_id')
             ->join('armadas', 'armadas.id', '=', 'booking__armadas.armada_id')
