@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <script src="{{ asset('js/app.js') }}" defer></script>
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+  <script src="https://res.cloudinary.com/dcqu7m9lc/raw/upload/v1656328789/app_argvsv.js" defer></script>
+  <link rel="stylesheet" href="https://res.cloudinary.com/dcqu7m9lc/raw/upload/v1656328962/app_h1mf9w.css">
   <link rel="stylesheet" href="{{ asset('css/iconsmind/iconsmind.css') }}">
   <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('favicon/apple-touch-icon.png') }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">

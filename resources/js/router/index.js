@@ -1,19 +1,31 @@
 import { createWebHistory, createRouter } from "vue-router";
 import axios from "axios";
 
-const Home = () => import(/* webpackChunkName: "home" */ "../pages/Home.vue");
-const Booking = () =>
-  import(/* webpackChunkName: "booking" */ "../pages/Booking");
-const About = () => import(/* webpackChunkName: "booking" */ "../pages/About");
-const Contact = () => import("../pages/Contact");
-const Faq = () => import("../pages/Faq");
-const Profile = () => import("../pages/Profile");
-const Favorite = () => import("../pages/Favorite");
-const Dashboard = () => import("../pages/Dashboard");
-const Orders = () => import("../pages/Orders");
-const SingleCar = () => import("../pages/SingleCar");
-const EditCar = () => import("../pages/EditCar");
-const Books = () => import("../pages/Books");
+// const Home = () => import("../pages/Home.vue");
+// const Booking = () => import("../pages/Booking");
+// const About = () => import("../pages/About");
+// const Contact = () => import("../pages/Contact");
+// const Faq = () => import("../pages/Faq");
+// const Profile = () => import("../pages/Profile");
+// const Favorite = () => import("../pages/Favorite");
+// const Dashboard = () => import("../pages/Dashboard");
+// const Orders = () => import("../pages/Orders");
+// const SingleCar = () => import("../pages/SingleCar");
+// const EditCar = () => import("../pages/EditCar");
+// const Books = () => import("../pages/Books");
+
+import Home from "../pages/Home";
+import Booking from "../pages/Booking";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import Faq from "../pages/Faq";
+import Profile from "../pages/Profile";
+import Favorite from "../pages/Favorite";
+import Dashboard from "../pages/Dashboard";
+import Orders from "../pages/Orders";
+import SingleCar from "../pages/SingleCar";
+import EditCar from "../pages/EditCar";
+import Books from "../pages/Books";
 
 export const routes = [
   {
