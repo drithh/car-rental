@@ -284,7 +284,7 @@ const bookCar = () => {
       tanggal_harus_kembali: tanggal_harus_kembali,
       tempat_mulai: pickUp.value.location,
       tempat_pengembalian: dropOff.value.location,
-      durasi: durasi,
+      durasi: durasi + 1,
     })
     .then((res) => {
       router.push({

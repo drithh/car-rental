@@ -27,7 +27,7 @@
               </div>
               <div class="text-xl">Harga</div>
               <div class="text-xl text-secondary">
-                {{ orderItem.harga_sewa }}
+                {{ orderItem.harga }}
               </div>
               <div class="text-xl">Nomor Virtual Akun</div>
               <div class="text-xl text-red-400">
@@ -135,14 +135,14 @@ const order = ref(props.orderItem);
 
 const payment = ref({
   bank_code: "",
-  harga_sewa: "",
+  harga: "",
   name: "",
   booking_armada_id: "",
 });
 
 const setPayment = (channel) => {
   payment.value.bank_code = channel;
-  payment.value.harga_sewa = props.orderItem.harga_sewa;
+  payment.value.harga = props.orderItem.harga;
   payment.value.booking_armada_id = props.orderItem.booking_id;
   console.log(payment.value);
   axios

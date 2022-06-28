@@ -22,7 +22,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(50)->create();
+        User::create([
+            'name' => 'User',
+            'email' => 'user@user',
+            'password' => bcrypt('user'),
+            'email_verified_at' => now(),
+        ]);
+        User::factory(49)->create();
         Merk::factory(55)->create();
         Armada::factory(100)->create();
         Booking::factory(800)->create();
@@ -36,7 +42,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@admin',
-            'password' => bcrypt('adminadmin'),
+            'password' => bcrypt('admin'),
             'email_verified_at' => now(),
             'is_admin' => true
         ]);

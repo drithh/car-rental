@@ -68,7 +68,7 @@ class BookingArmadaController extends Controller
     DB::table('booking__armadas')->insert([
       'booking_id' => $bookingId,
       'armada_id' => $request->armada_id,
-      'harga' => $car[0]->harga_sewa,
+      'harga' => $car[0]->harga_sewa * $request->durasi,
       'tanggal_mulai' => $request->tanggal_mulai,
       'waktu_mulai' => $request->waktu_mulai,
       'tanggal_pengembalian' => $request->tanggal_selesai,
@@ -258,7 +258,7 @@ class BookingArmadaController extends Controller
   public function getTransactionPage(Request $request)
   {
     $bookings = DB::table('bookings')
-      ->select('booking__armadas.id', 'tanggal_transaksi', 'users.name', 'harga_sewa', 'keterangan', DB::raw("CONCAT(brand,' ',model) AS nama"))
+      ->select('booking__armadas.id', 'tanggal_transaksi', 'users.name', 'harga', 'keterangan', DB::raw("CONCAT(brand,' ',model) AS nama"))
       ->join('users', 'users.id', '=', 'bookings.user_id')
       ->join('booking__armadas', 'booking__armadas.booking_id', '=', 'bookings.id')
       ->join('armadas', 'armadas.id', '=', 'booking__armadas.armada_id')

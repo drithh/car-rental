@@ -38,7 +38,7 @@ class XenditController extends Controller
       'external_id' => \uniqid(),
       'bank_code' => $request->bank_code,
       'name' => $request->user()->name,
-      'expected_amount' => $request->harga_sewa,
+      'expected_amount' => $request->harga,
       'is_closed' => true,
       'is_single_use' => true,
     ];
@@ -60,7 +60,7 @@ class XenditController extends Controller
         'booking_armada_id' => $request->booking_armada_id,
         'virtual_account' => $createVa['account_number'],
         'tanggal_bayar' => Carbon::now(),
-        'jumlah_bayar' => $request->harga_sewa,
+        'jumlah_bayar' => $request->harga,
         'external_id' => $params['external_id'],
         'payment_channel' => $request->bank_code,
       ]);
@@ -69,7 +69,7 @@ class XenditController extends Controller
         'booking_armada_id' => $request->booking_armada_id,
         'tanggal_bayar' => Carbon::now(),
         'virtual_account' => $createVa['account_number'],
-        'jumlah_bayar' => $request->harga_sewa,
+        'jumlah_bayar' => $request->harga,
         'external_id' => $params['external_id'],
         'payment_channel' => $request->bank_code,
       ]);

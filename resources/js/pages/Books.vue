@@ -59,9 +59,7 @@
                 <div class="block h-16 w-[1px] bg-secondary opacity-50"></div>
                 <div class="flex flex-col place-content-start">
                   <div class="text-secondary">Harga Sewa</div>
-                  <div class="font-medium text-primary">
-                    Rp{{ item.harga_sewa }}
-                  </div>
+                  <div class="font-medium text-primary">Rp{{ item.harga }}</div>
                 </div>
               </div>
             </div>
@@ -206,12 +204,13 @@ const getBooks = () => {
   axios.get("/api/books").then((res) => {
     books.value = res.data;
     books.value.forEach((item, index) => {
+      console.log(item);
       // count duration
-      const duration =
-        new Date(item.tanggal_pengembalian) - new Date(item.tanggal_mulai);
-      const days = Math.floor(duration / (1000 * 60 * 60 * 24));
-      books.value[index].harga_sewa = days * item.harga_sewa;
-      console.log(days);
+      // const duration =
+      //   new Date(item.tanggal_pengembalian) - new Date(item.tanggal_mulai);
+      // const days = Math.floor(duration / (1000 * 60 * 60 * 24)) + 1;
+      // books.value[index].harga_sewa = days * item.harga_sewa;
+      // console.log(days);
       switch (item.keterangan) {
         case "Belum Bayar":
           books.value[index].buttons = ["Bayar", "Batal"];

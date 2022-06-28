@@ -88,7 +88,7 @@
                           >{{ order.keterangan }}</span
                         >
                       </td>
-                      <td class="py-5">Rp{{ order.harga_sewa }}</td>
+                      <td class="py-5">Rp{{ order.harga }}</td>
                       <td class="py-5">{{ order.tanggal_transaksi }}</td>
                       <td class="py-5">
                         <BaseBtn
