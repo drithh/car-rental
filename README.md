@@ -1,4 +1,16 @@
-# Tutorial Bang
+# Tutorial Instalasi Project
+
+## Demo
+
+Demo: https://pemweb.projectakhir.me/
+
+Role: Admin<br/>
+Email : admin@admin<br/>
+Password: admin<br/>
+
+Role: User<br/>
+Email : user@user<br/>
+Password: user<br/>
 
 ## Tools
 
