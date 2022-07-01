@@ -42,7 +42,7 @@ class ResetPassword extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = env('FRONT_APP') . '/reset-password?token=' . $this->token;
+        $url = env('FRONT_APP') . 'reset-password?token=' . $this->token;
 
         return (new MailMessage)
             ->line('Forgot Password?')

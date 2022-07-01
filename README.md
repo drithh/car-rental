@@ -2,12 +2,12 @@
 
 ## Tools
 
--   PHP (https://www.php.net/)
--   Laravel (https://laravel.com/docs/9.x/installation)
--   Webserver (http://www.apache.org/)
--   Composer (https://getcomposer.org/)
--   Relational Database (mariadb/mysql/postgresql)
--   NodeJS (https://nodejs.org/)
+- PHP (https://www.php.net/)
+- Laravel (https://laravel.com/docs/9.x/installation)
+- Webserver (http://www.apache.org/)
+- Composer (https://getcomposer.org/)
+- Relational Database (mariadb/mysql/postgresql)
+- NodeJS (https://nodejs.org/)
 
 ## Setup Project
 
@@ -23,16 +23,17 @@
 
 1. Copy file .env.example ke .env
 2. Edit file .env terutama bagian database configuration, jika menggunakan mysql maka default-nya seperti dibawah ini
-    ```
-     DB_CONNECTION=mysql
-     DB_HOST=127.0.0.1
-     DB_PORT=3306
-     DB_DATABASE=rental_mobil
-     DB_USERNAME=root
-     DB_PASSWORD=
-    ```
-    Pastikan database `rental_mobil` sudah dibuat sebelumnya
-3. Ketik `php artisan migrate:fresh --seed`
+   ```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=rental_mobil
+    DB_USERNAME=root
+    DB_PASSWORD=
+   ```
+   Pastikan database `rental_mobil` sudah dibuat sebelumnya
+3. Jangan Lupa set kredensial smtp agar email bisa dikirimkan
+4. Ketik `php artisan migrate:fresh --seed`
 
 ### Jalankan Project
 

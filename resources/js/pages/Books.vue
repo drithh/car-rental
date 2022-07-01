@@ -49,7 +49,7 @@
                   alt="car"
                 />
                 <div class="flex flex-col place-content-between py-6">
-                  <div class="text-lg font-medium text-primary">
+                  <div class="text-left text-lg font-medium text-primary">
                     {{ item.model }}
                   </div>
                   <div class="text-left text-secondary">{{ item.type }}</div>
