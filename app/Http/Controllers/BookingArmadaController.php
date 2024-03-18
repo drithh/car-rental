@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Response;
 
 class BookingArmadaController extends Controller
 {
@@ -21,10 +22,13 @@ class BookingArmadaController extends Controller
       ->select(DB::raw('booking__armadas.id as booking_armada_id'), 'booking__armadas.*', 'armadas.*')
       ->join('armadas', 'booking__armadas.armada_id', '=', 'armadas.id')
       ->where('booking__armadas.id', $id)
-      ->get();
-    return response()->json([
-      'success' => true,
-      'order' =>  $booking,
+      ->get()
+      ->toArray();
+
+    unset($booking[0]->poto_kendaraan);
+    return Response::json([
+      "success" => true,
+      "result" => $booking
     ]);
   }
 
@@ -147,7 +151,7 @@ class BookingArmadaController extends Controller
 
     $pendapatan = DB::table('booking__armadas')
       ->select(DB::raw("SUM(harga) AS pendapatan"))
-      ->where('Keterangan', '=', 'Selesai')
+      ->where('keterangan', '=', 'Selesai')
       ->get();
     return response()->json([
       "message" => "Ambil Data berhasil.",
@@ -163,15 +167,15 @@ class BookingArmadaController extends Controller
     $tahun = Carbon::now()->year;
     // eloquent get pendapatan
     $pendapatan = DB::table('booking__armadas')
-      ->select(DB::raw("SUM(harga) AS pendapatan"), DB::raw("MONTH(tanggal_mulai) AS bulan"))
-      ->where('Keterangan', '=', 'Selesai')
+      ->select(DB::raw("SUM(harga) AS pendapatan"), DB::raw("EXTRACT(MONTH FROM tanggal_mulai) AS bulan"))
+      ->where('keterangan', '=', 'Selesai')
       ->whereYear('tanggal_mulai', '=', $tahun)
       ->groupBy('bulan')
       ->get();
 
     $lastYear = DB::table('booking__armadas')
-      ->select(DB::raw("SUM(harga) AS pendapatan"), DB::raw("MONTH(tanggal_mulai) AS bulan"))
-      ->where('Keterangan', '=', 'Selesai')
+      ->select(DB::raw("SUM(harga) AS pendapatan"), DB::raw("EXTRACT(MONTH FROM tanggal_mulai) AS bulan"))
+      ->where('keterangan', '=', 'Selesai')
       ->whereYear('tanggal_mulai', '=', $tahun - 1)
       ->groupBy('bulan')
       ->get();
@@ -218,7 +222,7 @@ class BookingArmadaController extends Controller
       ->select(DB::raw("SUM(harga) AS pendapatan"), 'type')
       ->join('armadas', 'armadas.id', '=', 'armada_id')
       ->join('merks', 'merks.id', '=', 'merk_id')
-      ->where('Keterangan', '=', 'Selesai')
+      ->where('keterangan', '=', 'Selesai')
       ->groupBy('type')
       ->get();
 
@@ -239,7 +243,7 @@ class BookingArmadaController extends Controller
 
     $pendapatan = DB::table('booking__armadas')
       ->select(DB::raw("harga AS pendapatan"))
-      ->where('Keterangan', '=', 'Selesai')
+      ->where('keterangan', '=', 'Selesai')
       ->where('tanggal_mulai', '>=', $last30Days)
       ->get();
 

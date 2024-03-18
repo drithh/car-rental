@@ -4,6 +4,11 @@
       Welcome
     </div>
     <div class="text-center text-2xl opacity-80">Sign in to your account</div>
+    <div className="flex flex-col gap-2 my-6">
+      <div>Admin: email=admin@admin pass=admin</div>
+      <div>User: email=user@user pass=user</div>
+    </div>
+
     <div class="input-container mt-10 flex flex-col gap-y-4">
       <input-box
         label="Email"

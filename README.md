@@ -26,7 +26,7 @@ Password: user<br/>
 ### Clone Repository
 
 1. Clone atau download repository ini  
-   `git clone https://github.com/Drithh/rental-mobil.git`
+   `git clone https://github.com/drithh/car-rental.git`
 2. Buka folder project
 3. Buka Terminal atau command prompt
 4. Ketik `composer install`
