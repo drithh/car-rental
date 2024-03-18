@@ -2,7 +2,7 @@
 
 ## Demo
 
-Demo: https://pemweb.projectakhir.me/
+Demo: https://car-rental-gztuymsfwq-as.a.run.app
 
 Role: Admin<br/>
 Email : admin@admin<br/>
